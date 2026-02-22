@@ -1,0 +1,142 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../node_modules/.prisma/registry-client"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("REGISTRY_DATABASE_URL")
+}
+
+model TenantConfig {
+  id              String   @id @default(cuid())
+  portalTenantId  String   @unique
+  countryCode     String
+  registryName    String?
+  settings        Json     @default("{}")
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  projects        Project[]
+}
+
+enum ProjectStatus {
+  DRAFT
+  VALIDATION
+  REGISTERED
+  ACTIVE
+  COMPLETED
+  SUSPENDED
+  CANCELLED
+}
+
+enum CreditStatus {
+  ISSUED
+  ACTIVE
+  TRANSFERRED
+  RETIRED
+  CANCELLED
+}
+
+model Project {
+  id                String        @id @default(cuid())
+  tenantConfigId    String
+  tenantConfig      TenantConfig  @relation(fields: [tenantConfigId], references: [id])
+
+  title             String
+  description       String?
+  methodology       String?
+  sector            String?
+  projectType       String?
+
+  status            ProjectStatus @default(DRAFT)
+
+  startDate         DateTime?
+  endDate           DateTime?
+  creditingPeriodStart DateTime?
+  creditingPeriodEnd   DateTime?
+
+  location          String?
+  coordinates       Json?
+
+  proponentName     String?
+  proponentContact  String?
+
+  estimatedReductions Float?
+  verifiedReductions  Float?
+
+  documentUrl       String?
+  validationReport  String?
+
+  isArticle6        Boolean  @default(false)
+  correspondingAdjustment Boolean @default(false)
+
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  credits           Credit[]
+  monitoringReports MonitoringReport[]
+}
+
+model Credit {
+  id            String       @id @default(cuid())
+  projectId     String
+  project       Project      @relation(fields: [projectId], references: [id])
+
+  serialNumber  String       @unique
+  vintage       Int
+  quantity      Float
+  unit          String       @default("tCO2e")
+
+  status        CreditStatus @default(ISSUED)
+
+  issuedAt      DateTime     @default(now())
+  retiredAt     DateTime?
+
+  currentHolder String?
+
+  isItmo        Boolean      @default(false)
+  correspondingAdjustmentApplied Boolean @default(false)
+
+  metadata      Json?
+
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+
+  transfers     Transfer[]
+}
+
+model Transfer {
+  id            String   @id @default(cuid())
+  creditId      String
+  credit        Credit   @relation(fields: [creditId], references: [id])
+
+  fromEntity    String
+  toEntity      String
+  quantity      Float
+
+  transferType  String   @default("TRANSFER")
+  reason        String?
+
+  executedAt    DateTime @default(now())
+
+  createdAt     DateTime @default(now())
+}
+
+model MonitoringReport {
+  id            String   @id @default(cuid())
+  projectId     String
+  project       Project  @relation(fields: [projectId], references: [id])
+
+  reportingPeriodStart DateTime
+  reportingPeriodEnd   DateTime
+
+  verifiedReductions   Float?
+  reportUrl            String?
+  verifierName         String?
+  verificationDate     DateTime?
+
+  status        String   @default("DRAFT")
+
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}

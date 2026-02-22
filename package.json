@@ -1,0 +1,20 @@
+{
+  "name": "nctp",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "dev:portal": "pnpm --filter @nctp/portal dev",
+    "dev:mrv": "pnpm --filter @nctp/mrv dev",
+    "dev:ndc": "pnpm --filter @nctp/ndc dev",
+    "dev:registry": "pnpm --filter @nctp/registry dev",
+    "db:migrate": "turbo run db:migrate",
+    "db:seed": "turbo run db:seed"
+  },
+  "devDependencies": {
+    "turbo": "^2.0.0"
+  },
+  "packageManager": "pnpm@9.15.0"
+}

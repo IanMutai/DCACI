@@ -1,0 +1,11 @@
+target_id,target_name,sector,target_type,reference_type,base_year,base_value,base_unit,target_year,target_value,target_unit,conditional,condition_description,source_document,submission_date,status
+NDC-001,Economy-wide Emission Reduction,All Sectors,emission_reduction,absolute,2015,100000000,tCO2eq,2030,70000000,tCO2eq,unconditional,,NDC 2.0,2025-01-15,active
+NDC-002,Enhanced Economy-wide Target,All Sectors,emission_reduction,absolute,2015,100000000,tCO2eq,2030,60000000,tCO2eq,conditional,Subject to international support of $500M,NDC 2.0,2025-01-15,active
+NDC-003,Energy Sector Target,Energy,emission_reduction,bau,2015,50000000,tCO2eq,2030,35000000,tCO2eq,unconditional,,NDC 2.0,2025-01-15,active
+NDC-004,Renewable Energy Share,Energy,renewable_share,percentage,2020,15,%,2030,30,%,unconditional,,NDC 2.0,2025-01-15,active
+NDC-005,Forest Cover Target,LULUCF,forest_cover,percentage,2020,40,%,2030,45,%,unconditional,,NDC 2.0,2025-01-15,active
+NDC-006,Carbon Intensity Reduction,All Sectors,intensity,gdp,2015,0.5,kgCO2/USD,2030,0.3,kgCO2/USD,unconditional,,NDC 2.0,2025-01-15,active
+NDC-007,Net Zero Target,All Sectors,net_zero,absolute,2020,120000000,tCO2eq,2050,0,tCO2eq,aspirational,Long-term strategy pathway,LT-LEDS,2024-06-01,active
+NDC-008,Transport Sector EV Target,Transport,electric_vehicles,percentage,2020,2,%,2030,20,%,conditional,Subject to EV infrastructure support,NDC 2.0,2025-01-15,active
+NDC-009,Agriculture Emissions,Agriculture,emission_reduction,bau,2015,20000000,tCO2eq,2030,18000000,tCO2eq,unconditional,,NDC 2.0,2025-01-15,active
+NDC-010,Waste Sector Methane,Waste,methane_reduction,absolute,2020,5000000,tCO2eq,2030,3000000,tCO2eq,unconditional,,NDC 2.0,2025-01-15,active

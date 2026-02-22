@@ -1,0 +1,112 @@
+services:
+  # Portal Service
+  portal:
+    build:
+      context: .
+      dockerfile: apps/portal/Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - PORTAL_DATABASE_URL=postgresql://postgres:postgres@portal-db:5432/portal
+      - MRV_SERVICE_URL=http://mrv:3001
+      - NDC_SERVICE_URL=http://ndc:3002
+      - REGISTRY_SERVICE_URL=http://registry:3003
+      - NEXTAUTH_URL=http://localhost:3000
+      - NEXTAUTH_SECRET=${NEXTAUTH_SECRET}
+    depends_on:
+      - portal-db
+      - mrv
+      - ndc
+      - registry
+
+  # MRV Service
+  mrv:
+    build:
+      context: .
+      dockerfile: apps/mrv/Dockerfile
+    ports:
+      - "3001:3001"
+    environment:
+      - MRV_DATABASE_URL=postgresql://postgres:postgres@mrv-db:5432/mrv
+      - PORTAL_WEBHOOK_URL=http://portal:3000/api/webhooks/mrv
+    depends_on:
+      - mrv-db
+
+  # NDC Service
+  ndc:
+    build:
+      context: .
+      dockerfile: apps/ndc/Dockerfile
+    ports:
+      - "3002:3002"
+    environment:
+      - NDC_DATABASE_URL=postgresql://postgres:postgres@ndc-db:5432/ndc
+      - MRV_SERVICE_URL=http://mrv:3001
+      - PORTAL_WEBHOOK_URL=http://portal:3000/api/webhooks/ndc
+    depends_on:
+      - ndc-db
+
+  # Registry Service
+  registry:
+    build:
+      context: .
+      dockerfile: apps/registry/Dockerfile
+    ports:
+      - "3003:3003"
+    environment:
+      - REGISTRY_DATABASE_URL=postgresql://postgres:postgres@registry-db:5432/registry
+      - NDC_SERVICE_URL=http://ndc:3002
+      - PORTAL_WEBHOOK_URL=http://portal:3000/api/webhooks/registry
+    depends_on:
+      - registry-db
+
+  # Databases
+  portal-db:
+    image: postgres:15
+    environment:
+      - POSTGRES_DB=portal
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - portal-data:/var/lib/postgresql/data
+    ports:
+      - "5440:5432"
+
+  mrv-db:
+    image: postgres:15
+    environment:
+      - POSTGRES_DB=mrv
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - mrv-data:/var/lib/postgresql/data
+    ports:
+      - "5441:5432"
+
+  ndc-db:
+    image: postgres:15
+    environment:
+      - POSTGRES_DB=ndc
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - ndc-data:/var/lib/postgresql/data
+    ports:
+      - "5442:5432"
+
+  registry-db:
+    image: postgres:15
+    environment:
+      - POSTGRES_DB=registry
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - registry-data:/var/lib/postgresql/data
+    ports:
+      - "5443:5432"
+
+volumes:
+  portal-data:
+  mrv-data:
+  ndc-data:
+  registry-data:

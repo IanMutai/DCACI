@@ -1,0 +1,158 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../node_modules/.prisma/portal-client"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("PORTAL_DATABASE_URL")
+}
+
+// Multi-tenant support
+model Tenant {
+  id                String   @id @default(cuid())
+  name              String
+  slug              String   @unique
+  countryCode       String?
+  countryName       String?
+  logo              String?
+
+  // Module activation
+  mrvEnabled        Boolean  @default(false)
+  ndcEnabled        Boolean  @default(false)
+  registryEnabled   Boolean  @default(false)
+
+  // Sub-module activation (JSON for flexibility)
+  mrvModules        Json     @default("{}")
+  ndcModules        Json     @default("{}")
+  registryModules   Json     @default("{}")
+
+  // Service endpoints (if services run separately)
+  mrvEndpoint       String?
+  ndcEndpoint       String?
+  registryEndpoint  String?
+
+  // Onboarding status
+  onboardingComplete Boolean @default(false)
+  onboardingStep     Int     @default(0)
+
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  users             User[]
+  apiKeys           ApiKey[]
+  webhooks          Webhook[]
+}
+
+model User {
+  id                String   @id @default(cuid())
+  email             String   @unique
+  name              String?
+  passwordHash      String?
+
+  // OAuth providers
+  googleId          String?  @unique
+  microsoftId       String?  @unique
+
+  // Role and permissions
+  role              UserRole @default(USER)
+  permissions       Json     @default("[]")
+
+  // Module-specific roles
+  mrvRole           String?
+  ndcRole           String?
+  registryRole      String?
+
+  tenantId          String
+  tenant            Tenant   @relation(fields: [tenantId], references: [id])
+
+  isActive          Boolean  @default(true)
+  emailVerified     DateTime?
+  lastLogin         DateTime?
+
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  sessions          Session[]
+  auditLogs         AuditLog[]
+}
+
+enum UserRole {
+  SUPER_ADMIN
+  TENANT_ADMIN
+  MANAGER
+  USER
+  VIEWER
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expires      DateTime
+}
+
+model ApiKey {
+  id          String    @id @default(cuid())
+  name        String
+  key         String    @unique
+  tenantId    String
+  tenant      Tenant    @relation(fields: [tenantId], references: [id])
+
+  scopes      Json      @default("[]")
+
+  lastUsed    DateTime?
+  expiresAt   DateTime?
+  isActive    Boolean   @default(true)
+
+  createdAt   DateTime  @default(now())
+}
+
+model Webhook {
+  id          String   @id @default(cuid())
+  name        String
+  url         String
+  secret      String
+
+  tenantId    String
+  tenant      Tenant   @relation(fields: [tenantId], references: [id])
+
+  events      Json     @default("[]")
+
+  isActive    Boolean  @default(true)
+  lastTriggered DateTime?
+
+  createdAt   DateTime @default(now())
+}
+
+model AuditLog {
+  id          String   @id @default(cuid())
+  action      String
+  entity      String
+  entityId    String?
+  details     Json?
+
+  userId      String?
+  user        User?    @relation(fields: [userId], references: [id])
+
+  ipAddress   String?
+  userAgent   String?
+
+  createdAt   DateTime @default(now())
+}
+
+model ModuleConfig {
+  id          String   @id @default(cuid())
+  service     String
+  module      String
+  name        String
+  description String?
+
+  defaultConfig Json   @default("{}")
+  dependencies  Json   @default("[]")
+
+  isCore      Boolean  @default(false)
+
+  createdAt   DateTime @default(now())
+}

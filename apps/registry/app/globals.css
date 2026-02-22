@@ -1,0 +1,656 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* 
+  ARC - African Registry for Carbon
+  Design System - Bright, Vibrant & Fun (per Miro feedback)
+  
+  Updated primary teal to darker #2D6A6A style
+*/
+
+:root {
+  /* Base - Clean white foundation */
+  --background: 0 0% 99%;
+  --foreground: 174 30% 20%;
+
+  /* Cards - Pure white */
+  --card: 0 0% 100%;
+  --card-foreground: 174 30% 20%;
+
+  /* Popover */
+  --popover: 0 0% 100%;
+  --popover-foreground: 174 30% 20%;
+
+  /* Primary - Darker Teal #2D6A6A style */
+  --primary: 174 40% 30%;
+  --primary-foreground: 0 0% 100%;
+
+  /* Secondary - Soft sage */
+  --secondary: 174 20% 95%;
+  --secondary-foreground: 174 30% 25%;
+
+  /* Muted - Light gray-green */
+  --muted: 174 10% 94%;
+  --muted-foreground: 174 15% 45%;
+
+  /* Accent - Warm terracotta/coral for vibrancy */
+  --accent: 16 70% 50%;
+  --accent-foreground: 0 0% 100%;
+
+  /* Success - Vibrant green */
+  --success: 152 60% 40%;
+  --success-foreground: 0 0% 100%;
+
+  /* Destructive */
+  --destructive: 0 72% 51%;
+  --destructive-foreground: 0 0% 100%;
+
+  /* Borders - Subtle */
+  --border: 174 15% 88%;
+  --input: 174 15% 88%;
+  --ring: 174 40% 30%;
+
+  /* Charts - Bright, vibrant palette */
+  --chart-1: 174 40% 30%;
+  --chart-2: 16 70% 55%;
+  --chart-3: 45 90% 55%;
+  --chart-4: 200 70% 50%;
+  --chart-5: 280 60% 55%;
+
+  /* Sidebar - Darker teal to match new primary */
+  --sidebar: 174 40% 22%;
+  --sidebar-foreground: 174 10% 95%;
+  --sidebar-primary: 45 90% 55%;
+  --sidebar-primary-foreground: 174 30% 15%;
+  --sidebar-accent: 174 35% 28%;
+  --sidebar-accent-foreground: 174 10% 95%;
+  --sidebar-border: 174 35% 30%;
+  --sidebar-ring: 45 90% 55%;
+}
+
+/* Added dark theme for ARC Studio */
+.dark,
+.studio-dark {
+  --background: 220 15% 8%;
+  --foreground: 210 20% 95%;
+
+  --card: 220 15% 11%;
+  --card-foreground: 210 20% 95%;
+
+  --popover: 220 15% 11%;
+  --popover-foreground: 210 20% 95%;
+
+  --primary: 160 60% 45%;
+  --primary-foreground: 220 15% 8%;
+
+  --secondary: 220 15% 15%;
+  --secondary-foreground: 210 20% 85%;
+
+  --muted: 220 15% 15%;
+  --muted-foreground: 210 10% 55%;
+
+  --accent: 160 60% 45%;
+  --accent-foreground: 220 15% 8%;
+
+  --success: 152 60% 45%;
+  --success-foreground: 220 15% 8%;
+
+  --destructive: 0 62% 55%;
+  --destructive-foreground: 210 20% 95%;
+
+  --border: 220 15% 18%;
+  --input: 220 15% 18%;
+  --ring: 160 60% 45%;
+
+  --sidebar: 220 15% 6%;
+  --sidebar-foreground: 210 20% 90%;
+  --sidebar-primary: 160 60% 45%;
+  --sidebar-primary-foreground: 220 15% 8%;
+  --sidebar-accent: 220 15% 12%;
+  --sidebar-accent-foreground: 210 20% 90%;
+  --sidebar-border: 220 15% 15%;
+  --sidebar-ring: 160 60% 45%;
+}
+
+@theme inline {
+  /* Updated font-serif to Outfit for headings */
+  --font-sans: "DM Sans", "DM Sans Fallback", system-ui, sans-serif;
+  --font-serif: "Outfit", "Outfit Fallback", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-success: hsl(var(--success));
+  --color-success-foreground: hsl(var(--success-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-chart-1: hsl(var(--chart-1));
+  --color-chart-2: hsl(var(--chart-2));
+  --color-chart-3: hsl(var(--chart-3));
+  --color-chart-4: hsl(var(--chart-4));
+  --color-chart-5: hsl(var(--chart-5));
+
+  /* Define radius values directly in @theme block instead of using var() */
+  --radius: 0.75rem;
+  --radius-sm: 0.5rem;
+  --radius-md: 0.625rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.25rem;
+
+  --color-sidebar: hsl(var(--sidebar));
+  --color-sidebar-foreground: hsl(var(--sidebar-foreground));
+  --color-sidebar-primary: hsl(var(--sidebar-primary));
+  --color-sidebar-primary-foreground: hsl(var(--sidebar-primary-foreground));
+  --color-sidebar-accent: hsl(var(--sidebar-accent));
+  --color-sidebar-accent-foreground: hsl(var(--sidebar-accent-foreground));
+  --color-sidebar-border: hsl(var(--sidebar-border));
+  --color-sidebar-ring: hsl(var(--sidebar-ring));
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "cv11", "ss01";
+  }
+
+  /* Updated headings to use Outfit font with bolder weights */
+  h1,
+  .h1 {
+    font-family: var(--font-serif);
+    @apply text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1];
+  }
+
+  h2,
+  .h2 {
+    font-family: var(--font-serif);
+    @apply text-3xl md:text-4xl font-bold tracking-tight leading-tight;
+  }
+
+  h3,
+  .h3 {
+    font-family: var(--font-serif);
+    @apply text-xl md:text-2xl font-semibold tracking-tight;
+  }
+
+  h4,
+  .h4 {
+    font-family: var(--font-serif);
+    @apply text-lg font-semibold;
+  }
+
+  .display {
+    font-family: var(--font-serif);
+    @apply text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05];
+  }
+}
+
+/* Custom utility classes using vanilla CSS */
+.card-elevated {
+  background-color: hsl(var(--card));
+  border-radius: 1rem;
+  border: 1px solid hsl(var(--border));
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02), 0 4px 12px rgba(0, 0, 0, 0.04), 0 16px 32px rgba(0, 0, 0, 0.04);
+}
+
+.card-interactive {
+  background-color: hsl(var(--card));
+  border-radius: 1rem;
+  border: 1px solid hsl(var(--border));
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02), 0 4px 12px rgba(0, 0, 0, 0.04), 0 16px 32px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s ease;
+}
+
+.card-interactive:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02), 0 8px 24px rgba(0, 0, 0, 0.06), 0 24px 48px rgba(0, 0, 0, 0.06);
+}
+
+/* Updated button colors to use new palette */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: hsl(var(--accent));
+  color: hsl(var(--accent-foreground));
+  font-weight: 600;
+  border-radius: 0.75rem;
+  transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+  background-color: hsl(16 70% 45%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(200, 90, 60, 0.3);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: hsl(var(--secondary));
+  color: hsl(var(--primary));
+  font-weight: 600;
+  border-radius: 0.75rem;
+  border: 1px solid hsl(var(--primary) / 0.2);
+  transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+  background-color: hsl(var(--primary) / 0.1);
+  border-color: hsl(var(--primary) / 0.3);
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  color: hsl(var(--muted-foreground));
+  font-weight: 500;
+  border-radius: 0.5rem;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.btn-ghost:hover {
+  background-color: hsl(var(--secondary));
+  color: hsl(var(--foreground));
+}
+
+.input-field {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background-color: hsl(var(--card));
+  border: 1px solid hsl(var(--border));
+  border-radius: 0.75rem;
+  color: hsl(var(--foreground));
+  transition: all 0.2s ease;
+}
+
+.input-field::placeholder {
+  color: hsl(var(--muted-foreground));
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: hsl(var(--primary));
+  box-shadow: 0 0 0 4px hsl(var(--primary) / 0.1);
+}
+
+.badge-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border-radius: 9999px;
+  background-color: hsl(var(--primary) / 0.1);
+  color: hsl(var(--primary));
+}
+
+.badge-success {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border-radius: 9999px;
+  background-color: hsl(var(--success) / 0.1);
+  color: hsl(var(--success));
+}
+
+.badge-accent {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border-radius: 9999px;
+  background-color: hsl(var(--accent) / 0.1);
+  color: hsl(var(--accent));
+}
+
+/* Decorative patterns */
+.pattern-dots {
+  background-image: radial-gradient(hsl(var(--border)) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.pattern-grid {
+  background-image: linear-gradient(hsl(var(--border)) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(var(--border)) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* Updated gradients to use new teal/coral palette */
+.gradient-warm {
+  background: linear-gradient(135deg, hsl(160 30% 97%) 0%, hsl(174 20% 95%) 100%);
+}
+
+.gradient-hero {
+  background: radial-gradient(ellipse 80% 50% at 50% -20%, hsl(174 40% 52% / 0.12), transparent),
+    radial-gradient(ellipse 60% 40% at 80% 50%, hsl(16 70% 50% / 0.08), transparent), hsl(var(--background));
+}
+
+/* Smooth scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--muted));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--border));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground) / 0.3);
+}
+
+/* Added scrollbar-hide utility to completely hide scrollbar while allowing scroll */
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+/* Animation utilities */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.5s ease-out forwards;
+}
+
+.animate-scale-in {
+  animation: scale-in 0.3s ease-out forwards;
+}
+
+/* Stagger children animation */
+.stagger-children > * {
+  opacity: 0;
+  animation: fade-up 0.5s ease-out forwards;
+}
+
+.stagger-children > *:nth-child(1) {
+  animation-delay: 0ms;
+}
+.stagger-children > *:nth-child(2) {
+  animation-delay: 75ms;
+}
+.stagger-children > *:nth-child(3) {
+  animation-delay: 150ms;
+}
+.stagger-children > *:nth-child(4) {
+  animation-delay: 225ms;
+}
+.stagger-children > *:nth-child(5) {
+  animation-delay: 300ms;
+}
+.stagger-children > *:nth-child(6) {
+  animation-delay: 375ms;
+}
+
+/* Added studio-specific animations */
+@keyframes thinking-pulse {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes typing-cursor {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes progress-fill {
+  from {
+    width: 0%;
+  }
+  to {
+    width: var(--progress-width, 100%);
+  }
+}
+
+@keyframes glow-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 5px hsl(var(--primary) / 0.3), 0 0 10px hsl(var(--primary) / 0.2);
+  }
+  50% {
+    box-shadow: 0 0 10px hsl(var(--primary) / 0.5), 0 0 20px hsl(var(--primary) / 0.3);
+  }
+}
+
+.animate-thinking-pulse {
+  animation: thinking-pulse 1.5s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, hsl(var(--muted)) 0%, hsl(var(--border)) 50%, hsl(var(--muted)) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 2s linear infinite;
+}
+
+.animate-typing-cursor {
+  animation: typing-cursor 1s ease-in-out infinite;
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 0.4s ease-out forwards;
+}
+
+.animate-progress-fill {
+  animation: progress-fill 0.8s ease-out forwards;
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+/* Add new public portal animations */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px) scale(1);
+  }
+  50% {
+    transform: translateY(-20px) scale(1.05);
+  }
+}
+
+@keyframes float-delayed {
+  0%,
+  100% {
+    transform: translateY(0px) scale(1);
+  }
+  50% {
+    transform: translateY(-30px) scale(1.08);
+  }
+}
+
+@keyframes gradient {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes gradient-text {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes pulse-slow {
+  0%,
+  100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes bounce-slow {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float-delayed 8s ease-in-out infinite;
+  animation-delay: 1s;
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient 15s ease infinite;
+}
+
+.animate-gradient-text {
+  background-size: 200% 200%;
+  animation: gradient-text 3s ease infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 4s ease-in-out infinite;
+}
+
+.animate-bounce-slow {
+  animation: bounce-slow 3s ease-in-out infinite;
+}
+
+/* Animation delay utilities */
+.animation-delay-200 {
+  animation-delay: 200ms;
+}
+
+.animation-delay-300 {
+  animation-delay: 300ms;
+}
+
+.animation-delay-400 {
+  animation-delay: 400ms;
+}
+
+.animation-delay-500 {
+  animation-delay: 500ms;
+}
+
+.animation-delay-600 {
+  animation-delay: 600ms;
+}
+
+/* Studio dark scrollbar */
+.studio-dark ::-webkit-scrollbar-track {
+  background: hsl(220 15% 12%);
+}
+
+.studio-dark ::-webkit-scrollbar-thumb {
+  background: hsl(220 15% 25%);
+}
+
+.studio-dark ::-webkit-scrollbar-thumb:hover {
+  background: hsl(220 15% 35%);
+}

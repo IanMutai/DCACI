@@ -1,0 +1,298 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../node_modules/.prisma/mrv-client"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("MRV_DATABASE_URL")
+}
+
+// Tenant reference (synced from Portal)
+model TenantConfig {
+  id              String   @id @default(cuid())
+  portalTenantId  String   @unique
+  countryCode     String
+  countryName     String
+  baseYear        Int
+
+  // MRV-specific settings
+  defaultTier     Int      @default(1)
+  gwpSource       String   @default("AR5")
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  inventories     Inventory[]
+  emissionFactors EmissionFactor[]
+}
+
+// ==================== INVENTORY ====================
+
+model Inventory {
+  id              String   @id @default(cuid())
+  tenantConfigId  String
+  tenantConfig    TenantConfig @relation(fields: [tenantConfigId], references: [id])
+
+  year            Int
+  status          InventoryStatus @default(DRAFT)
+
+  totalEmissions  Float?
+  totalRemovals   Float?
+  netEmissions    Float?
+
+  submittedAt     DateTime?
+  approvedAt      DateTime?
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  sectorData      SectorData[]
+  qaqcRecords     QAQCRecord[]
+
+  @@unique([tenantConfigId, year])
+}
+
+enum InventoryStatus {
+  DRAFT
+  IN_REVIEW
+  APPROVED
+  SUBMITTED
+  PUBLISHED
+}
+
+model SectorData {
+  id              String   @id @default(cuid())
+  inventoryId     String
+  inventory       Inventory @relation(fields: [inventoryId], references: [id])
+
+  sectorCode      String
+  sectorName      String
+
+  co2Emissions    Float    @default(0)
+  ch4Emissions    Float    @default(0)
+  n2oEmissions    Float    @default(0)
+  hfcEmissions    Float    @default(0)
+  pfcEmissions    Float    @default(0)
+  sf6Emissions    Float    @default(0)
+  nf3Emissions    Float    @default(0)
+
+  totalCO2eq      Float    @default(0)
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  categories      CategoryData[]
+
+  @@unique([inventoryId, sectorCode])
+}
+
+model CategoryData {
+  id              String   @id @default(cuid())
+  sectorDataId    String
+  sectorData      SectorData @relation(fields: [sectorDataId], references: [id])
+
+  categoryCode    String
+  categoryName    String
+
+  tier            Int      @default(1)
+  methodology     String?
+
+  co2Emissions    Float    @default(0)
+  ch4Emissions    Float    @default(0)
+  n2oEmissions    Float    @default(0)
+
+  totalCO2eq      Float    @default(0)
+
+  uncertaintyLower Float?
+  uncertaintyUpper Float?
+
+  dataSource      String?
+  assumptions     String?
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  activityData    ActivityData[]
+
+  @@unique([sectorDataId, categoryCode])
+}
+
+// ==================== ACTIVITY DATA ====================
+
+model ActivityData {
+  id              String   @id @default(cuid())
+  categoryDataId  String
+  categoryData    CategoryData @relation(fields: [categoryDataId], references: [id])
+
+  name            String
+  value           Float
+  unit            String
+
+  dataSource      String?
+  collectionMethod String?
+  uncertainty     Float?
+
+  startDate       DateTime?
+  endDate         DateTime?
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  calculations    EmissionCalculation[]
+}
+
+// ==================== EMISSION FACTORS ====================
+
+model EmissionFactor {
+  id              String   @id @default(cuid())
+  tenantConfigId  String?
+  tenantConfig    TenantConfig? @relation(fields: [tenantConfigId], references: [id])
+
+  isDefault       Boolean  @default(false)
+
+  code            String
+  name            String
+
+  categoryCode    String
+  gas             GHGType
+
+  value           Float
+  unit            String
+
+  source          String
+  reference       String?
+  year            Int?
+
+  uncertaintyLower Float?
+  uncertaintyUpper Float?
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  calculations    EmissionCalculation[]
+}
+
+enum GHGType {
+  CO2
+  CH4
+  N2O
+  HFCs
+  PFCs
+  SF6
+  NF3
+}
+
+// ==================== CALCULATIONS ====================
+
+model EmissionCalculation {
+  id              String   @id @default(cuid())
+
+  activityDataId  String
+  activityData    ActivityData @relation(fields: [activityDataId], references: [id])
+
+  emissionFactorId String
+  emissionFactor  EmissionFactor @relation(fields: [emissionFactorId], references: [id])
+
+  rawEmission     Float
+  gwpFactor       Float
+  co2eqEmission   Float
+
+  tier            Int
+  equation        String?
+
+  createdAt       DateTime @default(now())
+}
+
+// ==================== QA/QC ====================
+
+model QAQCRecord {
+  id              String   @id @default(cuid())
+  inventoryId     String
+  inventory       Inventory @relation(fields: [inventoryId], references: [id])
+
+  checkType       QAQCType
+  category        String?
+
+  status          QAQCStatus @default(PENDING)
+
+  findings        Json?
+  issues          Json?
+  recommendations Json?
+
+  reviewedBy      String?
+  reviewedAt      DateTime?
+  comments        String?
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+enum QAQCType {
+  TIER1_GENERAL
+  TIER1_CATEGORY
+  TIER2_CATEGORY
+  KEY_CATEGORY
+  UNCERTAINTY
+  COMPLETENESS
+  CONSISTENCY
+  COMPARABILITY
+  ACCURACY
+  TRANSPARENCY
+}
+
+enum QAQCStatus {
+  PENDING
+  IN_PROGRESS
+  PASSED
+  FAILED
+  PASSED_WITH_COMMENTS
+}
+
+// ==================== KEY CATEGORIES ====================
+
+model KeyCategoryAnalysis {
+  id              String   @id @default(cuid())
+  tenantConfigId  String
+
+  year            Int
+
+  levelResults    Json
+  trendResults    Json
+  keyCategories   Json
+
+  createdAt       DateTime @default(now())
+}
+
+// ==================== RECALCULATIONS ====================
+
+model Recalculation {
+  id              String   @id @default(cuid())
+  tenantConfigId  String
+
+  originalYear    Int
+  affectedYears   Json
+
+  reason          RecalculationReason
+  description     String
+
+  methodologyChanges Json?
+  efChanges         Json?
+  adChanges         Json?
+
+  impactAssessment Json
+
+  approvedBy      String?
+  approvedAt      DateTime?
+
+  createdAt       DateTime @default(now())
+}
+
+enum RecalculationReason {
+  METHODOLOGY_CHANGE
+  EMISSION_FACTOR_UPDATE
+  ACTIVITY_DATA_REVISION
+  ERROR_CORRECTION
+  CATEGORY_REALLOCATION
+  NEW_DATA_SOURCE
+}

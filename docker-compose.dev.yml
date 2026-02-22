@@ -1,0 +1,48 @@
+version: '3.8'
+
+# Development overrides - use with: docker-compose -f docker-compose.yml -f docker-compose.dev.yml up
+
+services:
+  portal:
+    build:
+      target: development
+    volumes:
+      - ./apps/portal:/app/apps/portal
+      - ./packages:/app/packages
+      - /app/apps/portal/node_modules
+      - /app/apps/portal/.next
+    environment:
+      - NODE_ENV=development
+
+  mrv:
+    build:
+      target: development
+    volumes:
+      - ./apps/mrv:/app/apps/mrv
+      - ./packages:/app/packages
+      - /app/apps/mrv/node_modules
+      - /app/apps/mrv/.next
+    environment:
+      - NODE_ENV=development
+
+  ndc:
+    build:
+      target: development
+    volumes:
+      - ./apps/ndc:/app/apps/ndc
+      - ./packages:/app/packages
+      - /app/apps/ndc/node_modules
+      - /app/apps/ndc/.next
+    environment:
+      - NODE_ENV=development
+
+  registry:
+    build:
+      target: development
+    volumes:
+      - ./apps/registry:/app/apps/registry
+      - ./packages:/app/packages
+      - /app/apps/registry/node_modules
+      - /app/apps/registry/.next
+    environment:
+      - NODE_ENV=development

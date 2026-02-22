@@ -1,0 +1,14 @@
+{
+  "name": "@nctp/api-types",
+  "version": "1.0.0",
+  "private": true,
+  "main": "./index.ts",
+  "types": "./index.ts",
+  "scripts": {
+    "build": "tsc",
+    "lint": "eslint ."
+  },
+  "devDependencies": {
+    "typescript": "^5.5.0"
+  }
+}

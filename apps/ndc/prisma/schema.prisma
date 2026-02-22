@@ -1,0 +1,330 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../node_modules/.prisma/ndc-client"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("NDC_DATABASE_URL")
+}
+
+// Tenant reference (synced from Portal)
+model TenantConfig {
+  id              String   @id @default(cuid())
+  portalTenantId  String   @unique
+  countryCode     String
+  countryName     String
+
+  ndcCycle        Int      @default(1)
+  currentNDCId    String?
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  ndcs            NDC[]
+  baselines       Baseline[]
+  policies        PolicyMeasure[]
+}
+
+// ==================== NDC TARGETS ====================
+
+model NDC {
+  id              String   @id @default(cuid())
+  tenantConfigId  String
+  tenantConfig    TenantConfig @relation(fields: [tenantConfigId], references: [id])
+
+  version         String
+  status          NDCStatus @default(DRAFT)
+
+  submissionDate  DateTime?
+  unfcccRef       String?
+  documentUrl     String?
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  targets         Target[]
+  progressRecords ProgressRecord[]
+}
+
+enum NDCStatus {
+  DRAFT
+  INTERNAL_REVIEW
+  SUBMITTED
+  ACTIVE
+  SUPERSEDED
+}
+
+model Target {
+  id              String   @id @default(cuid())
+  ndcId           String
+  ndc             NDC      @relation(fields: [ndcId], references: [id])
+
+  name            String
+  sector          String?
+
+  targetType      TargetType
+  referenceType   ReferenceType
+
+  baseYear        Int?
+  baseValue       Float?
+  baseUnit        String?
+
+  targetYear      Int
+  targetValue     Float
+  targetUnit      String
+
+  isConditional   Boolean  @default(false)
+  conditionDescription String?
+
+  isActive        Boolean  @default(true)
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  progressRecords TargetProgress[]
+  linkedPolicies  PolicyTarget[]
+}
+
+enum TargetType {
+  EMISSION_REDUCTION
+  EMISSION_INTENSITY
+  RENEWABLE_SHARE
+  ENERGY_EFFICIENCY
+  FOREST_COVER
+  CARBON_SINK
+  NET_ZERO
+  SECTORAL_TARGET
+}
+
+enum ReferenceType {
+  ABSOLUTE
+  BAU
+  BASE_YEAR
+  INTENSITY
+  PEAKING
+}
+
+// ==================== PROGRESS TRACKING ====================
+
+model ProgressRecord {
+  id              String   @id @default(cuid())
+  ndcId           String
+  ndc             NDC      @relation(fields: [ndcId], references: [id])
+
+  year            Int
+
+  overallProgress Float?
+  onTrack         Boolean?
+
+  mrvDataYear     Int?
+  lastSyncedAt    DateTime?
+
+  notes           String?
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  targetProgress  TargetProgress[]
+}
+
+model TargetProgress {
+  id              String   @id @default(cuid())
+  progressRecordId String
+  progressRecord  ProgressRecord @relation(fields: [progressRecordId], references: [id])
+
+  targetId        String
+  target          Target   @relation(fields: [targetId], references: [id])
+
+  currentValue    Float
+  currentUnit     String
+
+  progressPercent Float
+  gapToTarget     Float
+
+  projectedValue  Float?
+  projectedYear   Int?
+  onTrack         Boolean
+
+  createdAt       DateTime @default(now())
+}
+
+// ==================== BASELINES & PROJECTIONS ====================
+
+model Baseline {
+  id              String   @id @default(cuid())
+  tenantConfigId  String
+  tenantConfig    TenantConfig @relation(fields: [tenantConfigId], references: [id])
+
+  name            String
+  type            BaselineType
+  sector          String?
+
+  baseYear        Int
+  endYear         Int
+
+  dataPoints      Json
+
+  methodology     String?
+  assumptions     Json?
+
+  isActive        Boolean  @default(true)
+  approvedAt      DateTime?
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+enum BaselineType {
+  BAU
+  WITH_MEASURES
+  WITH_ADDITIONAL_MEASURES
+  HISTORICAL
+}
+
+model Projection {
+  id              String   @id @default(cuid())
+  tenantConfigId  String
+
+  name            String
+  scenario        String
+  sector          String?
+
+  startYear       Int
+  endYear         Int
+  dataPoints      Json
+
+  model           String?
+  assumptions     Json?
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+// ==================== POLICIES & MEASURES ====================
+
+model PolicyMeasure {
+  id              String   @id @default(cuid())
+  tenantConfigId  String
+  tenantConfig    TenantConfig @relation(fields: [tenantConfigId], references: [id])
+
+  name            String
+  description     String?
+
+  type            PolicyType
+  sector          String
+  instrument      String
+
+  status          PolicyStatus @default(PLANNED)
+
+  startDate       DateTime?
+  endDate         DateTime?
+
+  expectedImpact  Float?
+  actualImpact    Float?
+
+  estimatedCost   Float?
+  actualCost      Float?
+  costUnit        String?
+
+  legalBasis      String?
+  documentUrl     String?
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  linkedTargets   PolicyTarget[]
+  impactRecords   PolicyImpact[]
+}
+
+enum PolicyType {
+  MITIGATION
+  ADAPTATION
+  CROSS_CUTTING
+}
+
+enum PolicyStatus {
+  PLANNED
+  ADOPTED
+  IMPLEMENTED
+  COMPLETED
+  DISCONTINUED
+}
+
+model PolicyTarget {
+  id              String   @id @default(cuid())
+  policyId        String
+  policy          PolicyMeasure @relation(fields: [policyId], references: [id])
+
+  targetId        String
+  target          Target   @relation(fields: [targetId], references: [id])
+
+  contributionPercent Float?
+
+  @@unique([policyId, targetId])
+}
+
+model PolicyImpact {
+  id              String   @id @default(cuid())
+  policyId        String
+  policy          PolicyMeasure @relation(fields: [policyId], references: [id])
+
+  year            Int
+
+  emissionReduction Float?
+  energySaved       Float?
+  renewableAdded    Float?
+
+  isVerified      Boolean  @default(false)
+  verificationSource String?
+
+  createdAt       DateTime @default(now())
+
+  @@unique([policyId, year])
+}
+
+// ==================== GAP ANALYSIS ====================
+
+model GapAnalysis {
+  id              String   @id @default(cuid())
+  tenantConfigId  String
+
+  analysisDate    DateTime @default(now())
+  targetYear      Int
+
+  currentEmissions Float
+  projectedBAU     Float
+  targetEmissions  Float
+
+  absoluteGap     Float
+  percentageGap   Float
+
+  sectorGaps      Json
+
+  recommendations Json?
+
+  createdAt       DateTime @default(now())
+}
+
+// ==================== FINANCE ====================
+
+model FinanceNeed {
+  id              String   @id @default(cuid())
+  tenantConfigId  String
+
+  sector          String
+  category        String
+
+  totalNeed       Float
+  currency        String
+  timeframe       String
+
+  domestic        Float?
+  international   Float?
+
+  secured         Float    @default(0)
+  gap             Float?
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
