@@ -104,7 +104,7 @@ export default function LandingPage() {
                 </div>
                 <div className="mt-4 flex justify-between">
                   <Link href="/dashboard/mrv" className="text-xs font-medium text-teal-700 hover:text-teal-900">Portal &rarr;</Link>
-                  <a href="http://localhost:4001" className="text-xs text-slate-400 hover:text-slate-600">:4001</a>
+                  <Link href="/dashboard/mrv" className="text-xs text-slate-400 hover:text-slate-600">MRV &rarr;</Link>
                 </div>
               </div>
 
@@ -122,7 +122,7 @@ export default function LandingPage() {
                 </div>
                 <div className="mt-4 flex justify-between">
                   <Link href="/dashboard/ndc" className="text-xs font-medium text-teal-700 hover:text-teal-900">Portal &rarr;</Link>
-                  <a href="http://localhost:4002" className="text-xs text-slate-400 hover:text-slate-600">:4002</a>
+                  <Link href="/dashboard/ndc" className="text-xs text-slate-400 hover:text-slate-600">NDC &rarr;</Link>
                 </div>
               </div>
 
@@ -140,7 +140,7 @@ export default function LandingPage() {
                 </div>
                 <div className="mt-4 flex justify-between">
                   <Link href="/dashboard/registry" className="text-xs font-medium text-teal-700 hover:text-teal-900">Portal &rarr;</Link>
-                  <a href="http://localhost:4003" className="text-xs text-slate-400 hover:text-slate-600">:4003</a>
+                  <Link href="/dashboard/registry" className="text-xs text-slate-400 hover:text-slate-600">Registry &rarr;</Link>
                 </div>
               </div>
 

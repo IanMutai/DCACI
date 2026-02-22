@@ -1,6 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import Link from "next/link";
 import SummaryCard from "@/components/dashboard/summary-card";
 import MrvCard from "@/components/module-cards/mrv-card";
 import NdcCard from "@/components/module-cards/ndc-card";
@@ -128,10 +129,8 @@ export default function DashboardPage() {
           </div>
         </div>
         <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
-          <a
-            href="http://localhost:4001"
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            href="/dashboard/mrv"
             className="flex flex-col items-center gap-2 rounded-xl border border-emerald-200 bg-white p-4 text-center transition-all hover:shadow-md hover:border-emerald-300"
           >
             <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-100">
@@ -139,13 +138,10 @@ export default function DashboardPage() {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
               </svg>
             </div>
-            <span className="text-sm font-semibold text-slate-900">MRV Portal</span>
-            <span className="text-[10px] font-mono text-slate-400">:4001</span>
-          </a>
-          <a
-            href="http://localhost:4002"
-            target="_blank"
-            rel="noopener noreferrer"
+            <span className="text-sm font-semibold text-slate-900">MRV System</span>
+          </Link>
+          <Link
+            href="/dashboard/ndc"
             className="flex flex-col items-center gap-2 rounded-xl border border-blue-200 bg-white p-4 text-center transition-all hover:shadow-md hover:border-blue-300"
           >
             <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-100">
@@ -153,13 +149,10 @@ export default function DashboardPage() {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5M9 11.25v1.5M12 9v3.75m3-6v6" />
               </svg>
             </div>
-            <span className="text-sm font-semibold text-slate-900">NDC Portal</span>
-            <span className="text-[10px] font-mono text-slate-400">:4002</span>
-          </a>
-          <a
-            href="http://localhost:4003"
-            target="_blank"
-            rel="noopener noreferrer"
+            <span className="text-sm font-semibold text-slate-900">NDC Tracker</span>
+          </Link>
+          <Link
+            href="/dashboard/registry"
             className="flex flex-col items-center gap-2 rounded-xl border border-amber-200 bg-white p-4 text-center transition-all hover:shadow-md hover:border-amber-300"
           >
             <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-amber-100">
@@ -167,9 +160,8 @@ export default function DashboardPage() {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375" />
               </svg>
             </div>
-            <span className="text-sm font-semibold text-slate-900">Registry Portal</span>
-            <span className="text-[10px] font-mono text-slate-400">:4003</span>
-          </a>
+            <span className="text-sm font-semibold text-slate-900">Carbon Registry</span>
+          </Link>
           <a
             href="/dashboard/intelligence"
             className="flex flex-col items-center gap-2 rounded-xl border-2 border-teal-200 bg-gradient-to-b from-teal-50 to-white p-4 text-center transition-all hover:shadow-md hover:border-teal-300"

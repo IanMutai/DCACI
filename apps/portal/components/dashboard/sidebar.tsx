@@ -86,9 +86,9 @@ const financeNav: NavItem[] = [
 ];
 
 const standalonePortals = [
-  { name: "MRV Portal", href: "http://localhost:4001", badge: ":4001" },
-  { name: "NDC Portal", href: "http://localhost:4002", badge: ":4002" },
-  { name: "Registry Portal", href: "http://localhost:4003", badge: ":4003" },
+  { name: "MRV Portal", href: "/dashboard/mrv", badge: "MRV" },
+  { name: "NDC Portal", href: "/dashboard/ndc", badge: "NDC" },
+  { name: "Registry Portal", href: "/dashboard/registry", badge: "REG" },
 ];
 
 export default function Sidebar() {
