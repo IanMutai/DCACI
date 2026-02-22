@@ -28,7 +28,7 @@ export default function Header() {
 
       <div className="flex items-center gap-5">
         <Link
-          href="http://www.arc.verst.earth/"
+          href="/public"
           target="_blank"
           className="hidden md:flex items-center gap-2 px-4 py-2.5 text-sm text-primary hover:text-primary/80 hover:bg-primary/5 rounded-xl transition-all font-medium group"
         >

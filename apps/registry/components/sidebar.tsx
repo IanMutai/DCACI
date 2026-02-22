@@ -190,7 +190,7 @@ export default function Sidebar() {
         {/* Public Portal Link */}
         <div className="mt-8 pt-6 border-t border-sidebar-border">
           <Link
-            href="http://www.arc.verst.earth/"
+            href="/public"
             target="_blank"
             className="flex items-center gap-3 px-4 py-3 text-sidebar-primary hover:bg-sidebar-primary/10 rounded-xl text-sm font-medium transition-all"
           >
@@ -229,7 +229,7 @@ export default function Sidebar() {
 
         <div className="px-2 text-xs text-sidebar-foreground/40">
           <div className="flex items-center gap-1 justify-center">
-            Made with <Heart size={10} className="text-red-400 fill-red-400" /> by GIZ & Verst Carbon
+            Made with <Heart size={10} className="text-red-400 fill-red-400" /> by DCACI & GIZ
           </div>
         </div>
       </div>

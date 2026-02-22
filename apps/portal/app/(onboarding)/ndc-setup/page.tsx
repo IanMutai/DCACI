@@ -10,8 +10,8 @@ export default function NdcSetupPage() {
     targetYear: "2030",
     baselineYear: "2015",
     targetType: "unconditional",
-    unconditionalTarget: "-32",
-    conditionalTarget: "-47",
+    unconditionalTarget: "-7",
+    conditionalTarget: "-32",
     targetMetric: "absolute",
     coversSectors: {
       energy: true,
@@ -161,7 +161,7 @@ export default function NdcSetupPage() {
                 type="number"
                 value={config.unconditionalTarget}
                 onChange={handleChange}
-                placeholder="-32"
+                placeholder="-7"
                 className="input-field"
               />
               <p className="mt-1 text-xs text-slate-500">
@@ -177,7 +177,7 @@ export default function NdcSetupPage() {
                 type="number"
                 value={config.conditionalTarget}
                 onChange={handleChange}
-                placeholder="-47"
+                placeholder="-32"
                 className="input-field"
               />
               <p className="mt-1 text-xs text-slate-500">

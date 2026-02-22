@@ -22,10 +22,10 @@ export default function WelcomePage() {
           </svg>
         </div>
         <h1 className="text-3xl font-bold text-slate-900">
-          Welcome to NCTP
+          Welcome to DCACI
         </h1>
         <p className="mt-4 text-lg text-slate-600 max-w-lg mx-auto">
-          Let&apos;s set up your National Climate Transparency Platform. This
+          Let&apos;s set up your Digital Center for Applied Carbon Intelligence. This
           process will help configure the system for your country&apos;s specific
           needs and reporting requirements.
         </p>

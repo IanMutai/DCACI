@@ -8,27 +8,36 @@ import {
   BarChart3,
   Target,
   Database,
-  ArrowLeftRight,
   FileText,
   Settings,
   HelpCircle,
   ChevronRight,
   Leaf,
+  DollarSign,
+  Map,
+  TrendingUp,
+  ExternalLink,
+  Scale,
 } from "lucide-react";
+import { useAppContext } from "./context-provider";
 
-const mainNavigation = [
-  {
-    name: "Dashboard",
-    href: "/dashboard",
-    icon: LayoutDashboard,
-  },
+interface NavItem {
+  name: string;
+  href: string;
+  icon: typeof LayoutDashboard;
+  badge?: string;
+  children?: { name: string; href: string }[];
+}
+
+const environmentNav: NavItem[] = [
+  { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
   {
     name: "MRV System",
     href: "/dashboard/mrv",
     icon: BarChart3,
     badge: "MRV",
     children: [
-      { name: "Overview", href: "/dashboard/mrv" },
+      { name: "GHG Inventory", href: "/dashboard/mrv" },
       { name: "Data Collection", href: "/dashboard/mrv/data" },
       { name: "Verification", href: "/dashboard/mrv/verification" },
     ],
@@ -39,37 +48,58 @@ const mainNavigation = [
     icon: Target,
     badge: "NDC",
     children: [
-      { name: "Overview", href: "/dashboard/ndc" },
-      { name: "Targets", href: "/dashboard/ndc/targets" },
-      { name: "Progress", href: "/dashboard/ndc/progress" },
+      { name: "Targets & Progress", href: "/dashboard/ndc" },
+      { name: "Sector Targets", href: "/dashboard/ndc/targets" },
+      { name: "Mitigation Actions", href: "/dashboard/ndc/progress" },
     ],
   },
+  { name: "Carbon Registry", href: "/dashboard/registry", icon: Database, badge: "REG" },
   {
-    name: "Registry",
-    href: "/dashboard/registry",
-    icon: Database,
-    badge: "REG",
+    name: "Counties",
+    href: "/dashboard/counties",
+    icon: Map,
+    children: [
+      { name: "Overview", href: "/dashboard/counties" },
+      { name: "Compare", href: "/dashboard/counties/compare" },
+    ],
   },
+  { name: "Reports", href: "/dashboard/reports", icon: FileText },
+];
+
+const financeNav: NavItem[] = [
+  { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
   {
-    name: "Integration",
-    href: "/dashboard/integration",
-    icon: ArrowLeftRight,
+    name: "Climate Finance",
+    href: "/dashboard/finance",
+    icon: DollarSign,
+    badge: "FIN",
+    children: [
+      { name: "Overview", href: "/dashboard/finance" },
+      { name: "Funding Sources", href: "/dashboard/finance/sources" },
+      { name: "Transactions", href: "/dashboard/finance/transactions" },
+    ],
   },
-  {
-    name: "Reports",
-    href: "/dashboard/reports",
-    icon: FileText,
-  },
+  { name: "Letters of Authorization", href: "/dashboard/finance/loa", icon: Scale, badge: "LOA" },
+  { name: "Budget-NDC Alignment", href: "/dashboard/intelligence/budget-alignment", icon: TrendingUp },
+  { name: "Carbon Registry", href: "/dashboard/registry", icon: Database, badge: "REG" },
+  { name: "Reports", href: "/dashboard/reports", icon: FileText },
+];
+
+const standalonePortals = [
+  { name: "MRV Portal", href: "http://localhost:4001", badge: ":4001" },
+  { name: "NDC Portal", href: "http://localhost:4002", badge: ":4002" },
+  { name: "Registry Portal", href: "http://localhost:4003", badge: ":4003" },
 ];
 
 export default function Sidebar() {
   const pathname = usePathname();
+  const { context } = useAppContext();
   const [expandedSections, setExpandedSections] = useState<string[]>([]);
 
+  const navigation = context === "environment" ? environmentNav : financeNav;
+
   function isActive(href: string) {
-    if (href === "/dashboard") {
-      return pathname === "/dashboard" || pathname === "/";
-    }
+    if (href === "/dashboard") return pathname === "/dashboard" || pathname === "/";
     return pathname === href || pathname.startsWith(href + "/");
   }
 
@@ -79,9 +109,7 @@ export default function Sidebar() {
 
   function toggleSection(name: string) {
     setExpandedSections((prev) =>
-      prev.includes(name)
-        ? prev.filter((s) => s !== name)
-        : [...prev, name]
+      prev.includes(name) ? prev.filter((s) => s !== name) : [...prev, name]
     );
   }
 
@@ -96,37 +124,31 @@ export default function Sidebar() {
     >
       {/* Logo */}
       <div
-        className="flex h-20 items-center gap-3 px-6"
+        className="flex h-16 items-center gap-3 px-6"
         style={{ borderBottom: "1px solid hsl(var(--sidebar-border))" }}
       >
         <div
-          className="flex h-10 w-10 items-center justify-center rounded-xl"
+          className="flex h-9 w-9 items-center justify-center rounded-xl"
           style={{ backgroundColor: "hsl(var(--sidebar-primary))" }}
         >
-          <Leaf
-            className="h-5 w-5"
-            style={{ color: "hsl(var(--sidebar-primary-foreground))" }}
-          />
+          <Leaf className="h-4 w-4" style={{ color: "hsl(var(--sidebar-primary-foreground))" }} />
         </div>
         <div>
-          <span
-            className="text-base font-bold"
-            style={{ color: "hsl(var(--sidebar-foreground))" }}
-          >
-            NCTP
+          <span className="text-base font-bold" style={{ color: "hsl(var(--sidebar-foreground))" }}>
+            DCACI
           </span>
           <span
-            className="block text-[11px] font-medium"
+            className="block text-[10px] font-medium"
             style={{ color: "hsl(var(--sidebar-foreground) / 0.5)" }}
           >
-            Climate Platform
+            Kenya Climate Intelligence
           </span>
         </div>
       </div>
 
-      {/* Navigation */}
-      <nav className="flex-1 overflow-y-auto scrollbar-hide px-3 py-6 space-y-1">
-        {mainNavigation.map((item) => {
+      {/* Navigation — context-specific, no switcher */}
+      <nav className="flex-1 overflow-y-auto scrollbar-hide px-3 py-4 space-y-1">
+        {navigation.map((item) => {
           const Icon = item.icon;
           const active = isActive(item.href);
           const sectionActive = isSectionActive(item.href);
@@ -158,9 +180,7 @@ export default function Sidebar() {
                     </span>
                   )}
                   <ChevronRight
-                    className={`h-4 w-4 flex-shrink-0 transition-transform duration-200 ${
-                      expanded ? "rotate-90" : ""
-                    }`}
+                    className={`h-4 w-4 flex-shrink-0 transition-transform duration-200 ${expanded ? "rotate-90" : ""}`}
                   />
                 </button>
               ) : (
@@ -188,7 +208,6 @@ export default function Sidebar() {
                 </Link>
               )}
 
-              {/* Sub-items */}
               {hasChildren && expanded && (
                 <div className="mt-1 ml-4 space-y-0.5">
                   {item.children!.map((child) => {
@@ -219,13 +238,41 @@ export default function Sidebar() {
             </div>
           );
         })}
+
+        {/* Standalone Portals */}
+        <div className="pt-4 mt-4" style={{ borderTop: "1px solid hsl(var(--sidebar-border))" }}>
+          <p
+            className="px-3 pb-2 text-[10px] font-semibold uppercase tracking-wider"
+            style={{ color: "hsl(var(--sidebar-foreground) / 0.4)" }}
+          >
+            Standalone Portals
+          </p>
+          {standalonePortals.map((portal) => (
+            <a
+              key={portal.name}
+              href={portal.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="sidebar-link"
+            >
+              <ExternalLink className="h-[16px] w-[16px] flex-shrink-0" />
+              <span className="flex-1">{portal.name}</span>
+              <span
+                className="rounded-md px-1.5 py-0.5 text-[10px] font-mono"
+                style={{
+                  backgroundColor: "hsl(var(--sidebar-accent))",
+                  color: "hsl(var(--sidebar-foreground) / 0.5)",
+                }}
+              >
+                {portal.badge}
+              </span>
+            </a>
+          ))}
+        </div>
       </nav>
 
-      {/* Bottom Section */}
-      <div
-        className="px-3 py-4 space-y-1"
-        style={{ borderTop: "1px solid hsl(var(--sidebar-border))" }}
-      >
+      {/* Bottom */}
+      <div className="px-3 py-4 space-y-1" style={{ borderTop: "1px solid hsl(var(--sidebar-border))" }}>
         <Link href="/dashboard/settings" className="sidebar-link">
           <Settings className="h-[18px] w-[18px] flex-shrink-0" />
           <span className="flex-1">Settings</span>
@@ -234,18 +281,6 @@ export default function Sidebar() {
           <HelpCircle className="h-[18px] w-[18px] flex-shrink-0" />
           <span className="flex-1 text-left">Help & Support</span>
         </button>
-
-        <div
-          className="mt-4 pt-4 text-center"
-          style={{ borderTop: "1px solid hsl(var(--sidebar-border))" }}
-        >
-          <p
-            className="text-[11px]"
-            style={{ color: "hsl(var(--sidebar-foreground) / 0.4)" }}
-          >
-            Made with &#9829; for Climate Action
-          </p>
-        </div>
       </div>
     </aside>
   );

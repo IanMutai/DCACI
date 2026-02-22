@@ -26,7 +26,7 @@ export default function OnboardingCompletePage() {
           Setup Complete!
         </h1>
         <p className="mt-4 text-lg text-slate-600 max-w-md mx-auto">
-          Your National Climate Transparency Platform has been configured
+          Your Digital Center for Applied Carbon Intelligence has been configured
           successfully. You&apos;re ready to start managing your climate data.
         </p>
 

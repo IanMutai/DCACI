@@ -25,12 +25,12 @@ export default function LoginPage() {
             <div className="h-10 w-10 rounded-lg bg-white/20 flex items-center justify-center">
               <span className="text-white font-bold">NC</span>
             </div>
-            <span className="text-xl font-bold text-white">NCTP</span>
+            <span className="text-xl font-bold text-white">DCACI</span>
           </div>
         </div>
         <div>
           <h2 className="text-3xl font-bold text-white mb-4">
-            National Climate Transparency Platform
+            Digital Center for Applied Carbon Intelligence
           </h2>
           <p className="text-teal-100 text-lg">
             Empowering nations to track, report, and verify climate actions under
@@ -50,7 +50,7 @@ export default function LoginPage() {
               <div className="h-8 w-8 rounded-lg bg-teal-700 flex items-center justify-center">
                 <span className="text-white font-bold text-sm">NC</span>
               </div>
-              <span className="text-lg font-bold text-slate-900">NCTP</span>
+              <span className="text-lg font-bold text-slate-900">DCACI</span>
             </div>
             <h1 className="text-2xl font-bold text-slate-900">Welcome back</h1>
             <p className="mt-2 text-sm text-slate-600">

@@ -50,8 +50,8 @@ export default function ITMODashboardPage() {
                   </div>
                 </div>
                 <div className="text-sm text-muted-foreground mb-1">Partner Countries</div>
-                <div className="font-serif text-2xl font-semibold text-foreground">12</div>
-                <div className="text-xs text-muted-foreground">bilateral agreements</div>
+                <div className="font-serif text-2xl font-semibold text-foreground">4</div>
+                <div className="text-xs text-muted-foreground">2 signed, 2 negotiating</div>
               </div>
 
               <div className="bg-card rounded-2xl p-6 border border-border">
@@ -97,9 +97,9 @@ export default function ITMODashboardPage() {
               <div className="space-y-4">
                 {[
                   { country: "Switzerland", transferred: 250000, pending: 50000, color: "bg-primary" },
-                  { country: "Norway", transferred: 180000, pending: 30000, color: "bg-blue-500" },
-                  { country: "Germany", transferred: 150000, pending: 20000, color: "bg-green-500" },
-                  { country: "Japan", transferred: 270000, pending: 40000, color: "bg-red-500" },
+                  { country: "Sweden", transferred: 180000, pending: 30000, color: "bg-blue-500" },
+                  { country: "Singapore", transferred: 0, pending: 120000, color: "bg-green-500" },
+                  { country: "South Korea", transferred: 0, pending: 90000, color: "bg-red-500" },
                 ].map((item) => (
                   <div key={item.country} className="space-y-2">
                     <div className="flex justify-between items-center">
@@ -141,7 +141,7 @@ export default function ITMODashboardPage() {
                   },
                   {
                     project: "Mombasa Wind Farm",
-                    country: "Germany",
+                    country: "Sweden",
                     amount: 15000,
                     date: "Mar 12, 2025",
                     status: "pending",

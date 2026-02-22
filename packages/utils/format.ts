@@ -111,12 +111,12 @@ export function formatCompact(value: number, locale = "en-US"): string {
 }
 
 /**
- * Format a serial number for credits (e.g., "NCTP-KE-2024-000001").
+ * Format a serial number for credits (e.g., "DCACI-KE-2024-000001").
  */
 export function formatCreditSerial(
   countryCode: string,
   year: number,
   sequence: number
 ): string {
-  return `NCTP-${countryCode.toUpperCase()}-${year}-${String(sequence).padStart(6, "0")}`;
+  return `DCACI-${countryCode.toUpperCase()}-${year}-${String(sequence).padStart(6, "0")}`;
 }

@@ -245,7 +245,7 @@ export default function CompareCountiesPage() {
   };
 
   const getMaxValue = (key: string): number => {
-    return Math.max(...counties.map((c) => Math.abs((c as Record<string, number>)[key])));
+    return Math.max(...counties.map((c) => Math.abs((c as unknown as Record<string, number>)[key] ?? 0)));
   };
 
   return (

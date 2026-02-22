@@ -13,12 +13,12 @@ export async function GET() {
           title: "NDC Description and Updates",
           status: "complete",
           content: {
-            ndcVersion: "2.0",
+            ndcVersion: "Updated NDC (2020)",
             targetType: "economy-wide",
-            baseYear: 2010,
+            baseYear: 2015,
             targetYear: 2030,
-            unconditionalTarget: "15% below 2010 levels",
-            conditionalTarget: "32% below 2010 levels",
+            unconditionalTarget: "32% below BAU by 2030",
+            conditionalTarget: "Additional reductions with international support",
           },
         },
         {

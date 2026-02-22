@@ -281,7 +281,7 @@ const ministryAlignments: MinistryAlignmentSummary[] = [
 
 const ndcBudgetGaps: NDCBudgetGap[] = [
   {
-    target: "32% Energy Sector Reduction",
+    target: "Energy Sector Reduction (NDC conditional target)",
     sector: "Energy",
     requiredBudget: 45000000000,
     allocatedBudget: 23500000000,

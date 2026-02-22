@@ -14,8 +14,8 @@ export default function PublicFooter() {
           <div className="lg:col-span-5">
             <ARCLogo theme="light" size="lg" className="mb-6" />
             <p className="text-sm text-sidebar-foreground/60 max-w-sm leading-relaxed mb-8">
-              A digital public goods carbon registry platform designed to empower African nations with transparent,
-              efficient tools for managing carbon credits and driving sustainable development.
+              Kenya National Carbon Registry (KNCR) - The official platform for managing carbon credits under the
+              Carbon Markets Regulations 2024. 296 projects, 59M credits issued, powering Kenya's climate leadership.
             </p>
             <div className="flex items-center gap-4">
               <a
@@ -150,17 +150,17 @@ export default function PublicFooter() {
               </li>
               <li>
                 <a
-                  href="mailto:support@arc-registry.org"
+                  href="mailto:support@kncr.go.ke"
                   className="text-sm text-sidebar-foreground/60 hover:text-sidebar-primary transition-colors"
                 >
-                  support@arc-registry.org
+                  support@kncr.go.ke
                 </a>
               </li>
             </ul>
             <div className="mt-6 p-4 bg-sidebar-accent rounded-xl">
               <p className="text-xs text-sidebar-foreground/60 leading-relaxed">
-                ARC is a digital public goods platform available under the MIT license. Contributions and feedback are
-                welcome.
+                KNCR is Kenya's official carbon registry platform operated under NEMA oversight per the Carbon Markets Regulations 2024.
+                Built by DCACI as a digital public good.
               </p>
             </div>
           </div>
@@ -171,10 +171,10 @@ export default function PublicFooter() {
       <div className="border-t border-sidebar-border">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 py-6 flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="text-sm text-sidebar-foreground/50">
-            © {currentYear} ARC - African Registry for Carbon. Digital Public Goods under MIT License.
+            © {currentYear} KNCR - Kenya National Carbon Registry. Powered by DCACI.
           </div>
           <div className="flex items-center gap-1 text-sm text-sidebar-foreground/50">
-            Made with <Heart size={14} className="text-red-400 fill-red-400 mx-1" /> by GIZ & Verst Carbon
+            Made with <Heart size={14} className="text-red-400 fill-red-400 mx-1" /> by DCACI & GIZ
           </div>
         </div>
       </div>

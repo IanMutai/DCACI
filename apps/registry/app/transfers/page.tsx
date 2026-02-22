@@ -114,9 +114,9 @@ export default function TransfersPage() {
                   <Label>Acquiring Country</Label>
                   <select className="w-full px-4 py-3 bg-secondary/50 rounded-xl border border-border focus:outline-none focus:ring-2 focus:ring-primary/20">
                     <option>Switzerland</option>
-                    <option>Norway</option>
-                    <option>Germany</option>
-                    <option>Japan</option>
+                    <option>Sweden</option>
+                    <option>Singapore</option>
+                    <option>South Korea</option>
                   </select>
                 </div>
                 <div className="space-y-2">
@@ -127,9 +127,9 @@ export default function TransfersPage() {
                     className="w-full px-4 py-3 bg-secondary/50 rounded-xl border border-border focus:outline-none focus:ring-2 focus:ring-primary/20"
                   >
                     <option value="Kenya-Switzerland FA 2024">Kenya-Switzerland FA 2024</option>
-                    <option value="Kenya-Norway FA 2023">Kenya-Norway FA 2023</option>
-                    <option value="Kenya-Germany FA 2024">Kenya-Germany FA 2024</option>
-                    <option value="Kenya-Japan FA 2023">Kenya-Japan FA 2023</option>
+                    <option value="Kenya-Sweden FA 2024">Kenya-Sweden FA 2024</option>
+                    <option value="Kenya-Singapore FA 2025">Kenya-Singapore FA 2025 (Negotiating)</option>
+                    <option value="Kenya-South Korea FA 2025">Kenya-South Korea FA 2025 (Negotiating)</option>
                   </select>
                 </div>
               </div>
@@ -230,7 +230,7 @@ export default function TransfersPage() {
                       <Clock className="w-6 h-6 text-amber-600" />
                     </div>
                     <div>
-                      <div className="font-semibold text-foreground">Transfer to Germany</div>
+                      <div className="font-semibold text-foreground">Transfer to Sweden</div>
                       <div className="text-sm text-muted-foreground mt-1">15,000 ITMOs • Pending DNA approval</div>
                     </div>
                   </div>

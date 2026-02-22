@@ -22,11 +22,11 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "NCTP NDC Tracker",
-    template: "%s | NCTP NDC Tracker",
+    default: "DCACI NDC Tracker",
+    template: "%s | DCACI NDC Tracker",
   },
   description:
-    "NDC Planning, Tracking, and Implementation for the National Climate Transparency Platform",
+    "NDC Planning, Tracking, and Implementation for the Digital Center for Applied Carbon Intelligence",
 };
 
 export const viewport: Viewport = {

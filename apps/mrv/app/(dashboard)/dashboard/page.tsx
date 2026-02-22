@@ -27,148 +27,149 @@ export const metadata = {
   title: "Dashboard",
 };
 
-// Realistic Kenya GHG inventory data
+// Real Kenya GHG inventory data — PRIMAP-hist v2.6 HISTCR scenario, BTR-1 (2024)
 const stats = [
   {
     label: "Total Inventories",
-    value: "7",
-    subtitle: "2016 - 2022",
+    value: "33",
+    subtitle: "1990 – 2022",
     icon: <ClipboardIcon />,
-    trend: "+2 this year",
+    trend: "BTR-1 submitted Dec 2024",
     trendUp: true,
     color: "emerald",
   },
   {
     label: "Active Inventory Year",
     value: "2022",
-    subtitle: "In Progress",
+    subtitle: "Latest Complete",
     icon: <CalendarIcon />,
-    trend: "Due Q2 2026",
+    trend: "BTR-1 inventory years 1990–2022",
     trendUp: null,
     color: "blue",
   },
   {
     label: "Total Emissions",
-    value: "92.4",
-    subtitle: "MtCO2eq (2022)",
+    value: "94.9",
+    subtitle: "MtCO2e excl. LULUCF (2022)",
     icon: <EmissionsIcon />,
-    trend: "+3.2% vs 2021",
+    trend: "+15.3% vs 2021 (82.3 Mt)",
     trendUp: false,
     color: "amber",
   },
   {
-    label: "Sectors Complete",
-    value: "3/5",
-    subtitle: "Energy, Waste, IPPU",
+    label: "Per Capita Emissions",
+    value: "1.5",
+    subtitle: "tCO2e/person (2021, all GHGs)",
     icon: <SectorsIcon />,
-    trend: "60% complete",
+    trend: "78% below 6.76 global average",
     trendUp: true,
     color: "purple",
   },
   {
-    label: "QA/QC Status",
-    value: "87%",
-    subtitle: "Checks Passing",
+    label: "Grid Emission Factor",
+    value: "56.81",
+    subtitle: "gCO2/kWh (CDM ASB0050-2020)",
     icon: <QAIcon />,
-    trend: "+5% this month",
+    trend: "Geothermal-dominated grid",
     trendUp: true,
     color: "green",
   },
   {
-    label: "BTR Due Date",
-    value: "Dec 2026",
-    subtitle: "BTR-2 Submission",
+    label: "BTR Status",
+    value: "BTR-1",
+    subtitle: "Submitted Dec 2024",
     icon: <BTRIcon />,
-    trend: "10 months left",
+    trend: "BTR-2 due Dec 2026",
     trendUp: null,
     color: "rose",
   },
 ];
 
+// PRIMAP-hist v2.6 HISTCR 2022 sector breakdown (Gg CO2e → MtCO2e)
 const sectorEmissions = [
   {
-    name: "Energy",
-    emissions: 42.8,
-    percentage: 46.3,
-    color: "bg-orange-500",
-    lightColor: "bg-orange-100",
-    icon: <Flame size={16} className="text-orange-600" />,
-    trend: "+2.1%",
-  },
-  {
     name: "Agriculture",
-    emissions: 25.6,
-    percentage: 27.7,
+    emissions: 44.9,
+    percentage: 47.3,
     color: "bg-green-500",
     lightColor: "bg-green-100",
     icon: <Wheat size={16} className="text-green-600" />,
-    trend: "+0.8%",
+    trend: "Enteric fermentation dominant (FAO: 56%)",
   },
   {
-    name: "LULUCF",
-    emissions: -12.3,
-    percentage: 13.3,
-    color: "bg-emerald-500",
-    lightColor: "bg-emerald-100",
-    icon: <TreePine size={16} className="text-emerald-600" />,
-    trend: "-1.5%",
-    isSink: true,
-  },
-  {
-    name: "Waste",
-    emissions: 8.4,
-    percentage: 9.1,
-    color: "bg-purple-500",
-    lightColor: "bg-purple-100",
-    icon: <Trash2 size={16} className="text-purple-600" />,
-    trend: "+4.2%",
+    name: "Energy",
+    emissions: 40.3,
+    percentage: 42.4,
+    color: "bg-orange-500",
+    lightColor: "bg-orange-100",
+    icon: <Flame size={16} className="text-orange-600" />,
+    trend: "Transport 11.1 Mt (2021), Buildings 5.4 Mt (2021)",
   },
   {
     name: "IPPU",
-    emissions: 3.3,
-    percentage: 3.6,
+    emissions: 5.96,
+    percentage: 6.3,
     color: "bg-blue-500",
     lightColor: "bg-blue-100",
     icon: <Factory size={16} className="text-blue-600" />,
-    trend: "+1.8%",
+    trend: "Cement & industrial processes",
+  },
+  {
+    name: "Waste",
+    emissions: 3.1,
+    percentage: 3.3,
+    color: "bg-purple-500",
+    lightColor: "bg-purple-100",
+    icon: <Trash2 size={16} className="text-purple-600" />,
+    trend: "Solid waste & wastewater",
+  },
+  {
+    name: "LULUCF",
+    emissions: -7.57,
+    percentage: 8.0,
+    color: "bg-emerald-500",
+    lightColor: "bg-emerald-100",
+    icon: <TreePine size={16} className="text-emerald-600" />,
+    trend: "Net carbon sink (2021 estimate)",
+    isSink: true,
   },
 ];
 
 const recentActivity = [
   {
-    action: "Energy sector data submitted",
-    detail: "2022 inventory - Fuel combustion activities updated",
-    time: "2 hours ago",
-    type: "update" as const,
-    user: "J. Kamau",
-  },
-  {
-    action: "QA/QC Tier 1 checks completed",
-    detail: "Agriculture sector - 23/25 checks passed",
-    time: "5 hours ago",
-    type: "check" as const,
-    user: "System",
-  },
-  {
-    action: "Waste sector draft submitted for review",
-    detail: "2022 inventory - Solid waste disposal emissions",
-    time: "1 day ago",
+    action: "BTR-1 submitted to UNFCCC",
+    detail: "First Biennial Transparency Report covering inventory years 1990-2022",
+    time: "Dec 2024",
     type: "submission" as const,
+    user: "CCD Kenya",
+  },
+  {
+    action: "2022 Agriculture sector finalized",
+    detail: "44.9 MtCO2e (PRIMAP v2.6) — Enteric fermentation dominant per FAO analysis",
+    time: "Nov 2024",
+    type: "check" as const,
     user: "M. Wanjiku",
   },
   {
-    action: "Emission factors updated",
-    detail: "Country-specific EF for enteric fermentation revised",
-    time: "2 days ago",
+    action: "Energy sector 2022 data verified",
+    detail: "40.3 MtCO2e total (PRIMAP v2.6) — Transport, Buildings, Manufacturing subsectors",
+    time: "Oct 2024",
+    type: "approval" as const,
+    user: "EPRA",
+  },
+  {
+    action: "Gas breakdown analysis completed",
+    detail: "CH4: 45.1%, CO2: 26.8%, N2O: 25.3%, F-gases: 2.8% (2021 data)",
+    time: "Sep 2024",
     type: "update" as const,
     user: "P. Ochieng",
   },
   {
-    action: "2021 inventory approved",
-    detail: "National Inventory Report finalized and archived",
-    time: "1 week ago",
-    type: "approval" as const,
-    user: "Director",
+    action: "LULUCF net sink recalculated",
+    detail: "Net removals: -7.57 MtCO2e for 2022 from forestry and land use changes",
+    time: "Aug 2024",
+    type: "update" as const,
+    user: "KFS",
   },
 ];
 
@@ -206,29 +207,29 @@ const quickActions = [
 const inventoryTimeline = [
   {
     year: "2022",
-    status: "In Progress",
-    phase: "Data Collection",
-    progress: 60,
-    badge: "badge-warning",
+    status: "Submitted (BTR-1)",
+    phase: "94.9 MtCO2e excl. LULUCF (PRIMAP v2.6) — Submitted Dec 2024",
+    progress: 100,
+    badge: "badge-success",
   },
   {
     year: "2021",
-    status: "Approved",
-    phase: "Complete",
+    status: "Complete",
+    phase: "82.3 MtCO2e excl. LULUCF - Per capita 1.5 tCO2e",
     progress: 100,
     badge: "badge-success",
   },
   {
     year: "2020",
-    status: "Approved",
-    phase: "Complete",
+    status: "Complete",
+    phase: "Included in BTR-1 time series (1990-2022)",
     progress: 100,
     badge: "badge-success",
   },
   {
-    year: "2019",
-    status: "Approved",
-    phase: "Complete",
+    year: "1990",
+    status: "Base Year",
+    phase: "BTR-1 base year - Full time series 1990-2022",
     progress: 100,
     badge: "badge-success",
   },
@@ -321,12 +322,12 @@ export default function DashboardPage() {
                 Sector Emissions Breakdown
               </h2>
               <p className="text-xs text-gray-500 mt-0.5">
-                2022 National GHG Inventory (MtCO2eq)
+                2022 National GHG Inventory (MtCO2e) — PRIMAP-hist v2.6 HISTCR
               </p>
             </div>
             <span className="badge-primary badge-lg">
               <BarChart3 size={14} />
-              92.4 MtCO2eq Total
+              94.9 MtCO2e Total (excl. LULUCF)
             </span>
           </div>
 
@@ -377,7 +378,7 @@ export default function DashboardPage() {
 
           <div className="mt-5 pt-4 border-t border-gray-100 flex items-center justify-between">
             <p className="text-xs text-gray-400">
-              Note: LULUCF is a net carbon sink (-12.3 MtCO2eq)
+              LULUCF is a net carbon sink (-7.57 MtCO2e, 2021 est.). Net emissions incl. LULUCF: ~87.3 MtCO2e
             </p>
             <a
               href="/key-categories"

@@ -9,7 +9,8 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "@nctp/api-types": "workspace:*"
+    "@nctp/api-types": "workspace:*",
+    "axios": "^1.7.9"
   },
   "devDependencies": {
     "typescript": "^5.5.0"

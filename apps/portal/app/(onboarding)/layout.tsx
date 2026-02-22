@@ -33,7 +33,7 @@ export default function OnboardingLayout({
               <div className="h-8 w-8 rounded-lg bg-teal-700 flex items-center justify-center">
                 <span className="text-white font-bold text-sm">NC</span>
               </div>
-              <span className="text-lg font-bold text-slate-900">NCTP</span>
+              <span className="text-lg font-bold text-slate-900">DCACI</span>
               <span className="ml-2 rounded-full bg-teal-50 px-3 py-0.5 text-xs font-medium text-teal-700">
                 Setup
               </span>

@@ -111,7 +111,7 @@ const mockApprovalRequests: ProjectApprovalRequest[] = [
     agentRecommendation: "APPROVE",
     agentRationale: "Project demonstrates strong NDC alignment with Energy sector targets, developer is whitelisted with excellent track record, carbon budget is available, and MRV baseline documentation is complete. All safeguards checks passed.",
     checks: [
-      { id: "CHK-001", name: "NDC Sector Alignment", category: "NDC_ALIGNMENT", status: "PASSED", score: 25, maxScore: 25, details: "Project aligns with NDC Energy target E001 (32% reduction by 2030)", linkedData: { type: "target", id: "NDC-E001", label: "Energy Sector Target" } },
+      { id: "CHK-001", name: "NDC Sector Alignment", category: "NDC_ALIGNMENT", status: "PASSED", score: 25, maxScore: 25, details: "Project aligns with NDC Energy target E001 (conditional 32% total reduction by 2030, 7% unconditional)", linkedData: { type: "target", id: "NDC-E001", label: "Energy Sector Target" } },
       { id: "CHK-002", name: "Carbon Budget Availability", category: "CARBON_BUDGET", status: "PASSED", score: 20, maxScore: 20, details: "Requested 42,000 tCO2e within available sector budget of 14.3M tCO2e" },
       { id: "CHK-003", name: "Developer Whitelist Status", category: "ENTITY_WHITELIST", status: "PASSED", score: 15, maxScore: 15, details: "Kenya Renewable Energy Ltd is an approved developer since 2019", linkedData: { type: "entity", id: "DEV-001", label: "Kenya Renewable Energy Ltd" } },
       { id: "CHK-004", name: "MRV Baseline Documentation", category: "MRV_COMPLIANCE", status: "PASSED", score: 15, maxScore: 15, details: "Complete GHG inventory baseline submitted and verified" },

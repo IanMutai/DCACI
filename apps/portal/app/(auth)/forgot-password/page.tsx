@@ -27,7 +27,7 @@ export default function ForgotPasswordPage() {
             <div className="h-10 w-10 rounded-lg bg-teal-700 flex items-center justify-center">
               <span className="text-white font-bold">NC</span>
             </div>
-            <span className="text-xl font-bold text-slate-900">NCTP</span>
+            <span className="text-xl font-bold text-slate-900">DCACI</span>
           </div>
           <h1 className="text-2xl font-bold text-slate-900">
             Reset your password

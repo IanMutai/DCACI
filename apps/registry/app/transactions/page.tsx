@@ -7,59 +7,81 @@ import Link from "next/link"
 
 const transactions = [
   {
-    id: "TXN-2024-001234",
-    type: "transfer",
-    direction: "outgoing",
-    credits: 5000,
-    project: "Mau Forest Conservation",
-    counterparty: "Global Carbon Partners Ltd",
-    date: "2024-01-15",
-    status: "completed",
-    value: "$125,000",
-  },
-  {
-    id: "TXN-2024-001233",
-    type: "issuance",
-    direction: "incoming",
-    credits: 12500,
-    project: "Lake Victoria Clean Cookstoves",
-    counterparty: "ARC Registry",
-    date: "2024-01-14",
-    status: "completed",
-    value: "$312,500",
-  },
-  {
-    id: "TXN-2024-001232",
+    id: "TXN-2021-DAL-001",
     type: "retirement",
     direction: "outgoing",
-    credits: 2000,
-    project: "Nairobi Solar Initiative",
-    counterparty: "EcoTech Industries",
-    date: "2024-01-12",
+    credits: 1160000,
+    project: "Kasigau Corridor REDD+ (VCS #612)",
+    counterparty: "Delta Air Lines",
+    date: "2021-06-15",
     status: "completed",
-    value: "$50,000",
+    value: "$13,920,000",
   },
   {
-    id: "TXN-2024-001231",
-    type: "transfer",
-    direction: "incoming",
-    credits: 8000,
-    project: "Turkana Wind Power",
-    counterparty: "Nordic Green Fund",
-    date: "2024-01-10",
-    status: "pending",
-    value: "$200,000",
+    id: "TXN-2021-NFX-001",
+    type: "retirement",
+    direction: "outgoing",
+    credits: 699000,
+    project: "Kasigau Corridor REDD+ / Chyulu Hills",
+    counterparty: "Netflix",
+    date: "2021-09-22",
+    status: "completed",
+    value: "$8,388,000",
   },
   {
-    id: "TXN-2024-001230",
+    id: "TXN-2023-BHP-001",
     type: "transfer",
     direction: "outgoing",
-    credits: 3500,
-    project: "Mau Forest Conservation",
-    counterparty: "Carbon Trust International",
-    date: "2024-01-08",
+    credits: 200000,
+    project: "TIST Reforestation",
+    counterparty: "BHP Group",
+    date: "2023-03-10",
     status: "completed",
-    value: "$87,500",
+    value: "$6,000,000",
+  },
+  {
+    id: "TXN-2025-CHE-001",
+    type: "transfer",
+    direction: "outgoing",
+    credits: 500000,
+    project: "Kenya-Switzerland Art. 6.2 ITMO",
+    counterparty: "Swiss Confederation (FOEN)",
+    date: "2025-07-01",
+    status: "pending",
+    value: "$7,500,000",
+  },
+  {
+    id: "TXN-2024-GS-001",
+    type: "issuance",
+    direction: "incoming",
+    credits: 144000,
+    project: "BURN Cookstoves (GS #5642)",
+    counterparty: "KNCR Issuance",
+    date: "2024-12-01",
+    status: "completed",
+    value: "$1,440,000",
+  },
+  {
+    id: "TXN-2024-CDM-001",
+    type: "issuance",
+    direction: "incoming",
+    credits: 460000,
+    project: "KenGen Olkaria Geothermal",
+    counterparty: "CDM Executive Board",
+    date: "2024-08-15",
+    status: "completed",
+    value: "$3,220,000",
+  },
+  {
+    id: "TXN-2025-SWE-001",
+    type: "transfer",
+    direction: "outgoing",
+    credits: 300000,
+    project: "Kenya-Sweden Art. 6.2 ITMO",
+    counterparty: "Swedish Energy Agency",
+    date: "2025-09-01",
+    status: "pending",
+    value: "$4,500,000",
   },
 ]
 
@@ -85,24 +107,24 @@ export default function TransactionsPage() {
           {/* Stats Cards */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
             <div className="bg-card rounded-2xl p-6 border border-border">
-              <div className="text-sm text-muted-foreground mb-1">Total Transferred</div>
-              <div className="font-serif text-2xl font-semibold text-foreground">31,000</div>
-              <div className="text-xs text-muted-foreground mt-1">credits this month</div>
+              <div className="text-sm text-muted-foreground mb-1">Total Credits Traded</div>
+              <div className="font-serif text-2xl font-semibold text-foreground">3.46M</div>
+              <div className="text-xs text-muted-foreground mt-1">across all transactions</div>
             </div>
             <div className="bg-card rounded-2xl p-6 border border-border">
               <div className="text-sm text-muted-foreground mb-1">Total Value</div>
-              <div className="font-serif text-2xl font-semibold text-foreground">$775,000</div>
-              <div className="text-xs text-green-600 mt-1">+12.5% from last month</div>
+              <div className="font-serif text-2xl font-semibold text-foreground">$44.9M</div>
+              <div className="text-xs text-green-600 mt-1">Major buyers: Delta, Netflix, BHP</div>
             </div>
             <div className="bg-card rounded-2xl p-6 border border-border">
-              <div className="text-sm text-muted-foreground mb-1">Pending</div>
-              <div className="font-serif text-2xl font-semibold text-accent">3</div>
-              <div className="text-xs text-muted-foreground mt-1">transactions awaiting</div>
+              <div className="text-sm text-muted-foreground mb-1">Pending ITMOs</div>
+              <div className="font-serif text-2xl font-semibold text-accent">2</div>
+              <div className="text-xs text-muted-foreground mt-1">Art. 6 transfers in progress</div>
             </div>
             <div className="bg-card rounded-2xl p-6 border border-border">
-              <div className="text-sm text-muted-foreground mb-1">This Week</div>
-              <div className="font-serif text-2xl font-semibold text-foreground">8</div>
-              <div className="text-xs text-muted-foreground mt-1">transactions completed</div>
+              <div className="text-sm text-muted-foreground mb-1">Avg. Price/tCO2e</div>
+              <div className="font-serif text-2xl font-semibold text-foreground">$12.97</div>
+              <div className="text-xs text-muted-foreground mt-1">weighted average</div>
             </div>
           </div>
 

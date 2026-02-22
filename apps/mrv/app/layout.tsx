@@ -22,8 +22,8 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "NCTP MRV System",
-    template: "%s | NCTP MRV",
+    default: "DCACI MRV System",
+    template: "%s | DCACI MRV",
   },
   description:
     "Measurement, Reporting and Verification System for National GHG Inventories",

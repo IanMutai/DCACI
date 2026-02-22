@@ -23,23 +23,23 @@ export default function MrvCard() {
       <div className="space-y-3">
         <div className="flex items-center justify-between text-sm">
           <span className="text-slate-500">Latest Inventory</span>
-          <span className="font-medium text-slate-900">2023</span>
+          <span className="font-medium text-slate-900">2022</span>
         </div>
         <div className="flex items-center justify-between text-sm">
           <span className="text-slate-500">Total Emissions</span>
-          <span className="font-medium text-slate-900">45.2 MtCO2e</span>
+          <span className="font-medium text-slate-900">94.9 MtCO2e</span>
         </div>
         <div className="flex items-center justify-between text-sm">
-          <span className="text-slate-500">Data Completeness</span>
-          <span className="font-medium text-slate-900">87%</span>
+          <span className="text-slate-500">Data Source</span>
+          <span className="font-medium text-slate-900">PRIMAP v2.6</span>
         </div>
         <div>
           <div className="flex items-center justify-between mb-1">
-            <span className="text-xs text-slate-400">QA/QC Progress</span>
-            <span className="text-xs font-medium text-slate-600">72%</span>
+            <span className="text-xs text-slate-400">BTR-1 Status</span>
+            <span className="text-xs font-medium text-emerald-600">Filed Dec 2024</span>
           </div>
           <div className="h-1.5 rounded-full bg-slate-100">
-            <div className="h-1.5 rounded-full bg-emerald-500" style={{ width: "72%" }} />
+            <div className="h-1.5 rounded-full bg-emerald-500" style={{ width: "100%" }} />
           </div>
         </div>
       </div>

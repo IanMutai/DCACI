@@ -11,7 +11,6 @@ import {
   Globe,
   Plus,
   Sun,
-  Trash2,
   TreePine,
   Sparkles,
   Clock,
@@ -19,51 +18,51 @@ import {
 
 export default function DashboardPage() {
   const stats = [
-    { label: "Total Projects", value: "3", icon: FolderOpen, color: "bg-primary/10", iconColor: "text-primary" },
-    {
-      label: "Pending Reviews",
-      value: "2",
-      icon: Clock,
-      color: "bg-amber-500/10",
-      iconColor: "text-amber-500",
-    },
-    { label: "Approved", value: "1", icon: CheckCircle, color: "bg-emerald-500/10", iconColor: "text-emerald-500" },
+    { label: "Total Projects", value: "296", icon: FolderOpen, color: "bg-primary/10", iconColor: "text-primary" },
     {
       label: "Credits Issued",
-      value: "25,123",
+      value: "59M",
       icon: TrendingUp,
       color: "bg-blue-500/10",
       iconColor: "text-blue-500",
+    },
+    { label: "Projected 2025-2030", value: "141M", icon: CheckCircle, color: "bg-emerald-500/10", iconColor: "text-emerald-500" },
+    {
+      label: "VCM Finance (2023)",
+      value: "$136M",
+      icon: Clock,
+      color: "bg-amber-500/10",
+      iconColor: "text-amber-500",
     },
   ]
 
   const recentProjects = [
     {
-      name: "Kilifi Solar Project",
-      status: "Authorization",
-      stage: "authorization",
-      location: "Kilifi County",
+      name: "Kasigau Corridor REDD+",
+      status: "Issuance",
+      stage: "issuance",
+      location: "Taita-Taveta County",
+      icon: TreePine,
+      color: "bg-green-600/10",
+      iconColor: "text-green-600",
+    },
+    {
+      name: "BURN Cookstoves Program",
+      status: "Monitoring",
+      stage: "monitoring",
+      location: "All 47 Counties",
       icon: Sun,
       color: "bg-amber-500/10",
       iconColor: "text-amber-500",
     },
     {
-      name: "Nairobi Waste-to-Energy",
-      status: "PCN Review",
+      name: "Northern Kenya Rangelands",
+      status: "Under Review",
       stage: "pcn",
-      location: "Nairobi County",
-      icon: Trash2,
+      location: "Northern Kenya",
+      icon: TreePine,
       color: "bg-emerald-500/10",
       iconColor: "text-emerald-500",
-    },
-    {
-      name: "Mau Forest Reforestation",
-      status: "PDD Submission",
-      stage: "pdd",
-      location: "Nakuru County",
-      icon: TreePine,
-      color: "bg-green-600/10",
-      iconColor: "text-green-600",
     },
   ]
 
@@ -84,7 +83,7 @@ export default function DashboardPage() {
                     <h1 className="text-3xl font-serif font-bold text-foreground leading-tight">
                       Welcome back, Ian Mutai
                     </h1>
-                    <p className="text-muted-foreground text-sm mt-1">Here's an overview of your carbon projects</p>
+                    <p className="text-muted-foreground text-sm mt-1">Kenya National Carbon Registry (KNCR) - Overview</p>
                   </div>
                 </div>
               </div>
@@ -180,7 +179,7 @@ export default function DashboardPage() {
                     Add New Project
                   </Link>
                   <Link
-                    href="http://www.arc.verst.earth/"
+                    href="/public"
                     target="_blank"
                     className="group flex items-center justify-center gap-2.5 w-full px-5 py-4 bg-secondary/50 hover:bg-secondary text-foreground rounded-xl font-semibold transition-all border border-border hover:border-border/80 shadow-sm hover:shadow"
                   >
@@ -191,7 +190,7 @@ export default function DashboardPage() {
                     Verify Document
                   </Link>
                   <Link
-                    href="http://www.arc.verst.earth/"
+                    href="/public"
                     target="_blank"
                     className="group flex items-center justify-center gap-2.5 w-full px-5 py-4 bg-card hover:bg-secondary/50 text-foreground rounded-xl font-semibold transition-all border border-border hover:border-border/80"
                   >
@@ -210,11 +209,11 @@ export default function DashboardPage() {
                     <CheckCircle className="w-5 h-5 text-emerald-600" />
                   </div>
                   <div className="flex-1">
-                    <div className="font-semibold text-foreground mb-1">Kilifi Solar Project - PCN Approved</div>
+                    <div className="font-semibold text-foreground mb-1">KNCR Launched - Kenya National Carbon Registry</div>
                     <div className="text-sm text-muted-foreground leading-relaxed">
-                      Your Letter of No Objection has been issued. Proceed to PDD submission.
+                      The Kenya National Carbon Registry is now live. All carbon projects must register through the KNCR per Carbon Markets Regulations 2024.
                     </div>
-                    <div className="text-xs text-muted-foreground/70 mt-2 font-medium">2 hours ago</div>
+                    <div className="text-xs text-muted-foreground/70 mt-2 font-medium">Feb 2026</div>
                   </div>
                 </div>
                 <div className="group flex items-start gap-4 p-5 bg-gradient-to-br from-amber-50 to-yellow-50/50 rounded-xl border border-amber-200/60 hover:border-amber-300/60 transition-all cursor-pointer">
@@ -222,11 +221,11 @@ export default function DashboardPage() {
                     <FileText className="w-5 h-5 text-amber-600" />
                   </div>
                   <div className="flex-1">
-                    <div className="font-semibold text-foreground mb-1">Nairobi Waste-to-Energy - PCN Under Review</div>
+                    <div className="font-semibold text-foreground mb-1">Switzerland Bilateral Agreement - Article 6.2 Active</div>
                     <div className="text-sm text-muted-foreground leading-relaxed">
-                      Your PCN is being reviewed. Expected completion in 5 business days.
+                      Kenya-Switzerland bilateral agreement for ITMO transfers is now active. Sweden agreement also signed.
                     </div>
-                    <div className="text-xs text-muted-foreground/70 mt-2 font-medium">1 day ago</div>
+                    <div className="text-xs text-muted-foreground/70 mt-2 font-medium">3 days ago</div>
                   </div>
                 </div>
               </div>

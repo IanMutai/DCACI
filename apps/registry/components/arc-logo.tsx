@@ -27,7 +27,7 @@ export default function ARCLogo({ variant = "full", size = "md", className, them
     <div className={cn("flex items-center", className)}>
       <Image
         src={logoSrc || "/placeholder.svg"}
-        alt="ARC - African Registry for Carbon"
+        alt="KNCR - Kenya National Carbon Registry"
         width={s.width}
         height={s.height}
         className="object-contain"

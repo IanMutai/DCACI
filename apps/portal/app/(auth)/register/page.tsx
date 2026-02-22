@@ -65,7 +65,7 @@ export default function RegisterPage() {
             <div className="h-10 w-10 rounded-lg bg-white/20 flex items-center justify-center">
               <span className="text-white font-bold">NC</span>
             </div>
-            <span className="text-xl font-bold text-white">NCTP</span>
+            <span className="text-xl font-bold text-white">DCACI</span>
           </div>
         </div>
         <div>
@@ -104,13 +104,13 @@ export default function RegisterPage() {
               <div className="h-8 w-8 rounded-lg bg-teal-700 flex items-center justify-center">
                 <span className="text-white font-bold text-sm">NC</span>
               </div>
-              <span className="text-lg font-bold text-slate-900">NCTP</span>
+              <span className="text-lg font-bold text-slate-900">DCACI</span>
             </div>
             <h1 className="text-2xl font-bold text-slate-900">
               Create your account
             </h1>
             <p className="mt-2 text-sm text-slate-600">
-              Get started with the National Climate Transparency Platform
+              Get started with the Digital Center for Applied Carbon Intelligence
             </p>
           </div>
 

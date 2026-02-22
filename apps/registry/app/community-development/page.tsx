@@ -6,41 +6,61 @@ import Link from "next/link"
 const agreements = [
   {
     id: "CDA-2024-001",
-    projectName: "Mau Forest Conservation",
-    community: "Mau Community Forest Association",
+    projectName: "Kasigau Corridor REDD+ (VCS #612)",
+    community: "Kasigau Ranches Community Trust - Taita-Taveta",
     status: "approved",
-    beneficiaries: 12500,
-    sharePercentage: 60,
-    signedDate: "2024-01-10",
-    expiryDate: "2029-01-10",
+    beneficiaries: 116000,
+    sharePercentage: 40,
+    signedDate: "2011-03-01",
+    expiryDate: "2041-03-01",
   },
   {
     id: "CDA-2024-002",
-    projectName: "Lake Victoria Clean Cookstoves",
-    community: "Kisumu Women's Cooperative",
+    projectName: "BURN Cookstoves (GS #5642)",
+    community: "Women's groups across 47 counties",
+    status: "approved",
+    beneficiaries: 250000,
+    sharePercentage: 25,
+    signedDate: "2018-06-01",
+    expiryDate: "2028-06-01",
+  },
+  {
+    id: "CDA-2024-003",
+    projectName: "Mikoko Pamoja Blue Carbon",
+    community: "Gazi Bay Community Forest Association",
+    status: "approved",
+    beneficiaries: 6000,
+    sharePercentage: 40,
+    signedDate: "2013-01-15",
+    expiryDate: "2033-01-15",
+  },
+  {
+    id: "CDA-2024-004",
+    projectName: "Northern Kenya Rangelands Carbon Project (VCS #1468)",
+    community: "Northern Rangelands Trust Conservancies",
     status: "pending_review",
-    beneficiaries: 8000,
-    sharePercentage: 55,
+    beneficiaries: 200000,
+    sharePercentage: 40,
     signedDate: null,
     expiryDate: null,
   },
   {
-    id: "CDA-2024-003",
-    projectName: "Turkana Wind Power",
-    community: "Turkana Pastoralist Union",
+    id: "CDA-2024-005",
+    projectName: "TIST Reforestation (26M Trees)",
+    community: "Small-scale farming groups - Central & Rift Valley",
     status: "approved",
-    beneficiaries: 5000,
-    sharePercentage: 50,
-    signedDate: "2023-11-15",
-    expiryDate: "2028-11-15",
+    beneficiaries: 70000,
+    sharePercentage: 40,
+    signedDate: "2005-03-01",
+    expiryDate: "2035-03-01",
   },
   {
-    id: "CDA-2023-015",
-    projectName: "Nairobi Solar Initiative",
-    community: "Kibera Green Energy Group",
+    id: "CDA-2024-006",
+    projectName: "Lamu Blue Carbon (4K Hectares)",
+    community: "Lamu County Mangrove Conservation Association",
     status: "under_negotiation",
-    beneficiaries: 3500,
-    sharePercentage: 45,
+    beneficiaries: 15000,
+    sharePercentage: 40,
     signedDate: null,
     expiryDate: null,
   },
@@ -74,7 +94,8 @@ export default function CommunityDevelopmentPage() {
                 </div>
               </div>
               <div className="text-sm text-muted-foreground mb-1">Active Agreements</div>
-              <div className="font-serif text-2xl font-semibold text-foreground">24</div>
+              <div className="font-serif text-2xl font-semibold text-foreground">4</div>
+              <div className="text-xs text-muted-foreground mt-1">Per Carbon Markets Regulations 2024</div>
             </div>
             <div className="bg-card rounded-2xl p-6 border border-border">
               <div className="flex items-center gap-3 mb-3">
@@ -83,7 +104,8 @@ export default function CommunityDevelopmentPage() {
                 </div>
               </div>
               <div className="text-sm text-muted-foreground mb-1">Total Beneficiaries</div>
-              <div className="font-serif text-2xl font-semibold text-foreground">45,000+</div>
+              <div className="font-serif text-2xl font-semibold text-foreground">657K+</div>
+              <div className="text-xs text-muted-foreground mt-1">Across registered projects</div>
             </div>
             <div className="bg-card rounded-2xl p-6 border border-border">
               <div className="flex items-center gap-3 mb-3">
@@ -92,7 +114,8 @@ export default function CommunityDevelopmentPage() {
                 </div>
               </div>
               <div className="text-sm text-muted-foreground mb-1">Benefits Distributed</div>
-              <div className="font-serif text-2xl font-semibold text-foreground">$2.4M</div>
+              <div className="font-serif text-2xl font-semibold text-foreground">$18.5M</div>
+              <div className="text-xs text-muted-foreground mt-1">Community share from credits</div>
             </div>
             <div className="bg-card rounded-2xl p-6 border border-border">
               <div className="flex items-center gap-3 mb-3">
@@ -101,7 +124,8 @@ export default function CommunityDevelopmentPage() {
                 </div>
               </div>
               <div className="text-sm text-muted-foreground mb-1">Pending Review</div>
-              <div className="font-serif text-2xl font-semibold text-accent">5</div>
+              <div className="font-serif text-2xl font-semibold text-accent">2</div>
+              <div className="text-xs text-muted-foreground mt-1">NKR & Lamu Blue Carbon</div>
             </div>
           </div>
 
@@ -109,10 +133,9 @@ export default function CommunityDevelopmentPage() {
           <div className="bg-primary/5 border border-primary/20 rounded-2xl p-5 mb-8 flex items-start gap-4">
             <AlertCircle size={20} className="text-primary mt-0.5" />
             <div>
-              <h3 className="font-medium text-foreground mb-1">Community Benefit Requirements</h3>
+              <h3 className="font-medium text-foreground mb-1">Kenya Carbon Markets Regulations 2024 - Benefit Sharing</h3>
               <p className="text-sm text-muted-foreground">
-                All carbon credit projects must demonstrate community engagement and benefit-sharing arrangements as per
-                Article 6.4 guidelines. Minimum 40% of proceeds must be allocated to local communities.
+                Per the Carbon Markets Regulations 2024 (effective May 2024): Land-based projects must allocate a minimum of 40% of carbon credit proceeds to local communities. Non-land-based projects require a minimum 25% community share. Certified operators receive a 15% corporate tax rate for 10 years.
               </p>
             </div>
           </div>

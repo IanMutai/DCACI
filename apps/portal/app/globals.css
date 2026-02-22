@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* NCTP Portal - Design System
+/* DCACI Portal - Design System
    Teal/Coral palette matching Registry aesthetic */
 
 @layer base {
@@ -54,27 +54,27 @@
   }
 
   h1, .h1 {
-    font-family: var(--font-outfit);
+    font-family: inherit;
     @apply text-4xl md:text-5xl font-bold tracking-tight leading-[1.1];
   }
 
   h2, .h2 {
-    font-family: var(--font-outfit);
+    font-family: inherit;
     @apply text-3xl md:text-4xl font-bold tracking-tight leading-tight;
   }
 
   h3, .h3 {
-    font-family: var(--font-outfit);
+    font-family: inherit;
     @apply text-xl md:text-2xl font-semibold tracking-tight;
   }
 
   h4, .h4 {
-    font-family: var(--font-outfit);
+    font-family: inherit;
     @apply text-lg font-semibold;
   }
 
   .display {
-    font-family: var(--font-outfit);
+    font-family: inherit;
     @apply text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05];
   }
 }

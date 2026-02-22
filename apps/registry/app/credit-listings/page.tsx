@@ -9,45 +9,101 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 const vcmListings = [
   {
-    id: "ACR-2024-VCM-001",
-    projectName: "Mau Forest Conservation",
+    id: "VCS-612",
+    projectName: "Kasigau Corridor REDD+ Phase II (Wildlife Works)",
     projectType: "REDD+",
     vintage: "2023",
-    available: 25000,
+    available: 13900000,
+    rating: "Verra VCS",
+    status: "Issued",
+  },
+  {
+    id: "GS-5642",
+    projectName: "BURN Cookstoves Program",
+    projectType: "Clean Energy",
+    vintage: "2024",
+    available: 144000,
     rating: "Gold Standard",
     status: "Issued",
   },
   {
-    id: "ACR-2024-VCM-002",
-    projectName: "Lake Victoria Clean Cookstoves",
-    projectType: "Clean Energy",
-    vintage: "2024",
-    available: 15000,
+    id: "CDM-KEN-001",
+    projectName: "KenGen Olkaria Geothermal",
+    projectType: "Renewable Energy",
+    vintage: "2023",
+    available: 4600000,
+    rating: "CDM/UNFCCC",
+    status: "Issued",
+  },
+  {
+    id: "VCS-1556",
+    projectName: "TIST Reforestation Kenya (26M Trees)",
+    projectType: "ARR / Reforestation",
+    vintage: "2023",
+    available: 6000000,
     rating: "Verra VCS",
+    status: "Issued",
+  },
+  {
+    id: "VCS-1408",
+    projectName: "Chyulu Hills REDD+ (Conservation Intl)",
+    projectType: "REDD+",
+    vintage: "2024",
+    available: 3100000,
+    rating: "Verra VCS",
+    status: "Issued",
+  },
+  {
+    id: "PV-KEN-001",
+    projectName: "Mikoko Pamoja Blue Carbon (Gazi Bay)",
+    projectType: "Blue Carbon",
+    vintage: "2024",
+    available: 3000,
+    rating: "Plan Vivo",
     status: "Issued",
   },
 ]
 
 const article6Listings = [
   {
-    id: "A6-2024-ITMO-001",
-    projectName: "Renewable Energy Partnership - Switzerland",
-    projectType: "Renewable Energy",
-    vintage: "2024",
-    available: 50000,
+    id: "A6-2025-ITMO-001",
+    projectName: "Kenya-Switzerland Climate Partnership",
+    projectType: "Renewable Energy / Clean Cooking",
+    vintage: "2025",
+    available: 10000000,
     rating: "Article 6.2",
     acquiringCountry: "Switzerland",
     status: "Authorized",
   },
   {
-    id: "A6-2024-ITMO-002",
-    projectName: "Forest Conservation Partnership - Germany",
-    projectType: "REDD+",
-    vintage: "2023",
-    available: 35000,
+    id: "A6-2025-ITMO-002",
+    projectName: "Kenya-Sweden Bilateral Agreement",
+    projectType: "Forestry / REDD+",
+    vintage: "2025",
+    available: 8000000,
     rating: "Article 6.2",
-    acquiringCountry: "Germany",
+    acquiringCountry: "Sweden",
     status: "Authorized",
+  },
+  {
+    id: "A6-2025-ITMO-003",
+    projectName: "Kenya-Singapore ITMO Transfer",
+    projectType: "Clean Energy",
+    vintage: "2025",
+    available: 5000000,
+    rating: "Article 6.2",
+    acquiringCountry: "Singapore",
+    status: "Negotiation",
+  },
+  {
+    id: "A6-2025-ITMO-004",
+    projectName: "Kenya-South Korea Climate Partnership",
+    projectType: "Renewable Energy",
+    vintage: "2025",
+    available: 7000000,
+    rating: "Article 6.2",
+    acquiringCountry: "South Korea",
+    status: "Negotiation",
   },
 ]
 
@@ -65,7 +121,7 @@ export default function CreditListingsPage() {
             <div>
               <h1 className="font-serif text-3xl font-semibold text-foreground">Credit Listings</h1>
               <p className="text-muted-foreground mt-1">
-                Browse verified carbon credits registered in the African Registry for Carbon
+                Browse verified carbon credits registered in the Kenya National Carbon Registry (KNCR)
               </p>
             </div>
             <button className="flex items-center gap-2 px-5 py-2.5 bg-primary text-primary-foreground rounded-xl text-sm font-medium hover:bg-primary/90 transition-colors">
@@ -78,23 +134,23 @@ export default function CreditListingsPage() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
             <div className="bg-card rounded-2xl p-6 border border-border">
               <div className="text-sm text-muted-foreground mb-1">Total Credits Issued</div>
-              <div className="text-3xl font-bold text-foreground">125,450</div>
-              <div className="text-xs text-green-600 mt-1">+12% this month</div>
+              <div className="text-3xl font-bold text-foreground">59M</div>
+              <div className="text-xs text-green-600 mt-1">Since 2011 across all registries</div>
             </div>
             <div className="bg-card rounded-2xl p-6 border border-border">
-              <div className="text-sm text-muted-foreground mb-1">Active Projects</div>
-              <div className="text-3xl font-bold text-foreground">24</div>
-              <div className="text-xs text-blue-600 mt-1">3 pending approval</div>
+              <div className="text-sm text-muted-foreground mb-1">Registered Projects</div>
+              <div className="text-3xl font-bold text-foreground">296</div>
+              <div className="text-xs text-blue-600 mt-1">Highest in Africa</div>
             </div>
             <div className="bg-card rounded-2xl p-6 border border-border">
-              <div className="text-sm text-muted-foreground mb-1">Article 6 ITMOs</div>
-              <div className="text-3xl font-bold text-foreground">85,000</div>
-              <div className="text-xs text-primary mt-1">2 bilateral agreements</div>
+              <div className="text-sm text-muted-foreground mb-1">Article 6 Reserve</div>
+              <div className="text-3xl font-bold text-foreground">40M</div>
+              <div className="text-xs text-primary mt-1">MtCO2e trading potential</div>
             </div>
             <div className="bg-card rounded-2xl p-6 border border-border">
-              <div className="text-sm text-muted-foreground mb-1">VCM Credits</div>
-              <div className="text-3xl font-bold text-foreground">40,450</div>
-              <div className="text-xs text-amber-600 mt-1">Multiple standards</div>
+              <div className="text-sm text-muted-foreground mb-1">VCM External Finance</div>
+              <div className="text-3xl font-bold text-foreground">$136M</div>
+              <div className="text-xs text-amber-600 mt-1">2023 inflows</div>
             </div>
           </div>
 

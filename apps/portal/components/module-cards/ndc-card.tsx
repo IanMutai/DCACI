@@ -22,21 +22,21 @@ export default function NdcCard() {
 
       <div className="space-y-3">
         <div className="flex items-center justify-between text-sm">
-          <span className="text-slate-500">NDC Cycle</span>
-          <span className="font-medium text-slate-900">NDC 2.0</span>
+          <span className="text-slate-500">Current NDC</span>
+          <span className="font-medium text-slate-900">Updated (2020)</span>
         </div>
         <div className="flex items-center justify-between text-sm">
-          <span className="text-slate-500">Target Year</span>
-          <span className="font-medium text-slate-900">2030</span>
+          <span className="text-slate-500">Target</span>
+          <span className="font-medium text-slate-900">-32% by 2030</span>
         </div>
         <div className="flex items-center justify-between text-sm">
-          <span className="text-slate-500">Active Measures</span>
-          <span className="font-medium text-slate-900">12</span>
+          <span className="text-slate-500">2nd NDC</span>
+          <span className="font-medium text-slate-900">-35% by 2035</span>
         </div>
         <div>
           <div className="flex items-center justify-between mb-1">
-            <span className="text-xs text-slate-400">Overall Progress</span>
-            <span className="text-xs font-medium text-slate-600">68%</span>
+            <span className="text-xs text-slate-400">Unconditional (7%)</span>
+            <span className="text-xs font-medium text-slate-600">On track</span>
           </div>
           <div className="h-1.5 rounded-full bg-slate-100">
             <div className="h-1.5 rounded-full bg-blue-500" style={{ width: "68%" }} />

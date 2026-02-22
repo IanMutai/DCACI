@@ -23,23 +23,23 @@ export default function RegistryCard() {
       <div className="space-y-3">
         <div className="flex items-center justify-between text-sm">
           <span className="text-slate-500">Total Credits</span>
-          <span className="font-medium text-slate-900">1.24M tCO2e</span>
+          <span className="font-medium text-slate-900">59M tCO2e</span>
         </div>
         <div className="flex items-center justify-between text-sm">
           <span className="text-slate-500">Active Projects</span>
-          <span className="font-medium text-slate-900">47</span>
+          <span className="font-medium text-slate-900">296</span>
         </div>
         <div className="flex items-center justify-between text-sm">
-          <span className="text-slate-500">Pending Verifications</span>
-          <span className="font-medium text-slate-900">3</span>
+          <span className="text-slate-500">VCM Revenue</span>
+          <span className="font-medium text-slate-900">$136M (2023)</span>
         </div>
         <div>
           <div className="flex items-center justify-between mb-1">
-            <span className="text-xs text-slate-400">Credit Utilization</span>
-            <span className="text-xs font-medium text-slate-600">58%</span>
+            <span className="text-xs text-slate-400">Art. 6 Agreements</span>
+            <span className="text-xs font-medium text-amber-600">4 bilateral</span>
           </div>
           <div className="h-1.5 rounded-full bg-slate-100">
-            <div className="h-1.5 rounded-full bg-amber-500" style={{ width: "58%" }} />
+            <div className="h-1.5 rounded-full bg-amber-500" style={{ width: "50%" }} />
           </div>
         </div>
       </div>

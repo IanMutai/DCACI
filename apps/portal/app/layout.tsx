@@ -1,32 +1,13 @@
 import type { Metadata, Viewport } from "next";
-import { DM_Sans, Outfit, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-
-const dmSans = DM_Sans({
-  subsets: ["latin"],
-  variable: "--font-dm-sans",
-  display: "swap",
-});
-
-const outfit = Outfit({
-  subsets: ["latin"],
-  variable: "--font-outfit",
-  display: "swap",
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-jetbrains",
-  display: "swap",
-});
 
 export const metadata: Metadata = {
   title: {
-    default: "NCTP | National Climate Transparency Platform",
-    template: "%s | NCTP",
+    default: "DCACI | Digital Center for Applied Carbon Intelligence",
+    template: "%s | DCACI",
   },
   description:
-    "Unified platform for climate transparency, MRV systems, NDC tracking, and carbon credit registry management in alignment with Paris Agreement obligations.",
+    "Kenya's unified digital platform for applied carbon intelligence — integrating MRV systems, NDC tracking, carbon registry, and climate finance analytics.",
   keywords: [
     "climate transparency",
     "MRV",
@@ -51,10 +32,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang="en"
-      className={`${dmSans.variable} ${outfit.variable} ${jetbrainsMono.variable}`}
-    >
+    <html lang="en">
       <body className="font-sans antialiased">{children}</body>
     </html>
   );

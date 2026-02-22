@@ -307,9 +307,9 @@ export default function BaselineScenariosPage() {
               NDC Alignment Assessment
             </p>
             <p className="mt-0.5 text-xs text-[hsl(var(--color-primary-light))] leading-relaxed">
-              The unconditional NDC target is 97.2 MtCO2e (32% below BAU) by 2030. Under the WEM scenario, projected
-              2030 emissions of 118 MtCO2e exceed this target by 20.8 MtCO2e, indicating that additional measures beyond
-              current policies are needed to meet even the unconditional target.
+              The conditional NDC target is 97.2 MtCO2e (32% below BAU of 143 MtCO2e) by 2030. The unconditional target (7% below BAU) is 133 MtCO2e. Under the WEM scenario, projected
+              2030 emissions of 118 MtCO2e are below the unconditional target but exceed the conditional target by 20.8 MtCO2e, indicating that additional measures and international support
+              are needed to achieve the full 32% reduction.
             </p>
           </div>
         </div>

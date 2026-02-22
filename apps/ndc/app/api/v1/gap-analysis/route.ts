@@ -6,10 +6,11 @@ export async function GET() {
       analysisDate: new Date().toISOString(),
       targetYear: 2030,
       overallGap: {
-        currentTrajectory: 147,
-        target: 102,
-        gap: 45,
-        gapPercent: 30.6,
+        currentTrajectory: 118,
+        bauProjection2030: 143,
+        conditionalTarget: 97.2,
+        gap: 20.8,
+        gapPercent: 17.5,
       },
       sectoralGaps: [
         { sector: "Energy", currentTrajectory: 62, target: 42, gap: 20, priority: "high" },

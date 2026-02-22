@@ -140,7 +140,7 @@ async function main() {
         baselineYear: 2015,
         targetYear: 2030,
         conditionalReduction: 32,
-        unconditionalReduction: 15,
+        unconditionalReduction: 7,
       },
       dependencies: JSON.stringify([]),
       isCore: true,

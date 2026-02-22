@@ -28,7 +28,7 @@ export default function NDCTargetDetailPage({ params }: PageProps) {
     name: "Energy Sector Emissions Reduction",
     description: "Reduce GHG emissions from energy generation and consumption through renewable energy deployment and efficiency improvements",
     sector: "Energy",
-    type: "UNCONDITIONAL",
+    type: "CONDITIONAL",
     baselineYear: 2015,
     baselineEmissions: 15200000,
     targetYear: 2030,

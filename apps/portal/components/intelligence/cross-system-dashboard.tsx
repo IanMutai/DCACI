@@ -52,7 +52,7 @@ const systemMetrics: SystemMetric[] = [
     metrics: [
       { label: "Overall Progress", value: "68%", change: "+12%", trend: "up" },
       { label: "Active Actions", value: "23", change: "+3", trend: "up" },
-      { label: "Target Gap", value: "32%", change: "-5%", trend: "down" },
+      { label: "Target Gap", value: "25%", change: "-5%", trend: "down" },
       { label: "Sectors On Track", value: "4/6", change: "+1", trend: "up" },
     ],
   },

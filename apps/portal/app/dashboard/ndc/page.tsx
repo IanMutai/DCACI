@@ -1,62 +1,90 @@
 "use client";
 
+import dynamic from "next/dynamic";
+import IntelligenceInsights from "@/components/intelligence/intelligence-insights";
+
+const NdcGapChart = dynamic(
+  () => import("@/components/charts/ndc-gap-chart"),
+  { ssr: false, loading: () => <div className="h-[300px] animate-pulse bg-slate-50 rounded-lg" /> }
+);
+
 export default function NdcPage() {
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold text-slate-900">NDC Tracker</h1>
-        <p className="mt-1 text-sm text-slate-500">
-          Track Nationally Determined Contributions progress and mitigation actions
-        </p>
+      <div className="flex items-start justify-between">
+        <div>
+          <h1 className="text-2xl font-bold text-slate-900">NDC Tracker</h1>
+          <p className="mt-1 text-sm text-slate-500">
+            Track Nationally Determined Contributions progress and mitigation actions
+          </p>
+        </div>
       </div>
 
-      {/* NDC Overview */}
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+      {/* Intelligence Insights */}
+      <IntelligenceInsights page="ndc" />
+
+      {/* NDC Overview - factual data from Updated NDC (2020) and Second NDC (2025) */}
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <div className="card border-l-4 border-l-blue-500">
-          <p className="text-sm text-slate-500">Current NDC Cycle</p>
-          <p className="mt-1 text-xl font-bold text-slate-900">NDC 2.0</p>
-          <p className="mt-1 text-xs text-slate-400">Submitted 2025</p>
+          <p className="text-sm text-slate-500">Updated NDC (2020)</p>
+          <p className="mt-1 text-xl font-bold text-slate-900">-32% by 2030</p>
+          <p className="mt-1 text-xs text-slate-400">7% unconditional + 25% conditional, below 143 MtCO2e BAU</p>
         </div>
         <div className="card border-l-4 border-l-emerald-500">
-          <p className="text-sm text-slate-500">Unconditional Target</p>
-          <p className="mt-1 text-xl font-bold text-slate-900">-32% by 2030</p>
-          <p className="mt-1 text-xs text-emerald-600">68% on track</p>
+          <p className="text-sm text-slate-500">Second NDC (2025)</p>
+          <p className="mt-1 text-xl font-bold text-slate-900">-35% by 2035</p>
+          <p className="mt-1 text-xs text-emerald-600">Submitted 30 Apr 2025, vs 215 MtCO2e BAU</p>
         </div>
         <div className="card border-l-4 border-l-amber-500">
-          <p className="text-sm text-slate-500">Conditional Target</p>
-          <p className="mt-1 text-xl font-bold text-slate-900">-47% by 2030</p>
-          <p className="mt-1 text-xs text-amber-600">42% on track</p>
+          <p className="text-sm text-slate-500">Mitigation Potential</p>
+          <p className="mt-1 text-xl font-bold text-slate-900">86.5 MtCO2e</p>
+          <p className="mt-1 text-xs text-amber-600">By 2030 across 6 sectors (NCCAP)</p>
+        </div>
+        <div className="card border-l-4 border-l-violet-500">
+          <p className="text-sm text-slate-500">Implementation Cost</p>
+          <p className="mt-1 text-xl font-bold text-slate-900">$62B</p>
+          <p className="mt-1 text-xs text-violet-600">2020–2030 (87% intl support needed)</p>
         </div>
       </div>
 
-      {/* Target Progress */}
+      {/* NDC Gap Analysis Chart */}
+      <div className="card">
+        <h2 className="text-lg font-semibold text-slate-900 mb-1">
+          NDC Gap Analysis: Actual vs BAU vs Targets
+        </h2>
+        <p className="text-sm text-slate-500 mb-3">
+          Kenya&apos;s emissions trajectory against NDC reduction commitments (MtCO2e excl. LULUCF)
+        </p>
+        <NdcGapChart />
+      </div>
+
+      {/* Sector Mitigation Targets */}
       <div className="card">
         <h2 className="text-lg font-semibold text-slate-900 mb-4">
-          Target Progress
+          Sector Mitigation Targets (Updated NDC, by 2030)
         </h2>
-        <div className="space-y-6">
-          <div>
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-sm font-medium text-slate-700">
-                Unconditional Target (-32%)
-              </span>
-              <span className="text-sm font-semibold text-emerald-600">68%</span>
+        <div className="space-y-4">
+          {[
+            { sector: "Energy", target: 48.1, share: 55.6, color: "bg-red-500" },
+            { sector: "LULUCF", target: 20.8, share: 24.0, color: "bg-green-500" },
+            { sector: "Agriculture", target: 9.7, share: 11.2, color: "bg-emerald-500" },
+            { sector: "Transport", target: 4.7, share: 5.4, color: "bg-blue-500" },
+            { sector: "Industrial Processes", target: 2.4, share: 2.8, color: "bg-purple-500" },
+            { sector: "Waste", target: 0.8, share: 0.9, color: "bg-amber-500" },
+          ].map((item) => (
+            <div key={item.sector}>
+              <div className="flex items-center justify-between mb-1">
+                <span className="text-sm font-medium text-slate-700">
+                  {item.sector}
+                </span>
+                <span className="text-sm text-slate-600">{item.target} MtCO2e ({item.share}%)</span>
+              </div>
+              <div className="h-2 rounded-full bg-slate-100">
+                <div className={`h-2 rounded-full ${item.color}`} style={{ width: `${item.share}%` }} />
+              </div>
             </div>
-            <div className="h-3 rounded-full bg-slate-100">
-              <div className="h-3 rounded-full bg-emerald-500" style={{ width: "68%" }} />
-            </div>
-          </div>
-          <div>
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-sm font-medium text-slate-700">
-                Conditional Target (-47%)
-              </span>
-              <span className="text-sm font-semibold text-amber-600">42%</span>
-            </div>
-            <div className="h-3 rounded-full bg-slate-100">
-              <div className="h-3 rounded-full bg-amber-500" style={{ width: "42%" }} />
-            </div>
-          </div>
+          ))}
+          <p className="text-xs text-slate-400 mt-2">Total mitigation potential: 86.5 MtCO2e by 2030 | Source: Updated NDC (2020), NCCAP 2018-2022</p>
         </div>
       </div>
 
@@ -64,7 +92,7 @@ export default function NdcPage() {
       <div className="card">
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-lg font-semibold text-slate-900">
-            Mitigation Actions
+            Key Mitigation Actions
           </h2>
           <button className="btn-primary text-sm px-4 py-2">
             Add Action
@@ -73,39 +101,46 @@ export default function NdcPage() {
         <div className="space-y-3">
           {[
             {
-              name: "Renewable Energy Scale-up",
+              name: "Geothermal Expansion (Olkaria + Menengai)",
               sector: "Energy",
-              reduction: "8.5 MtCO2e",
+              reduction: "48.1 MtCO2e",
               status: "In Progress",
-              progress: 72,
+              progress: 65,
             },
             {
-              name: "Forest Restoration Program",
+              name: "Forest Landscape Restoration (10% cover by 2030)",
               sector: "LULUCF",
-              reduction: "3.2 MtCO2e",
+              reduction: "20.8 MtCO2e",
               status: "In Progress",
-              progress: 45,
+              progress: 33,
             },
             {
-              name: "Clean Cooking Initiative",
+              name: "Climate-Smart Agriculture (KCSAP + Dairy NAMA)",
+              sector: "Agriculture",
+              reduction: "9.7 MtCO2e",
+              status: "In Progress",
+              progress: 40,
+            },
+            {
+              name: "Lake Turkana Wind + Solar Mini-Grids",
               sector: "Energy",
-              reduction: "2.1 MtCO2e",
-              status: "Planned",
-              progress: 15,
+              reduction: "4.7 MtCO2e",
+              status: "Operational",
+              progress: 85,
             },
             {
-              name: "Waste-to-Energy Projects",
-              sector: "Waste",
-              reduction: "1.8 MtCO2e",
+              name: "Clean Cooking (BURN Manufacturing + LPG transition)",
+              sector: "Energy",
+              reduction: "2.4 MtCO2e",
               status: "In Progress",
-              progress: 60,
+              progress: 55,
             },
             {
-              name: "Public Transport Electrification",
+              name: "E-Mobility & BRT (Nairobi, Mombasa)",
               sector: "Transport",
-              reduction: "1.5 MtCO2e",
+              reduction: "4.7 MtCO2e",
               status: "Planned",
-              progress: 10,
+              progress: 12,
             },
           ].map((action, i) => (
             <div
@@ -125,7 +160,9 @@ export default function NdcPage() {
                   className={`rounded-full px-2 py-0.5 text-xs font-medium ${
                     action.status === "In Progress"
                       ? "bg-blue-100 text-blue-700"
-                      : "bg-slate-100 text-slate-600"
+                      : action.status === "Operational"
+                        ? "bg-green-100 text-green-700"
+                        : "bg-slate-100 text-slate-600"
                   }`}
                 >
                   {action.status}

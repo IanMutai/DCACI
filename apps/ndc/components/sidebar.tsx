@@ -145,7 +145,7 @@ export default function Sidebar() {
         </div>
         <div className="flex flex-col">
           <span className="text-base font-bold tracking-wide text-white">
-            NCTP
+            DCACI
           </span>
           <span className="text-xs font-medium text-[hsl(var(--sidebar-foreground))]/60">
             NDC Tracker

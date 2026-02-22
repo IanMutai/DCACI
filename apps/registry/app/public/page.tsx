@@ -61,76 +61,76 @@ export default function PublicLandingPage() {
       const progress = currentStep / steps
 
       setCountUp({
-        countries: Math.floor(8 * progress),
-        projects: Math.floor(156 * progress),
-        itmos: Math.floor(125 * progress),
-        tons: Math.floor(2.4 * progress * 10) / 10,
+        countries: Math.floor(4 * progress),
+        projects: Math.floor(296 * progress),
+        itmos: Math.floor(40 * progress),
+        tons: Math.floor(59 * progress * 10) / 10,
       })
 
       if (currentStep >= steps) {
         clearInterval(interval)
         setCountUp({
-          countries: 8,
-          projects: 156,
-          itmos: 125,
-          tons: 2.4,
+          countries: 4,
+          projects: 296,
+          itmos: 40,
+          tons: 59,
         })
       }
     }, stepDuration)
   }
 
   const sectorData = [
-    { name: "Agriculture, Forestry & Land Use", count: 58, percentage: 37, color: "bg-emerald-500" },
-    { name: "Renewable Energy", count: 45, percentage: 29, color: "bg-amber-500" },
-    { name: "Waste Management", count: 25, percentage: 16, color: "bg-cyan-500" },
-    { name: "Transport & Mobility", count: 15, percentage: 10, color: "bg-violet-500" },
-    { name: "Industrial Efficiency", count: 8, percentage: 5, color: "bg-rose-500" },
-    { name: "Blue Carbon", count: 5, percentage: 3, color: "bg-blue-500" },
+    { name: "Clean Cooking / Cookstoves (Gold Standard)", count: 51, percentage: 24, color: "bg-amber-500" },
+    { name: "Renewable Energy / CDM", count: 49, percentage: 23, color: "bg-cyan-500" },
+    { name: "REDD+ / Forestry (Verra VCS)", count: 19, percentage: 35, color: "bg-emerald-500" },
+    { name: "Reforestation / ARR", count: 12, percentage: 10, color: "bg-green-600" },
+    { name: "Blue Carbon / Mangroves (Plan Vivo)", count: 2, percentage: 3, color: "bg-blue-500" },
+    { name: "Other / Mixed", count: 163, percentage: 5, color: "bg-violet-500" },
   ]
 
   const features = [
     {
       icon: Shield,
-      title: "Transparent & Secure",
-      description: "Full audit trails and document verification with blockchain-ready architecture.",
+      title: "Carbon Markets Regulations 2024",
+      description: "Full compliance with Kenya's Carbon Markets Regulations (May 2024) - 40% community benefit sharing for land-based projects.",
       color: "bg-teal-50 text-teal-600",
       gradient: "from-teal-500/10 to-teal-500/5",
     },
     {
       icon: Globe,
-      title: "International Climate Partnership",
-      description: "Built for Kenya's regulatory framework with Article 6 support for bilateral agreements.",
+      title: "Article 6 Bilateral Agreements",
+      description: "Active agreements with Switzerland and Sweden, negotiations with Singapore and South Korea under NEMA oversight.",
       color: "bg-amber-50 text-amber-600",
       gradient: "from-amber-500/10 to-amber-500/5",
     },
     {
       icon: Zap,
-      title: "Streamlined Workflows",
-      description: "From project creation to credit issuance, every step optimized for efficiency.",
+      title: "Multi-Registry Integration",
+      description: "Unified tracking across Gold Standard (51 projects), CDM (49), Verra VCS (19), and Plan Vivo (2) registries.",
       color: "bg-violet-50 text-violet-600",
       gradient: "from-violet-500/10 to-violet-500/5",
     },
     {
       icon: Users,
-      title: "Digital Public Goods",
-      description: "Community-driven development with full transparency and adaptability.",
+      title: "Community-First Design",
+      description: "Transparent benefit-sharing tracking for 657K+ beneficiaries across 296 projects with 15% tax incentive for operators.",
       color: "bg-rose-50 text-rose-600",
       gradient: "from-rose-500/10 to-rose-500/5",
     },
   ]
 
   const partnerLogos = [
-    { name: "GIZ", icon: Award },
-    { name: "D4D Hub", icon: Globe },
-    { name: "EU", icon: Layers },
-    { name: "BMZ", icon: TrendingUp },
+    { name: "NEMA", icon: Shield },
+    { name: "Gold Standard", icon: Award },
+    { name: "Verra VCS", icon: Globe },
+    { name: "CDM/UNFCCC", icon: Layers },
   ]
 
   const impactMetrics = [
-    { icon: TreePine, value: "2.4M", label: "Trees Equivalent", color: "text-emerald-600" },
-    { icon: Wind, value: "156", label: "Active Projects", color: "text-cyan-600" },
-    { icon: Users, value: "50K+", label: "Communities Impacted", color: "text-violet-600" },
-    { icon: Award, value: "125K", label: "Credits Issued", color: "text-amber-600" },
+    { icon: TreePine, value: "26M", label: "Trees Planted (TIST)", color: "text-emerald-600" },
+    { icon: Wind, value: "296", label: "Registered Projects", color: "text-cyan-600" },
+    { icon: Users, value: "657K+", label: "Community Beneficiaries", color: "text-violet-600" },
+    { icon: Award, value: "59M", label: "Credits Issued", color: "text-amber-600" },
   ]
 
   return (
@@ -161,20 +161,20 @@ export default function PublicLandingPage() {
                 {/* Badge */}
                 <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 backdrop-blur-sm text-primary rounded-full text-sm font-medium mb-8 hover:bg-primary/20 transition-all hover:scale-105 cursor-default border border-primary/20">
                   <Sparkles size={16} className="animate-pulse" />
-                  Digital Public Goods Carbon Registry
+                  Kenya National Carbon Registry (KNCR)
                 </div>
 
                 <h1 className="text-5xl lg:text-7xl font-bold text-foreground mb-6 leading-tight">
-                  Empowering Africa's
+                  Empowering Kenya's
                   <br />
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-teal-500 to-accent animate-gradient-text">
-                    Climate Future
+                    Carbon Markets
                   </span>
                 </h1>
 
                 <p className="text-lg lg:text-xl text-muted-foreground max-w-2xl mb-10 leading-relaxed">
-                  A transparent, efficient, and scalable platform for managing carbon credits and sustainable
-                  development projects across the African continent.
+                  Kenya's official carbon registry platform - 296 projects, 59M credits issued, and 25% of Africa's
+                  voluntary carbon market. Powered by the Kenya National Carbon Registry (KNCR).
                 </p>
 
                 {/* CTAs */}
@@ -240,19 +240,19 @@ export default function PublicLandingPage() {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
               <div className="text-center">
                 <div className="text-4xl font-bold text-white">{isVisible ? countUp.countries : 0}</div>
-                <div className="text-sm text-white">Partner Countries</div>
+                <div className="text-sm text-white">Art. 6 Partner Countries</div>
               </div>
               <div className="text-center">
                 <div className="text-4xl font-bold text-white">{isVisible ? countUp.projects : 0}</div>
-                <div className="text-sm text-white">Active Projects</div>
+                <div className="text-sm text-white">Registered Projects</div>
               </div>
               <div className="text-center">
-                <div className="text-4xl font-bold text-white">{isVisible ? countUp.itmos : 0}K</div>
-                <div className="text-sm text-white">ITMOs Issued</div>
+                <div className="text-4xl font-bold text-white">{isVisible ? countUp.itmos : 0}M</div>
+                <div className="text-sm text-white">MtCO2e Trading Potential</div>
               </div>
               <div className="text-center">
                 <div className="text-4xl font-bold text-white">{isVisible ? countUp.tons : 0}M</div>
-                <div className="text-sm text-white">Tons CO₂ Offset</div>
+                <div className="text-sm text-white">Credits Issued</div>
               </div>
             </div>
           </div>
@@ -263,11 +263,11 @@ export default function PublicLandingPage() {
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="text-center mb-12 animate-fade-up">
               <h2 className="text-3xl lg:text-5xl font-bold text-foreground mb-4">
-                Built for Africa's Climate Ambitions
+                Built for Kenya's Carbon Market Leadership
               </h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                Comprehensive tools designed to meet the unique needs of African carbon markets and regulatory
-                frameworks.
+                Comprehensive tools aligned with the Carbon Markets Regulations 2024 and Kenya's Article 6
+                bilateral agreements.
               </p>
             </div>
 
@@ -306,9 +306,9 @@ export default function PublicLandingPage() {
 
               {/* Sector Distribution */}
               <div className="animate-fade-up animation-delay-200">
-                <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">Projects by Sector</h2>
+                <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">Projects by Registry & Sector</h2>
                 <p className="text-lg text-muted-foreground mb-10">
-                  Carbon reduction projects across diverse sectors driving sustainable development throughout Africa.
+                  296 carbon projects across Gold Standard, CDM/UNFCCC, Verra VCS, and Plan Vivo registries in Kenya.
                 </p>
 
                 <div className="space-y-5">
@@ -354,8 +354,8 @@ export default function PublicLandingPage() {
                   <div className="bg-primary/10 backdrop-blur-sm border border-primary/20 text-primary px-3 py-1 rounded-full text-xs font-medium inline-block mb-3">
                     Case Study
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-2">Kilifi Solar Farm</h3>
-                  <p className="text-white/80 text-sm">50MW clean energy powering 25,000 homes in coastal Kenya</p>
+                  <h3 className="text-2xl font-bold text-white mb-2">Kasigau Corridor REDD+</h3>
+                  <p className="text-white/80 text-sm">13.9M credits issued - Wildlife Works - Taita-Taveta County, $12/ton</p>
                 </div>
               </div>
 
@@ -364,31 +364,31 @@ export default function PublicLandingPage() {
                   <div className="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center mb-4">
                     <CheckCircle2 className="w-6 h-6 text-primary" />
                   </div>
-                  <h3 className="text-3xl font-bold text-foreground mb-4">Accelerating Africa's Climate Action</h3>
+                  <h3 className="text-3xl font-bold text-foreground mb-4">Accelerating Kenya's Climate Action</h3>
                   <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                    "The African Registry for Carbon represents a critical step forward in building transparent,
-                    efficient carbon market infrastructure for Kenya. The platform's robust framework enables the
-                    country to implement tracking systems tailored to national priorities and Article 6 commitments."
+                    "The Kenya National Carbon Registry represents a critical step forward in building transparent,
+                    efficient carbon market infrastructure. With 296 projects and $136M in VCM finance, Kenya leads
+                    Africa's carbon markets with signed Article 6 agreements with Switzerland and Sweden."
                   </p>
                   <div className="flex items-center gap-4">
                     <div className="w-14 h-14 bg-gradient-to-br from-primary to-teal-500 rounded-full flex items-center justify-center">
                       <Users className="w-7 h-7 text-white" />
                     </div>
                     <div>
-                      <div className="font-semibold text-foreground">Climate Finance Stakeholder</div>
-                      <div className="text-sm text-muted-foreground">Carbon Market Development Initiative</div>
+                      <div className="font-semibold text-foreground">NEMA - National Environment Management Authority</div>
+                      <div className="text-sm text-muted-foreground">Designated National Authority for Carbon Markets</div>
                     </div>
                   </div>
                 </div>
 
                 <div className="grid grid-cols-2 gap-4 mt-6">
                   <div className="p-4 bg-card border border-border rounded-xl">
-                    <div className="text-2xl font-bold text-emerald-600 mb-1">Digital</div>
-                    <div className="text-sm text-muted-foreground">Public Goods</div>
+                    <div className="text-2xl font-bold text-emerald-600 mb-1">$136M</div>
+                    <div className="text-sm text-muted-foreground">VCM Finance (2023)</div>
                   </div>
                   <div className="p-4 bg-card border border-border rounded-xl">
-                    <div className="text-2xl font-bold text-amber-600 mb-1">Article 6</div>
-                    <div className="text-sm text-muted-foreground">Ready Platform</div>
+                    <div className="text-2xl font-bold text-amber-600 mb-1">141M</div>
+                    <div className="text-sm text-muted-foreground">MtCO2e Projected 2025-2030</div>
                   </div>
                 </div>
               </div>
@@ -413,7 +413,7 @@ export default function PublicLandingPage() {
                   </h3>
                   <p className="text-sidebar-foreground/60 max-w-lg leading-relaxed">
                     Use our verification portal to confirm the validity of Letters of No Objection, Letters of Approval,
-                    and Letters of Authorization issued through ARC.
+                    and Letters of Authorization issued through the KNCR.
                   </p>
                 </div>
                 <Link

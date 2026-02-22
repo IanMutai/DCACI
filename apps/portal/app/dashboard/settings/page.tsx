@@ -52,7 +52,7 @@ export default function SettingsPage() {
                   Platform Name
                 </label>
                 <input
-                  defaultValue="NCTP - Kenya"
+                  defaultValue="DCACI - Kenya"
                   className="input-field"
                 />
               </div>

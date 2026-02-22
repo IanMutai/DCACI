@@ -19,12 +19,12 @@ export default function NdcPage() {
         </div>
         <div className="card border-l-4 border-l-emerald-500">
           <p className="text-sm text-slate-500">Unconditional Target</p>
-          <p className="mt-1 text-xl font-bold text-slate-900">-32% by 2030</p>
+          <p className="mt-1 text-xl font-bold text-slate-900">-7% by 2030</p>
           <p className="mt-1 text-xs text-emerald-600">68% on track</p>
         </div>
         <div className="card border-l-4 border-l-amber-500">
-          <p className="text-sm text-slate-500">Conditional Target</p>
-          <p className="mt-1 text-xl font-bold text-slate-900">-47% by 2030</p>
+          <p className="text-sm text-slate-500">Conditional Target (with intl support)</p>
+          <p className="mt-1 text-xl font-bold text-slate-900">-32% by 2030</p>
           <p className="mt-1 text-xs text-amber-600">42% on track</p>
         </div>
       </div>
@@ -38,7 +38,7 @@ export default function NdcPage() {
           <div>
             <div className="flex items-center justify-between mb-2">
               <span className="text-sm font-medium text-slate-700">
-                Unconditional Target (-32%)
+                Unconditional Target (-7%)
               </span>
               <span className="text-sm font-semibold text-emerald-600">68%</span>
             </div>
@@ -49,7 +49,7 @@ export default function NdcPage() {
           <div>
             <div className="flex items-center justify-between mb-2">
               <span className="text-sm font-medium text-slate-700">
-                Conditional Target (-47%)
+                Conditional Target (-32%, with intl support)
               </span>
               <span className="text-sm font-semibold text-amber-600">42%</span>
             </div>

@@ -12,7 +12,7 @@ export default function DashboardPage() {
       <div>
         <h1 className="text-2xl font-bold text-slate-900">Dashboard</h1>
         <p className="mt-1 text-sm text-slate-500">
-          Overview of your National Climate Transparency Platform
+          Overview of your Digital Center for Applied Carbon Intelligence
         </p>
       </div>
 

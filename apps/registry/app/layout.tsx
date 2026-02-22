@@ -24,29 +24,28 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "ARC | African Registry for Carbon",
-    template: "%s | ARC",
+    default: "DCACI | Kenya National Carbon Registry",
+    template: "%s | DCACI Registry",
   },
   description:
-    "A digital public goods carbon registry platform empowering African nations with transparent, efficient carbon credit management.",
-  generator: "v0.app",
+    "Kenya's national carbon credit registry — managing carbon projects, credit issuances, transfers, retirements, and Article 6 ITMO tracking.",
   keywords: [
     "carbon registry",
-    "Africa",
+    "Kenya",
     "carbon credits",
     "climate action",
-    "sustainability",
     "ITMO",
-    "digital public goods",
     "Article 6",
     "Paris Agreement",
+    "KNCR",
+    "carbon markets",
   ],
-  authors: [{ name: "GIZ" }, { name: "Verst Carbon" }],
-  creator: "GIZ & Verst Carbon",
-  publisher: "African Registry for Carbon",
+  authors: [{ name: "DCACI" }],
+  creator: "Digital Center for Applied Carbon Intelligence",
+  publisher: "DCACI",
   openGraph: {
-    title: "ARC | African Registry for Carbon",
-    description: "Digital public goods carbon registry platform for African nations",
+    title: "DCACI | Kenya National Carbon Registry",
+    description: "Kenya's national carbon credit registry and ITMO tracking platform",
     type: "website",
   },
 }

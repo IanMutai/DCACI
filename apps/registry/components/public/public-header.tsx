@@ -56,7 +56,7 @@ export default function PublicHeader() {
               href="/studio"
               className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors rounded-lg"
             >
-              ARC Studio
+              KNCR Studio
             </Link>
             <div className="relative">
               <button
@@ -151,7 +151,7 @@ export default function PublicHeader() {
                 Verify Documents
               </Link>
               <Link href="/studio" className="px-4 py-3 text-sm text-muted-foreground hover:text-foreground rounded-lg">
-                ARC Studio
+                KNCR Studio
               </Link>
               <Link
                 href="/public/contact"

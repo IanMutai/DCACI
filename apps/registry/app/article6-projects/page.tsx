@@ -5,46 +5,46 @@ import Link from "next/link"
 
 const projects = [
   {
-    id: "A6-2024-001",
-    name: "Renewable Energy Partnership - Switzerland",
+    id: "A6-2024-CHE",
+    name: "Kenya-Switzerland Bilateral Agreement",
     type: "Bilateral",
     hostCountry: "Kenya",
     acquiringCountry: "Switzerland",
     status: "authorized",
-    credits: 500000,
-    startDate: "2024-01-01",
+    credits: 10000000,
+    startDate: "2024-06-01",
     methodology: "Article 6.2",
   },
   {
-    id: "A6-2024-002",
-    name: "Climate Partnership - Norway",
+    id: "A6-2024-SWE",
+    name: "Kenya-Sweden Bilateral Agreement",
     type: "Bilateral",
     hostCountry: "Kenya",
-    acquiringCountry: "Norway",
-    status: "pending_loa",
-    credits: 350000,
-    startDate: "2024-03-15",
-    methodology: "Article 6.2",
-  },
-  {
-    id: "A6-2024-003",
-    name: "Renewable Energy ITMO - Japan",
-    type: "Article 6.4",
-    hostCountry: "Kenya",
-    acquiringCountry: "Japan",
+    acquiringCountry: "Sweden",
     status: "authorized",
-    credits: 750000,
-    startDate: "2023-11-01",
-    methodology: "Article 6.4",
+    credits: 8000000,
+    startDate: "2024-09-01",
+    methodology: "Article 6.2",
   },
   {
-    id: "A6-2023-004",
-    name: "Forest Conservation Partnership - Germany",
+    id: "A6-2025-SGP",
+    name: "Kenya-Singapore ITMO Negotiations",
     type: "Bilateral",
     hostCountry: "Kenya",
-    acquiringCountry: "Germany",
+    acquiringCountry: "Singapore",
+    status: "pending_loa",
+    credits: 5000000,
+    startDate: null,
+    methodology: "Article 6.2",
+  },
+  {
+    id: "A6-2025-KOR",
+    name: "Kenya-South Korea Climate Partnership",
+    type: "Bilateral",
+    hostCountry: "Kenya",
+    acquiringCountry: "South Korea",
     status: "under_review",
-    credits: 280000,
+    credits: 7000000,
     startDate: null,
     methodology: "Article 6.2",
   },
@@ -62,7 +62,7 @@ export default function Article6ProjectsPage() {
             <div>
               <h1 className="font-serif text-3xl font-semibold text-foreground">Article 6 Projects</h1>
               <p className="text-muted-foreground mt-1">
-                International carbon market projects under Paris Agreement mechanisms
+                Kenya's bilateral agreements under Paris Agreement Article 6.2 - KNCR launched Feb 2026
               </p>
             </div>
             <div className="flex items-center gap-3">
@@ -88,8 +88,9 @@ export default function Article6ProjectsPage() {
                   <FileCheck size={20} className="text-primary" />
                 </div>
               </div>
-              <div className="text-sm text-muted-foreground mb-1">Authorized Projects</div>
-              <div className="font-serif text-2xl font-semibold text-foreground">18</div>
+              <div className="text-sm text-muted-foreground mb-1">Signed Agreements</div>
+              <div className="font-serif text-2xl font-semibold text-foreground">2</div>
+              <div className="text-xs text-muted-foreground mt-1">Switzerland & Sweden</div>
             </div>
             <div className="bg-card rounded-2xl p-6 border border-border">
               <div className="flex items-center gap-3 mb-3">
@@ -97,8 +98,9 @@ export default function Article6ProjectsPage() {
                   <ArrowRightLeft size={20} className="text-accent" />
                 </div>
               </div>
-              <div className="text-sm text-muted-foreground mb-1">ITMOs Transferred</div>
-              <div className="font-serif text-2xl font-semibold text-foreground">1.2M</div>
+              <div className="text-sm text-muted-foreground mb-1">Trading Potential</div>
+              <div className="font-serif text-2xl font-semibold text-foreground">40M</div>
+              <div className="text-xs text-muted-foreground mt-1">MtCO2e reserved</div>
             </div>
             <div className="bg-card rounded-2xl p-6 border border-border">
               <div className="flex items-center gap-3 mb-3">
@@ -107,7 +109,8 @@ export default function Article6ProjectsPage() {
                 </div>
               </div>
               <div className="text-sm text-muted-foreground mb-1">Partner Countries</div>
-              <div className="font-serif text-2xl font-semibold text-foreground">12</div>
+              <div className="font-serif text-2xl font-semibold text-foreground">4</div>
+              <div className="text-xs text-muted-foreground mt-1">2 signed, 2 negotiating</div>
             </div>
             <div className="bg-card rounded-2xl p-6 border border-border">
               <div className="flex items-center gap-3 mb-3">
@@ -115,8 +118,9 @@ export default function Article6ProjectsPage() {
                   <Clock size={20} className="text-amber-600" />
                 </div>
               </div>
-              <div className="text-sm text-muted-foreground mb-1">Pending Authorization</div>
-              <div className="font-serif text-2xl font-semibold text-accent">7</div>
+              <div className="text-sm text-muted-foreground mb-1">DNA Authority</div>
+              <div className="font-serif text-2xl font-semibold text-accent">NEMA</div>
+              <div className="text-xs text-muted-foreground mt-1">Designated National Authority</div>
             </div>
           </div>
 

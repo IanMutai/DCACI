@@ -9,81 +9,102 @@ import { Plus, Filter, Search, MapPin, Leaf, ArrowRight, MoreHorizontal, CheckCi
 
 const projects = [
   {
-    id: "PRJ-2024-007",
-    name: "Kilifi Solar Project",
-    type: "Solar",
-    country: "Kenya",
-    status: "pending",
-    stage: "PCN Review",
-    credits: 50000,
-    startDate: "2024-12-01",
-    image: "/solar-panels-kenya-coast.jpg",
-    isNew: true,
-  },
-  {
-    id: "PRJ-2024-001",
-    name: "Mau Forest Conservation",
+    id: "VCS-612",
+    name: "Kasigau Corridor REDD+ Phase II (Community Ranches)",
     type: "REDD+",
     country: "Kenya",
-    status: "monitoring",
+    status: "active",
     stage: "Issuance",
-    credits: 125000,
-    startDate: "2023-01-15",
+    credits: 13900000,
+    startDate: "2011-01-01",
     image: "/lush-green-forest-aerial-view.jpg",
   },
   {
-    id: "PRJ-2024-002",
-    name: "Lake Victoria Clean Cookstoves",
-    type: "Clean Energy",
+    id: "VCS-1468",
+    name: "Northern Kenya Rangelands",
+    type: "REDD+",
     country: "Kenya",
-    status: "active",
-    stage: "PDD Review",
-    credits: 45000,
-    startDate: "2023-06-20",
-    image: "/clean-cookstove-africa-village.jpg",
-  },
-  {
-    id: "PRJ-2024-003",
-    name: "Turkana Wind Power",
-    type: "Renewable Energy",
-    country: "Kenya",
-    status: "active",
-    stage: "Authorization",
-    credits: 200000,
-    startDate: "2022-11-01",
-    image: "/wind-turbines-desert-landscape.jpg",
-  },
-  {
-    id: "PRJ-2024-004",
-    name: "Ethiopia Reforestation Initiative",
-    type: "ARR",
-    country: "Ethiopia",
     status: "pending",
     stage: "PCN Review",
-    credits: 80000,
-    startDate: "2024-01-10",
+    credits: 3200000,
+    startDate: "2016-06-01",
     image: "/reforestation-seedlings-africa.jpg",
   },
   {
-    id: "PRJ-2024-005",
-    name: "Morocco Solar Farm",
-    type: "Renewable Energy",
-    country: "Morocco",
+    id: "VCS-1408",
+    name: "Chyulu Hills REDD+",
+    type: "REDD+",
+    country: "Kenya",
     status: "active",
     stage: "Monitoring",
-    credits: 150000,
-    startDate: "2023-03-25",
+    credits: 3100000,
+    startDate: "2014-01-01",
+    image: "/lush-green-forest-aerial-view.jpg",
+  },
+  {
+    id: "GS-5642",
+    name: "BURN Cookstoves Program",
+    type: "Clean Energy",
+    country: "Kenya",
+    status: "active",
+    stage: "Issuance",
+    credits: 144000,
+    startDate: "2018-01-01",
+    image: "/clean-cookstove-africa-village.jpg",
+  },
+  {
+    id: "CDM-KEN-001",
+    name: "KenGen Olkaria Geothermal",
+    type: "Renewable Energy",
+    country: "Kenya",
+    status: "active",
+    stage: "Issuance",
+    credits: 4600000,
+    startDate: "2012-07-01",
     image: "/solar-panels-desert-morocco.jpg",
   },
   {
-    id: "PRJ-2024-006",
-    name: "Tanzania Mangrove Restoration",
+    id: "CDM-KEN-002",
+    name: "Lake Turkana Wind Power (310MW)",
+    type: "Renewable Energy",
+    country: "Kenya",
+    status: "active",
+    stage: "Monitoring",
+    credits: 1270000,
+    startDate: "2017-03-01",
+    image: "/wind-turbines-desert-landscape.jpg",
+  },
+  {
+    id: "VCS-1556",
+    name: "TIST Reforestation Kenya (26M Trees)",
+    type: "ARR",
+    country: "Kenya",
+    status: "active",
+    stage: "Issuance",
+    credits: 6000000,
+    startDate: "2005-01-01",
+    image: "/reforestation-seedlings-africa.jpg",
+  },
+  {
+    id: "PV-KEN-001",
+    name: "Mikoko Pamoja Blue Carbon",
     type: "Blue Carbon",
-    country: "Tanzania",
+    country: "Kenya",
+    status: "active",
+    stage: "Monitoring",
+    credits: 3000,
+    startDate: "2013-01-01",
+    image: "/mangrove-forest-coastline.jpg",
+  },
+  {
+    id: "PV-KEN-002",
+    name: "Lamu Blue Carbon (4K Hectares)",
+    type: "Blue Carbon",
+    country: "Kenya",
     status: "active",
     stage: "Verification",
-    credits: 35000,
-    startDate: "2023-08-12",
+    credits: 50000,
+    startDate: "2022-01-01",
     image: "/mangrove-forest-coastline.jpg",
   },
 ]
@@ -165,7 +186,7 @@ export default function ProjectsListPage() {
           <div className="flex items-center justify-between mb-8">
             <div>
               <h1 className="font-serif text-3xl font-semibold text-foreground">Projects</h1>
-              <p className="text-muted-foreground mt-1">Manage and track all your carbon credit projects</p>
+              <p className="text-muted-foreground mt-1">Kenya carbon credit projects across VCS, Gold Standard, CDM, and Plan Vivo registries</p>
             </div>
             <Link
               href="/"
@@ -180,23 +201,23 @@ export default function ProjectsListPage() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
             <div className="bg-card rounded-2xl p-6 border border-border">
               <div className="text-sm text-muted-foreground mb-1">Total Projects</div>
-              <div className="font-serif text-2xl font-semibold text-foreground">25</div>
-              <div className="text-xs text-green-600 mt-1">+4 this month</div>
+              <div className="font-serif text-2xl font-semibold text-foreground">296</div>
+              <div className="text-xs text-green-600 mt-1">Highest in Africa</div>
             </div>
             <div className="bg-card rounded-2xl p-6 border border-border">
-              <div className="text-sm text-muted-foreground mb-1">Active Projects</div>
-              <div className="font-serif text-2xl font-semibold text-foreground">18</div>
-              <div className="text-xs text-muted-foreground mt-1">in various stages</div>
+              <div className="text-sm text-muted-foreground mb-1">Registries</div>
+              <div className="font-serif text-2xl font-semibold text-foreground">4</div>
+              <div className="text-xs text-muted-foreground mt-1">GS, CDM, VCS, Plan Vivo</div>
             </div>
             <div className="bg-card rounded-2xl p-6 border border-border">
-              <div className="text-sm text-muted-foreground mb-1">Total Credits</div>
-              <div className="font-serif text-2xl font-semibold text-foreground">685K</div>
-              <div className="text-xs text-muted-foreground mt-1">estimated issuance</div>
+              <div className="text-sm text-muted-foreground mb-1">Total Credits Issued</div>
+              <div className="font-serif text-2xl font-semibold text-foreground">59M</div>
+              <div className="text-xs text-muted-foreground mt-1">since 2011</div>
             </div>
             <div className="bg-card rounded-2xl p-6 border border-border">
-              <div className="text-sm text-muted-foreground mb-1">Pending Review</div>
-              <div className="font-serif text-2xl font-semibold text-accent">6</div>
-              <div className="text-xs text-muted-foreground mt-1">awaiting approval</div>
+              <div className="text-sm text-muted-foreground mb-1">Share of Africa VCM</div>
+              <div className="font-serif text-2xl font-semibold text-accent">25%</div>
+              <div className="text-xs text-muted-foreground mt-1">of African VCM credits</div>
             </div>
           </div>
 
@@ -226,11 +247,11 @@ export default function ProjectsListPage() {
                 <option>Blue Carbon</option>
               </select>
               <select className="px-4 py-2 bg-secondary rounded-xl text-sm focus:outline-none">
-                <option>All Countries</option>
-                <option>Kenya</option>
-                <option>Ethiopia</option>
-                <option>Morocco</option>
-                <option>Tanzania</option>
+                <option>All Registries</option>
+                <option>Gold Standard</option>
+                <option>CDM/UNFCCC</option>
+                <option>Verra VCS</option>
+                <option>Plan Vivo</option>
               </select>
               <button className="flex items-center gap-2 px-4 py-2 bg-secondary rounded-xl text-sm hover:bg-secondary/80 transition-colors">
                 <Filter size={16} />

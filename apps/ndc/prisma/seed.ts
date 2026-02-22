@@ -51,13 +51,13 @@ async function main() {
       baseValue: 73.0, // MtCO2e
       baseUnit: "MtCO2e",
       targetYear: 2030,
-      targetValue: 32.0, // 32% reduction below BAU
+      targetValue: 7.0, // 7% unconditional reduction below BAU (domestic resources)
       targetUnit: "% below BAU",
       isConditional: false,
     },
   });
 
-  // Conditional target
+  // Conditional target (total 32% below BAU with international support)
   const conditionalTarget = await prisma.target.create({
     data: {
       ndcId: ndc.id,
@@ -69,11 +69,11 @@ async function main() {
       baseValue: 73.0,
       baseUnit: "MtCO2e",
       targetYear: 2030,
-      targetValue: 32.0,
+      targetValue: 32.0, // 32% total reduction below BAU with international support
       targetUnit: "% below BAU",
       isConditional: true,
       conditionDescription:
-        "Conditional upon receiving international support in the form of finance, technology transfer, and capacity building.",
+        "Conditional upon receiving international support in the form of finance, technology transfer, and capacity building. Total 32% reduction below BAU by 2030, of which 13% is domestically funded and 87% requires international support.",
     },
   });
 

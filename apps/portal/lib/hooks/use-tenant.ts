@@ -14,7 +14,7 @@ export interface Tenant {
 
 const DEFAULT_TENANT: Tenant = {
   id: "default",
-  name: "NCTP Platform",
+  name: "DCACI Platform",
   country: "Kenya",
   isoCode: "KEN",
   region: "africa",

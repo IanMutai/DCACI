@@ -20,7 +20,9 @@ import {
 } from "lucide-react";
 
 /* ───────────────────────────────────────────
-   IPCC Sector Data for Kenya
+   IPCC Sector Data for Kenya — 2022 inventory
+   Source: PRIMAP-hist v2.6 HISTCR for sector totals
+   Subcategory breakdowns are modelled estimates
    ─────────────────────────────────────────── */
 
 interface SubCategory {
@@ -61,19 +63,19 @@ const sectorData: Record<string, SectorConfig> = {
     code: "1",
     icon: <Flame size={22} className="text-orange-600" />,
     iconBg: "bg-orange-100",
-    totalEmissions: 42.8,
-    description: "Fuel combustion activities and fugitive emissions from fuels. This is the largest sector in Kenya's GHG inventory, driven primarily by transport and electricity generation.",
+    totalEmissions: 40.3,
+    description: "Fuel combustion activities and fugitive emissions from fuels. Second largest sector (42.4% of 94.9 MtCO2e). Transport is the largest subsector (11.1 Mt, 2021). Grid factor 56.81 gCO2/kWh due to geothermal dominance. Source: PRIMAP-hist v2.6 HISTCR.",
     gasBreakdown: [
-      { gas: "CO2", value: 38.2, color: "bg-gray-500" },
-      { gas: "CH4", value: 3.1, color: "bg-amber-500" },
-      { gas: "N2O", value: 1.5, color: "bg-blue-500" },
+      { gas: "CO2", value: 35.4, color: "bg-gray-500" },
+      { gas: "CH4", value: 3.2, color: "bg-amber-500" },
+      { gas: "N2O", value: 1.7, color: "bg-blue-500" },
     ],
     trend: [
-      { year: 2019, value: 38.2 },
-      { year: 2020, value: 36.8 },
-      { year: 2021, value: 41.9 },
-      { year: 2022, value: 42.8 },
-      { year: 2023, value: 44.1 },
+      { year: 2018, value: 32.8 },
+      { year: 2019, value: 34.2 },
+      { year: 2020, value: 33.1 },
+      { year: 2021, value: 36.5 },
+      { year: 2022, value: 40.3 },
     ],
     categories: [
       {
@@ -177,19 +179,19 @@ const sectorData: Record<string, SectorConfig> = {
     code: "2",
     icon: <Factory size={22} className="text-blue-600" />,
     iconBg: "bg-blue-100",
-    totalEmissions: 3.3,
-    description: "Emissions from industrial processes including cement production, chemical manufacturing, and use of fluorinated gases in refrigeration and air conditioning.",
+    totalEmissions: 5.96,
+    description: "Emissions from industrial processes (6.3% of 94.9 MtCO2e). Dominated by cement production from 6 major plants. F-gases growing from refrigeration and air conditioning. Source: PRIMAP-hist v2.6 HISTCR.",
     gasBreakdown: [
-      { gas: "CO2", value: 2.2, color: "bg-gray-500" },
-      { gas: "HFCs", value: 0.7, color: "bg-purple-500" },
-      { gas: "Other", value: 0.4, color: "bg-teal-500" },
+      { gas: "CO2", value: 4.5, color: "bg-gray-500" },
+      { gas: "HFCs", value: 1.0, color: "bg-purple-500" },
+      { gas: "Other", value: 0.46, color: "bg-teal-500" },
     ],
     trend: [
-      { year: 2019, value: 2.9 },
-      { year: 2020, value: 2.7 },
-      { year: 2021, value: 3.2 },
-      { year: 2022, value: 3.3 },
-      { year: 2023, value: 3.5 },
+      { year: 2018, value: 4.8 },
+      { year: 2019, value: 5.1 },
+      { year: 2020, value: 4.7 },
+      { year: 2021, value: 5.5 },
+      { year: 2022, value: 5.96 },
     ],
     categories: [
       {
@@ -219,19 +221,19 @@ const sectorData: Record<string, SectorConfig> = {
     code: "3",
     icon: <Wheat size={22} className="text-green-600" />,
     iconBg: "bg-green-100",
-    totalEmissions: 25.6,
-    description: "Emissions from livestock (enteric fermentation and manure management), rice cultivation, agricultural soils, and biomass burning. Second largest sector in Kenya.",
+    totalEmissions: 44.9,
+    description: "Largest emitting sector (47.3% of 94.9 MtCO2e). Dominated by enteric fermentation from ~18M cattle (FAO: 56% of agriculture). Manure on pasture is second largest source. Tier 1 IPCC defaults used. Source: PRIMAP-hist v2.6 HISTCR.",
     gasBreakdown: [
-      { gas: "CH4", value: 16.4, color: "bg-amber-500" },
-      { gas: "N2O", value: 8.2, color: "bg-blue-500" },
-      { gas: "CO2", value: 1.0, color: "bg-gray-500" },
+      { gas: "CH4", value: 28.5, color: "bg-amber-500" },
+      { gas: "N2O", value: 14.4, color: "bg-blue-500" },
+      { gas: "CO2", value: 2.0, color: "bg-gray-500" },
     ],
     trend: [
-      { year: 2019, value: 24.8 },
-      { year: 2020, value: 24.5 },
-      { year: 2021, value: 25.4 },
-      { year: 2022, value: 25.6 },
-      { year: 2023, value: 27.2 },
+      { year: 2018, value: 38.6 },
+      { year: 2019, value: 39.8 },
+      { year: 2020, value: 40.2 },
+      { year: 2021, value: 42.5 },
+      { year: 2022, value: 44.9 },
     ],
     categories: [
       {
@@ -274,19 +276,19 @@ const sectorData: Record<string, SectorConfig> = {
     code: "3B",
     icon: <TreePine size={22} className="text-emerald-600" />,
     iconBg: "bg-emerald-100",
-    totalEmissions: -12.3,
-    description: "Net carbon sink from forests, croplands, and grasslands. Kenya's forest cover provides significant carbon sequestration. Deforestation and land conversion are key drivers of emissions in this sector.",
+    totalEmissions: -7.57,
+    description: "Net carbon sink (-7.57 MtCO2e, 2021 est.). Forest cover ~7.4% of land area. Reforestation programs (incl. 15 billion tree campaign) partially offset deforestation. Note: LULUCF sign is methodology-dependent. Source: emission-index.com/EDGAR.",
     gasBreakdown: [
-      { gas: "CO2 (removals)", value: -15.8, color: "bg-emerald-500" },
-      { gas: "CO2 (emissions)", value: 3.1, color: "bg-gray-500" },
-      { gas: "CH4/N2O", value: 0.4, color: "bg-amber-500" },
+      { gas: "CO2 (removals)", value: -10.2, color: "bg-emerald-500" },
+      { gas: "CO2 (emissions)", value: 2.3, color: "bg-gray-500" },
+      { gas: "CH4/N2O", value: 0.33, color: "bg-amber-500" },
     ],
     trend: [
-      { year: 2019, value: -11.4 },
-      { year: 2020, value: -11.7 },
-      { year: 2021, value: -12.0 },
-      { year: 2022, value: -12.3 },
-      { year: 2023, value: -13.1 },
+      { year: 2018, value: -6.5 },
+      { year: 2019, value: -6.8 },
+      { year: 2020, value: -6.9 },
+      { year: 2021, value: -7.2 },
+      { year: 2022, value: -7.57 },
     ],
     categories: [
       {
@@ -340,19 +342,19 @@ const sectorData: Record<string, SectorConfig> = {
     code: "4",
     icon: <Trash2 size={22} className="text-purple-600" />,
     iconBg: "bg-purple-100",
-    totalEmissions: 8.4,
-    description: "Emissions from solid waste disposal, biological treatment, incineration, and wastewater treatment. Methane from solid waste disposal sites is the primary source.",
+    totalEmissions: 3.1,
+    description: "Smallest sector (3.3% of 94.9 MtCO2e). Methane from solid waste disposal is the primary source. Limited data — most waste goes to open dumpsites without weighbridges. Source: PRIMAP-hist v2.6 HISTCR (3,101 Gg CO2e).",
     gasBreakdown: [
-      { gas: "CH4", value: 6.8, color: "bg-amber-500" },
-      { gas: "N2O", value: 1.2, color: "bg-blue-500" },
-      { gas: "CO2", value: 0.4, color: "bg-gray-500" },
+      { gas: "CH4", value: 2.3, color: "bg-amber-500" },
+      { gas: "N2O", value: 0.5, color: "bg-blue-500" },
+      { gas: "CO2", value: 0.3, color: "bg-gray-500" },
     ],
     trend: [
-      { year: 2019, value: 7.5 },
-      { year: 2020, value: 7.8 },
-      { year: 2021, value: 8.1 },
-      { year: 2022, value: 8.4 },
-      { year: 2023, value: 8.8 },
+      { year: 2018, value: 2.6 },
+      { year: 2019, value: 2.7 },
+      { year: 2020, value: 2.8 },
+      { year: 2021, value: 2.9 },
+      { year: 2022, value: 3.1 },
     ],
     categories: [
       {

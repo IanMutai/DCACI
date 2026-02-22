@@ -3,6 +3,12 @@
  * Defines types for linking Registry projects to NDC targets and MRV baselines
  */
 
+/** GeoJSON Polygon type for geospatial boundaries */
+interface GeoJSONPolygon {
+  type: "Polygon";
+  coordinates: number[][][];
+}
+
 // ==================== ENUMS ====================
 
 export enum LinkageType {
@@ -81,7 +87,7 @@ export interface ProjectMRVVerification {
   verifierName?: string;
   verificationDate?: string;
   satelliteDataRef?: string;
-  geospatialBoundary?: GeoJSON.Polygon;
+  geospatialBoundary?: GeoJSONPolygon;
   createdAt: string;
   updatedAt: string;
 }
@@ -99,7 +105,7 @@ export interface ProjectMRVVerificationInput {
   verifierName?: string;
   verificationDate?: string;
   satelliteDataRef?: string;
-  geospatialBoundary?: GeoJSON.Polygon;
+  geospatialBoundary?: GeoJSONPolygon;
 }
 
 // ==================== CROSS-SYSTEM LINKAGE ====================

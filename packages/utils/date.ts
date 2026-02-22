@@ -29,7 +29,7 @@ export function toISODateString(date: string | Date): string {
   if (isNaN(d.getTime())) {
     return "";
   }
-  return d.toISOString().split("T")[0];
+  return d.toISOString().split("T")[0] ?? "";
 }
 
 /**

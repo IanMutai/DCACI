@@ -4,7 +4,7 @@
 
 /**
  * ISO 3166-1 alpha-2 country codes for African Union member states
- * (subset used for validation in NCTP context).
+ * (subset used for validation in DCACI context).
  */
 const AU_COUNTRY_CODES = new Set([
   "DZ", "AO", "BJ", "BW", "BF", "BI", "CV", "CM", "CF", "TD",
@@ -73,10 +73,10 @@ export function isValidEmissionsValue(value: number): boolean {
 }
 
 /**
- * Validate a credit serial number format (NCTP-XX-YYYY-NNNNNN).
+ * Validate a credit serial number format (DCACI-XX-YYYY-NNNNNN).
  */
 export function isValidCreditSerial(serial: string): boolean {
-  return /^NCTP-[A-Z]{2}-\d{4}-\d{6}$/.test(serial);
+  return /^DCACI-[A-Z]{2}-\d{4}-\d{6}$/.test(serial);
 }
 
 /**

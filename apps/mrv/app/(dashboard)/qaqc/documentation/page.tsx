@@ -58,7 +58,7 @@ const versionHistory = [
   { version: "v2.0", date: "2025-06-01", author: "Inventory Team", changes: "Major revision: Added Tier 2 QC procedures for key categories. Updated data collection templates." },
   { version: "v1.2", date: "2024-12-15", author: "J. Kamau", changes: "Added expert review checklist. Updated improvement plan priorities." },
   { version: "v1.1", date: "2024-09-01", author: "J. Kamau", changes: "Minor corrections. Added cross-sector validation procedures." },
-  { version: "v1.0", date: "2024-03-15", author: "NCTP Team", changes: "Initial QA/QC plan based on 2006 IPCC Guidelines, Volume 1, Chapter 6." },
+  { version: "v1.0", date: "2024-03-15", author: "DCACI Team", changes: "Initial QA/QC plan based on 2006 IPCC Guidelines, Volume 1, Chapter 6." },
 ];
 
 const improvements = [

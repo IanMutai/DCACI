@@ -208,7 +208,7 @@ export default function Sidebar() {
         </div>
         <div className="flex flex-col">
           <span className="text-sm font-bold text-[hsl(var(--sidebar-foreground))] tracking-wide">
-            NCTP MRV
+            DCACI MRV
           </span>
           <span className="text-[11px] text-[hsl(var(--sidebar-foreground))]/50 font-medium">
             GHG Inventory System
@@ -290,7 +290,7 @@ export default function Sidebar() {
       {/* Footer */}
       <div className="px-6 py-3 text-center">
         <p className="text-[10px] text-[hsl(var(--sidebar-foreground))]/30">
-          Made with &#9829; by NCTP
+          Made with &#9829; by DCACI
         </p>
       </div>
     </aside>

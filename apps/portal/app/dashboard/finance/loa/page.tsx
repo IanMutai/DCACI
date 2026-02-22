@@ -408,7 +408,7 @@ export default function LoaPage() {
                                 : "bg-[hsl(var(--secondary))]"
                           }`}
                         />
-                        {idx < loa.totalSteps - 1 && (
+                        {idx < (loa.totalSteps ?? 0) - 1 && (
                           <ArrowRight className="h-3 w-3 mx-1 text-[hsl(var(--muted-foreground))]" />
                         )}
                       </div>

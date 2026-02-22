@@ -29,7 +29,7 @@ const statCards = [
   {
     label: "Active NDC",
     value: "2nd NDC",
-    detail: "Updated 2024",
+    detail: "Submitted April 2025",
     icon: Globe2,
     iconBg: "bg-indigo-50",
     iconColor: "text-indigo-600",
@@ -254,17 +254,17 @@ export default function DashboardPage() {
                     <span className="badge-on-track">On Track</span>
                   </div>
                   <span className="text-sm font-bold text-[hsl(var(--color-primary))]">
-                    32% reduction
+                    7% below BAU (unconditional)
                   </span>
                 </div>
                 <div className="progress-bar progress-bar-success">
                   <div
                     className="progress-bar-fill animate-progress-fill"
-                    style={{ width: "54%" }}
+                    style={{ width: "60%" }}
                   />
                 </div>
                 <div className="mt-1.5 flex items-center justify-between text-[11px] text-[hsl(var(--color-text-muted))]">
-                  <span>54% achieved (17.3% of 32%)</span>
+                  <span>60% achieved (~4.2% of 7%)</span>
                   <span>Base year: 2015</span>
                 </div>
               </div>
@@ -279,7 +279,7 @@ export default function DashboardPage() {
                     <span className="badge-at-risk">At Risk</span>
                   </div>
                   <span className="text-sm font-bold text-[hsl(var(--color-accent-dark))]">
-                    Additional 10% (total 42%)
+                    32% below BAU (total with support)
                   </span>
                 </div>
                 <div className="progress-bar progress-bar-warning">
@@ -482,15 +482,15 @@ export default function DashboardPage() {
               </div>
               <div className="flex items-center justify-between">
                 <span>Unconditional</span>
-                <span className="font-semibold text-white">-32% GHG</span>
+                <span className="font-semibold text-white">-7% vs BAU</span>
               </div>
               <div className="flex items-center justify-between">
                 <span>Conditional</span>
-                <span className="font-semibold text-white">-42% GHG</span>
+                <span className="font-semibold text-white">-32% vs BAU</span>
               </div>
               <div className="flex items-center justify-between">
                 <span>NDC Cycle</span>
-                <span className="font-semibold text-white">2nd (2024)</span>
+                <span className="font-semibold text-white">2nd (2025)</span>
               </div>
               <div className="flex items-center justify-between">
                 <span>Type</span>

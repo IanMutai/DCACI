@@ -92,7 +92,7 @@ const mockInsights: Insight[] = [
       "LULUCF sector shows the largest gap between current trajectory and NDC target. Recommend increasing reforestation efforts by 40% and adding 3 new REDD+ projects to the registry.",
     source: "NDC",
     metric: "Gap to Target",
-    metricValue: "32%",
+    metricValue: "25%",
     actionLabel: "Plan Actions",
   },
   {

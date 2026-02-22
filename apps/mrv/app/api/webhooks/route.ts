@@ -5,7 +5,7 @@ function jsonResponse(data: { success: boolean; data?: unknown; error?: string }
 }
 
 /**
- * Webhook endpoint for emitting MRV events to the NCTP Portal.
+ * Webhook endpoint for emitting MRV events to the DCACI Portal.
  * Events include: inventory.created, inventory.updated, inventory.submitted,
  * calculation.completed, qaqc.completed, report.generated
  */
