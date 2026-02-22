@@ -154,6 +154,9 @@ export default function DashboardPage() {
       {/* Intelligence Insights */}
       <IntelligenceInsights page="dashboard" />
 
+      {/* Intelligence Assistant */}
+      <InlineIntelligence page="dashboard" />
+
       {/* Charts Row 1: Emissions + Budget Alignment */}
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
         <div className="card">
@@ -224,9 +227,6 @@ export default function DashboardPage() {
         </div>
         <SectorPieChart />
       </div>
-
-      {/* Intelligence Assistant */}
-      <InlineIntelligence page="dashboard" />
 
       {/* Bottom Row: Timeline + Quick Access */}
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
