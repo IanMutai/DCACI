@@ -11,6 +11,10 @@ const ClimateFinanceChart = dynamic(
   () => import("@/components/charts/climate-finance-chart"),
   { ssr: false, loading: () => <div className="h-[280px] animate-pulse bg-slate-50 rounded-lg" /> }
 );
+const InlineIntelligence = dynamic(
+  () => import("@/components/intelligence/inline-intelligence"),
+  { ssr: false }
+);
 
 export default function RegistryPage() {
   return (
@@ -177,6 +181,9 @@ export default function RegistryPage() {
           ))}
         </div>
       </div>
+
+      {/* Intelligence Assistant */}
+      <InlineIntelligence page="registry" />
     </div>
   );
 }

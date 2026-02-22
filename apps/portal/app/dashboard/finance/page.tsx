@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import {
   Banknote,
@@ -17,6 +17,11 @@ import {
   CheckCircle,
   AlertCircle,
 } from "lucide-react";
+
+const InlineIntelligence = dynamic(
+  () => import("@/components/intelligence/inline-intelligence"),
+  { ssr: false }
+);
 
 const summaryStats = [
   {
@@ -518,6 +523,9 @@ export default function FinancePage() {
           </div>
         </div>
       </div>
+
+      {/* Intelligence Assistant */}
+      <InlineIntelligence page="finance" />
     </div>
   );
 }

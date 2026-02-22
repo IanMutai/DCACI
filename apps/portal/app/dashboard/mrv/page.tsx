@@ -7,6 +7,10 @@ const SectorStackedBarChart = dynamic(
   () => import("@/components/charts/sector-breakdown-chart").then((m) => ({ default: m.SectorStackedBarChart })),
   { ssr: false, loading: () => <div className="h-[280px] animate-pulse bg-slate-50 rounded-lg" /> }
 );
+const InlineIntelligence = dynamic(
+  () => import("@/components/intelligence/inline-intelligence"),
+  { ssr: false, loading: () => <div className="h-[200px] animate-pulse bg-teal-50 rounded-2xl" /> }
+);
 
 export default function MrvPage() {
   return (
@@ -159,6 +163,9 @@ export default function MrvPage() {
           </table>
         </div>
       </div>
+
+      {/* MRV Intelligence Assistant */}
+      <InlineIntelligence page="mrv" />
     </div>
   );
 }
