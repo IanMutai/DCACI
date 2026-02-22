@@ -103,8 +103,8 @@ export default function LandingPage() {
                   <p className="text-xs font-medium text-emerald-700">94.9 MtCO2e | BTR-1 Filed</p>
                 </div>
                 <div className="mt-4 flex justify-between">
-                  <Link href="/dashboard/mrv" className="text-xs font-medium text-teal-700 hover:text-teal-900">Portal &rarr;</Link>
-                  <Link href="/dashboard/mrv" className="text-xs text-slate-400 hover:text-slate-600">MRV &rarr;</Link>
+                  <a href="https://mrv.dcaci.ianmutai.com" target="_blank" rel="noopener noreferrer" className="text-xs font-medium text-teal-700 hover:text-teal-900">Portal &rarr;</a>
+                  <Link href="/dashboard/mrv" className="text-xs text-slate-400 hover:text-slate-600">Dashboard &rarr;</Link>
                 </div>
               </div>
 
@@ -121,8 +121,8 @@ export default function LandingPage() {
                   <p className="text-xs font-medium text-blue-700">86.5 MtCO2e potential | 2nd NDC</p>
                 </div>
                 <div className="mt-4 flex justify-between">
-                  <Link href="/dashboard/ndc" className="text-xs font-medium text-teal-700 hover:text-teal-900">Portal &rarr;</Link>
-                  <Link href="/dashboard/ndc" className="text-xs text-slate-400 hover:text-slate-600">NDC &rarr;</Link>
+                  <a href="https://ndc.dcaci.ianmutai.com" target="_blank" rel="noopener noreferrer" className="text-xs font-medium text-teal-700 hover:text-teal-900">Portal &rarr;</a>
+                  <Link href="/dashboard/ndc" className="text-xs text-slate-400 hover:text-slate-600">Dashboard &rarr;</Link>
                 </div>
               </div>
 
@@ -139,8 +139,8 @@ export default function LandingPage() {
                   <p className="text-xs font-medium text-amber-700">$136M VCM revenue | 4 Art. 6</p>
                 </div>
                 <div className="mt-4 flex justify-between">
-                  <Link href="/dashboard/registry" className="text-xs font-medium text-teal-700 hover:text-teal-900">Portal &rarr;</Link>
-                  <Link href="/dashboard/registry" className="text-xs text-slate-400 hover:text-slate-600">Registry &rarr;</Link>
+                  <a href="https://registry.dcaci.ianmutai.com" target="_blank" rel="noopener noreferrer" className="text-xs font-medium text-teal-700 hover:text-teal-900">Portal &rarr;</a>
+                  <Link href="/dashboard/registry" className="text-xs text-slate-400 hover:text-slate-600">Dashboard &rarr;</Link>
                 </div>
               </div>
 
