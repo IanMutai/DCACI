@@ -18,6 +18,7 @@ import {
   TrendingUp,
   ExternalLink,
   Scale,
+  Wand2,
 } from "lucide-react";
 import { useAppContext } from "./context-provider";
 
@@ -64,6 +65,7 @@ const environmentNav: NavItem[] = [
     ],
   },
   { name: "Reports", href: "/dashboard/reports", icon: FileText },
+  { name: "Document Copilot", href: "/dashboard/copilot", icon: Wand2, badge: "AI" },
 ];
 
 const financeNav: NavItem[] = [
@@ -83,6 +85,7 @@ const financeNav: NavItem[] = [
   { name: "Budget-NDC Alignment", href: "/dashboard/intelligence/budget-alignment", icon: TrendingUp },
   { name: "Carbon Registry", href: "/dashboard/registry", icon: Database, badge: "REG" },
   { name: "Reports", href: "/dashboard/reports", icon: FileText },
+  { name: "Document Copilot", href: "/dashboard/copilot", icon: Wand2, badge: "AI" },
 ];
 
 const standalonePortals = [
