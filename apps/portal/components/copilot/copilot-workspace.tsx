@@ -155,6 +155,7 @@ Please answer as many as you can — even partial information is helpful. I'll f
           docType: doc.docType,
           currentSection: doc.currentSectionId,
           country: doc.country,
+          county: doc.county,
           completedSections,
         }),
       });
@@ -312,7 +313,7 @@ Please answer as many as you can — even partial information is helpful. I'll f
       const res = await fetch("/api/copilot/export/pdf", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ docType: doc.docType, title: doc.title, country: doc.country, sections: doc.sections }),
+        body: JSON.stringify({ docType: doc.docType, title: doc.title, country: doc.country, county: doc.county, sections: doc.sections }),
       });
       if (!res.ok) throw new Error("PDF export failed");
       const blob = await res.blob();
@@ -335,7 +336,7 @@ Please answer as many as you can — even partial information is helpful. I'll f
       const res = await fetch("/api/copilot/export/docx", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ docType: doc.docType, title: doc.title, country: doc.country, sections: doc.sections }),
+        body: JSON.stringify({ docType: doc.docType, title: doc.title, country: doc.country, county: doc.county, sections: doc.sections }),
       });
       if (!res.ok) throw new Error("DOCX export failed");
       const blob = await res.blob();

@@ -8,7 +8,8 @@ function buildSystemPrompt(
   docType: DocType,
   sectionId: string,
   country: string,
-  completedSections: Record<string, string>
+  completedSections: Record<string, string>,
+  county?: string
 ): string {
   const schema = getDocumentType(docType);
   const section = schema.sections.find((s) => s.id === sectionId);
@@ -20,14 +21,17 @@ function buildSystemPrompt(
     })
     .join("\n\n");
 
-  return `You are a senior UNFCCC Climate Document Specialist with 20+ years of experience drafting NDCs, BTRs, and national climate action plans for developing countries. You are helping a climate change officer draft an official ${schema.title} (${schema.subtitle}) for ${country}.
+  const jurisdiction = county ? `${county} County, Kenya` : country;
+  const jurisdictionLabel = county ? `${county} County` : country;
 
+  return `You are a senior climate policy specialist with 20+ years of experience drafting NDCs, BTRs, national and county climate action plans. You are helping a climate change officer draft an official ${schema.title} (${schema.subtitle}) for ${jurisdiction}.
+${county ? `\nThis is a COUNTY-LEVEL document under Kenya's Climate Change Act 2016 (Section 13). Write content specific to ${county} County — its geography, economy, livelihoods, specific climate hazards, county government institutional structure, and the Kenya Climate Change Fund. Reference the Kenya National Climate Change Action Plan (NCCAP) 2023–2027 and Kenya's Second NDC (2031–2035) for alignment.` : ""}
 ## YOUR ROLE
-You are a DOCUMENT AUTHOR, not a general assistant. Your sole job is to help draft formal, policy-grade, UNFCCC-compliant content section by section. You combine deep technical knowledge of climate policy with clear, precise government document language.
+You are a DOCUMENT AUTHOR, not a general assistant. Your sole job is to help draft formal, policy-grade content section by section. You combine deep technical knowledge of climate policy with clear, precise government document language.
 
 ## CURRENT TASK
 Document Type: ${schema.title} (${schema.subtitle})
-Country: ${country}
+Jurisdiction: ${jurisdiction}
 Current Section: ${section?.title ?? sectionId}
 Section Description: ${section?.description ?? ""}
 UNFCCC Reference: ${section?.unfcccRef ?? "Paris Agreement / UNFCCC guidelines"}
@@ -44,7 +48,7 @@ ${completedSummary || "This is the first section being drafted."}
 __SECTION_CONTENT__{"content": "## Section Title\\n\\nFull section content here in markdown..."}
 
 ## DRAFTING STANDARDS
-- Use formal policy language (e.g. "The Government of ${country} commits to..." not "We will...")
+- Use formal policy language (e.g. "${county ? `The ${county} County Government commits to...` : `The Government of ${country} commits to...`}" not "We will...")
 - Always include specific figures when provided (targets, years, MtCO2e, USD amounts)
 - Reference relevant UNFCCC decisions, Paris Agreement articles, and IPCC guidelines
 - Align terminology with UNFCCC Enhanced Transparency Framework (ETF) requirements
@@ -57,7 +61,7 @@ This document will be submitted officially. Every claim must be verifiable. Ever
 
 export async function POST(request: NextRequest) {
   try {
-    const { messages, docType, currentSection, country, completedSections } =
+    const { messages, docType, currentSection, country, county, completedSections } =
       await request.json();
 
     if (!process.env.OPENAI_API_KEY) {
@@ -72,7 +76,8 @@ export async function POST(request: NextRequest) {
       docType as DocType,
       currentSection,
       country,
-      completedSections ?? {}
+      completedSections ?? {},
+      county
     );
 
     const stream = await openai.chat.completions.create({

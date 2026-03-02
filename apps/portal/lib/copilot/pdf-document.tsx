@@ -64,24 +64,27 @@ export function createPdfDocument(
   docType: DocType,
   title: string,
   country: string,
-  sections: Record<string, SectionState>
+  sections: Record<string, SectionState>,
+  county?: string
 ) {
   const schema = getDocumentType(docType);
   const dateStr = new Date().toLocaleDateString("en-GB", { day: "2-digit", month: "long", year: "numeric" });
+  const orgLine = county ? `${county} County Government, Kenya` : `Government of ${country}`;
+  const metaLine = county ? `${county} County, Kenya · ${dateStr} · Draft Document` : `${country} · ${dateStr} · Draft Document`;
 
   return (
-    <Document title={title} author={`Government of ${country}`} subject={schema.title}>
+    <Document title={title} author={orgLine} subject={schema.title}>
       <Page size="A4" style={styles.page}>
         <View style={styles.header}>
           <View style={styles.headerTop}>
             <View style={styles.orgBlock}>
-              <Text style={styles.orgName}>Government of {country}</Text>
+              <Text style={styles.orgName}>{orgLine}</Text>
               <Text style={styles.docBadge}>{schema.subtitle}</Text>
             </View>
             <Text style={styles.unfcccRef}>{schema.unfcccFramework}</Text>
           </View>
           <Text style={styles.docTitle}>{title}</Text>
-          <Text style={styles.docMeta}>{country} · {dateStr} · Draft Document</Text>
+          <Text style={styles.docMeta}>{metaLine}</Text>
         </View>
 
         {schema.sections.map((sectionSchema, idx) => {

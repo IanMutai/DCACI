@@ -7,27 +7,29 @@ import {
   BarChart3,
   Globe2,
   Layers,
+  MapPin,
   Wand2,
   ArrowRight,
   Clock,
   FileText,
-  Plus,
   ChevronRight,
 } from "lucide-react";
-import { DOCUMENT_TYPES, initDocumentState, type DocType, type DocumentState } from "@/lib/copilot/document-types";
+import { DOCUMENT_TYPES, KENYA_COUNTIES, initDocumentState, type DocType, type DocumentState } from "@/lib/copilot/document-types";
 
 const ICON_MAP: Record<string, React.ElementType> = {
   Target,
   BarChart3,
   Globe2,
   Layers,
+  MapPin,
 };
 
 const COLOR_MAP: Record<string, { bg: string; border: string; badge: string; icon: string; dot: string }> = {
-  teal:   { bg: "bg-teal-50",   border: "border-teal-200",  badge: "bg-teal-100 text-teal-700",  icon: "text-teal-600",  dot: "bg-teal-500" },
-  blue:   { bg: "bg-blue-50",   border: "border-blue-200",  badge: "bg-blue-100 text-blue-700",  icon: "text-blue-600",  dot: "bg-blue-500" },
-  green:  { bg: "bg-green-50",  border: "border-green-200", badge: "bg-green-100 text-green-700", icon: "text-green-600", dot: "bg-green-500" },
-  orange: { bg: "bg-orange-50", border: "border-orange-200",badge: "bg-orange-100 text-orange-700",icon: "text-orange-600",dot: "bg-orange-500" },
+  teal:   { bg: "bg-teal-50",   border: "border-teal-200",   badge: "bg-teal-100 text-teal-700",   icon: "text-teal-600",   dot: "bg-teal-500" },
+  blue:   { bg: "bg-blue-50",   border: "border-blue-200",   badge: "bg-blue-100 text-blue-700",   icon: "text-blue-600",   dot: "bg-blue-500" },
+  green:  { bg: "bg-green-50",  border: "border-green-200",  badge: "bg-green-100 text-green-700", icon: "text-green-600",  dot: "bg-green-500" },
+  purple: { bg: "bg-purple-50", border: "border-purple-200", badge: "bg-purple-100 text-purple-700", icon: "text-purple-600", dot: "bg-purple-500" },
+  orange: { bg: "bg-orange-50", border: "border-orange-200", badge: "bg-orange-100 text-orange-700", icon: "text-orange-600", dot: "bg-orange-500" },
 };
 
 const COUNTRIES = [
@@ -63,26 +65,31 @@ export default function CopilotPage() {
   const router = useRouter();
   const [selectedType, setSelectedType] = useState<DocType | null>(null);
   const [country, setCountry] = useState("Kenya");
+  const [county, setCounty] = useState(KENYA_COUNTIES[0]);
   const [title, setTitle] = useState("");
   const [drafts, setDrafts] = useState<DocumentState[]>([]);
   const [showForm, setShowForm] = useState(false);
+
+  const selectedSchema = DOCUMENT_TYPES.find((d) => d.id === selectedType);
+  const isKenyaOnly = selectedSchema?.kenyaOnly ?? false;
+  const isCountyLevel = selectedSchema?.countyLevel ?? false;
 
   useEffect(() => {
     setDrafts(getDraftDocs());
   }, []);
 
   useEffect(() => {
-    if (selectedType) {
-      const schema = DOCUMENT_TYPES.find((d) => d.id === selectedType);
-      if (schema) {
-        setTitle(`${country} ${schema.subtitle} ${new Date().getFullYear()}`);
-      }
+    if (selectedType && selectedSchema) {
+      const label = isCountyLevel ? county : (isKenyaOnly ? "Kenya" : country);
+      setTitle(`${label} ${selectedSchema.subtitle} ${new Date().getFullYear()}`);
     }
-  }, [selectedType, country]);
+  }, [selectedType, country, county, selectedSchema, isKenyaOnly, isCountyLevel]);
 
   function handleStart() {
-    if (!selectedType || !country || !title) return;
-    const doc = initDocumentState(selectedType, title, country);
+    if (!selectedType || !title) return;
+    const effectiveCountry = isKenyaOnly ? "Kenya" : country;
+    const effectiveCounty = isCountyLevel ? county : undefined;
+    const doc = initDocumentState(selectedType, title, effectiveCountry, effectiveCounty);
     localStorage.setItem(`copilot_doc_${doc.id}`, JSON.stringify(doc));
     router.push(`/dashboard/copilot/${doc.id}`);
   }
@@ -209,22 +216,50 @@ export default function CopilotPage() {
           </div>
 
           {/* Step 2: Configure */}
-          {showForm && selectedType && (
+          {showForm && selectedType && selectedSchema && (
             <div className="border border-slate-200 bg-white rounded-xl p-6">
               <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-4">Step 2 — Configure your document</p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
-                <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-1">Country</label>
-                  <select
-                    value={country}
-                    onChange={(e) => setCountry(e.target.value)}
-                    className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-900 focus:border-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-500/20"
-                  >
-                    {COUNTRIES.map((c) => (
-                      <option key={c} value={c}>{c}</option>
-                    ))}
-                  </select>
-                </div>
+                {/* County selector — only for county-level docs */}
+                {isCountyLevel && (
+                  <div>
+                    <label className="block text-sm font-medium text-slate-700 mb-1">Kenya County</label>
+                    <select
+                      value={county}
+                      onChange={(e) => setCounty(e.target.value)}
+                      className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-900 focus:border-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-500/20"
+                    >
+                      {KENYA_COUNTIES.map((c) => (
+                        <option key={c} value={c}>{c}</option>
+                      ))}
+                    </select>
+                  </div>
+                )}
+                {/* Country selector — only for non-Kenya-specific docs */}
+                {!isKenyaOnly && !isCountyLevel && (
+                  <div>
+                    <label className="block text-sm font-medium text-slate-700 mb-1">Country</label>
+                    <select
+                      value={country}
+                      onChange={(e) => setCountry(e.target.value)}
+                      className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-900 focus:border-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-500/20"
+                    >
+                      {COUNTRIES.map((c) => (
+                        <option key={c} value={c}>{c}</option>
+                      ))}
+                    </select>
+                  </div>
+                )}
+                {/* Kenya badge — shown for Kenya-only non-county docs */}
+                {isKenyaOnly && !isCountyLevel && (
+                  <div>
+                    <label className="block text-sm font-medium text-slate-700 mb-1">Country</label>
+                    <div className="flex items-center gap-2 rounded-lg border border-slate-200 bg-slate-50 px-3 py-2.5">
+                      <span className="text-sm text-slate-900 font-medium">Kenya</span>
+                      <span className="text-xs text-slate-400 ml-1">— this document type is Kenya-specific</span>
+                    </div>
+                  </div>
+                )}
                 <div>
                   <label className="block text-sm font-medium text-slate-700 mb-1">Document Title</label>
                   <input
@@ -232,7 +267,7 @@ export default function CopilotPage() {
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
                     className="w-full rounded-lg border border-slate-200 px-3 py-2.5 text-sm text-slate-900 focus:border-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-500/20"
-                    placeholder="e.g. Kenya Third NDC 2036-2040"
+                    placeholder={isCountyLevel ? `e.g. ${county} County CCAP 2025–2030` : "e.g. Kenya Third NDC 2036-2040"}
                   />
                 </div>
               </div>

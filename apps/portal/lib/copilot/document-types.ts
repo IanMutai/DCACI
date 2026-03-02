@@ -1,4 +1,4 @@
-export type DocType = "ndc" | "btr" | "cap" | "sectoral"
+export type DocType = "ndc" | "btr" | "cap" | "sectoral" | "county"
 
 export interface SectionSchema {
   id: string
@@ -17,8 +17,23 @@ export interface DocumentTypeSchema {
   color: string
   estimatedPages: string
   unfcccFramework: string
+  kenyaOnly?: boolean      // hide country dropdown, fix to Kenya
+  countyLevel?: boolean    // show Kenya county selector instead
   sections: SectionSchema[]
 }
+
+export const KENYA_COUNTIES = [
+  "Baringo", "Bomet", "Bungoma", "Busia", "Elgeyo Marakwet",
+  "Embu", "Garissa", "Homa Bay", "Isiolo", "Kajiado",
+  "Kakamega", "Kericho", "Kiambu", "Kilifi", "Kirinyaga",
+  "Kisii", "Kisumu", "Kitui", "Kwale", "Laikipia",
+  "Lamu", "Machakos", "Makueni", "Mandera", "Marsabit",
+  "Meru", "Migori", "Mombasa", "Murang'a", "Nairobi City",
+  "Nakuru", "Nandi", "Narok", "Nyamira", "Nyandarua",
+  "Nyeri", "Samburu", "Siaya", "Taita Taveta", "Tana River",
+  "Tharaka Nithi", "Trans Nzoia", "Turkana", "Uasin Gishu",
+  "Vihiga", "Wajir", "West Pokot",
+]
 
 export const DOCUMENT_TYPES: DocumentTypeSchema[] = [
   {
@@ -240,16 +255,17 @@ export const DOCUMENT_TYPES: DocumentTypeSchema[] = [
     id: "cap",
     title: "National Climate Action Plan",
     subtitle: "CAP / NAP",
-    description: "Comprehensive national plan integrating mitigation and adaptation priorities with implementation roadmaps, finance strategies, and MRV frameworks.",
+    description: "Kenya's comprehensive climate action plan integrating mitigation and adaptation priorities with implementation roadmaps, finance strategies, and MRV frameworks.",
     icon: "Globe2",
     color: "green",
     estimatedPages: "60–120 pages",
     unfcccFramework: "UNFCCC NAP Process · Paris Agreement Art. 7.9",
+    kenyaOnly: true,
     sections: [
       {
         id: "executive-summary",
         title: "Executive Summary",
-        description: "Overview of national climate goals, key priorities, and the structure of the plan.",
+        description: "Overview of Kenya's climate goals, key priorities, and the structure of the plan.",
         guideQuestions: [
           "What are the top 3 national climate priorities?",
           "What headline emission reduction and adaptation targets does this plan set?",
@@ -259,22 +275,22 @@ export const DOCUMENT_TYPES: DocumentTypeSchema[] = [
       },
       {
         id: "country-context",
-        title: "Country Context & Vulnerability",
-        description: "Climate science context, observed impacts, and projected future risks by sector.",
+        title: "Kenya Context & Vulnerability",
+        description: "Climate science context, observed impacts, and projected future risks by sector across Kenya.",
         guideQuestions: [
-          "What are the observed temperature and rainfall trends in the last 30 years?",
-          "What extreme events (floods, droughts, cyclones) have increased in frequency?",
-          "What are the climate projections for 2050 under low and high emission scenarios?",
-          "Which regions and populations are most vulnerable?",
+          "What are the observed temperature and rainfall trends in Kenya over the last 30 years?",
+          "What extreme events (floods, droughts, flash floods) have increased in frequency?",
+          "What are the climate projections for Kenya in 2050 under low and high emission scenarios?",
+          "Which regions and populations in Kenya are most vulnerable?",
         ],
       },
       {
         id: "national-climate-goals",
         title: "National Climate Goals",
-        description: "Long-term climate vision, NDC targets, and net-zero pathway.",
+        description: "Kenya's long-term climate vision, NDC targets, and net-zero pathway.",
         guideQuestions: [
-          "What is the country's long-term climate vision (e.g. net-zero by 2050)?",
-          "How do NDC targets translate into this action plan?",
+          "What is Kenya's long-term climate vision (referencing the Second NDC 2031–2035)?",
+          "How do Kenya's NDC targets translate into this action plan?",
           "Are there sector-specific targets beyond the overall NDC?",
         ],
       },
@@ -283,7 +299,7 @@ export const DOCUMENT_TYPES: DocumentTypeSchema[] = [
         title: "Mitigation Actions & Targets",
         description: "Sector-by-sector mitigation actions with targets, timelines, and emission reduction potential.",
         guideQuestions: [
-          "What are the 5–10 highest-impact mitigation actions by sector?",
+          "What are the 5–10 highest-impact mitigation actions across energy, transport, agriculture, forestry, and waste?",
           "For each action: what is the expected MtCO2e reduction, cost, and timeline?",
           "Which actions are already underway vs. planned?",
           "What policies or regulations will drive implementation?",
@@ -294,7 +310,7 @@ export const DOCUMENT_TYPES: DocumentTypeSchema[] = [
         title: "Adaptation Measures",
         description: "Adaptation priorities by sector with specific actions, outcomes, and indicators.",
         guideQuestions: [
-          "What adaptation actions are planned for agriculture, water, health, and coastal areas?",
+          "What adaptation actions are planned for agriculture, water, health, and coastal areas in Kenya?",
           "What are the success indicators for each adaptation measure?",
           "What community-based adaptation approaches are included?",
           "How are indigenous and local knowledge systems integrated?",
@@ -306,8 +322,8 @@ export const DOCUMENT_TYPES: DocumentTypeSchema[] = [
         description: "Phased implementation roadmap with institutional responsibilities and milestones.",
         guideQuestions: [
           "What are the short-term (1–3 year), medium-term (3–7 year), and long-term (7–15 year) milestones?",
-          "Which ministry or agency leads each action area?",
-          "What coordination mechanisms exist across ministries?",
+          "Which ministry or agency (MECF, sector ministries, county governments) leads each action area?",
+          "What coordination mechanisms exist across ministries and between national and county governments?",
           "How will implementation progress be reviewed?",
         ],
       },
@@ -319,7 +335,7 @@ export const DOCUMENT_TYPES: DocumentTypeSchema[] = [
           "What is the total estimated cost of the plan (USD millions)?",
           "How is finance split: mitigation vs adaptation?",
           "What is the domestic vs. international financing mix?",
-          "What green bonds, climate funds (GCF, GEF, AF), or bilateral arrangements are targeted?",
+          "What Climate Change Fund allocations, GCF, GEF, or bilateral arrangements are targeted?",
         ],
       },
       {
@@ -328,7 +344,7 @@ export const DOCUMENT_TYPES: DocumentTypeSchema[] = [
         description: "Monitoring, reporting, and verification system for tracking plan implementation.",
         guideQuestions: [
           "What indicators will be used to track progress (GHG, economic, social)?",
-          "What data systems and institutions are responsible for MRV?",
+          "What data systems and institutions (NEMA, Kenya Meteorological Dept, sector ministries) are responsible for MRV?",
           "How frequently will progress be reported?",
           "How does this MRV framework link to the UNFCCC Enhanced Transparency Framework?",
         ],
@@ -342,6 +358,108 @@ export const DOCUMENT_TYPES: DocumentTypeSchema[] = [
           "What gender and social inclusion considerations shaped the plan?",
           "How will youth and indigenous communities be engaged in implementation?",
           "What ongoing multi-stakeholder platforms will oversee the plan?",
+        ],
+      },
+    ],
+  },
+  {
+    id: "county",
+    title: "County Climate Change Action Plan",
+    subtitle: "County CCAP",
+    description: "County-level climate action plan under Kenya's Climate Change Act 2016 (Section 13), covering county GHG baseline, mitigation and adaptation priorities, and resource mobilisation.",
+    icon: "MapPin",
+    color: "purple",
+    estimatedPages: "30–60 pages",
+    unfcccFramework: "Kenya Climate Change Act 2016 · NCCAP 2023–2027",
+    kenyaOnly: true,
+    countyLevel: true,
+    sections: [
+      {
+        id: "executive-summary",
+        title: "Executive Summary",
+        description: "Overview of the county's climate priorities, key actions, and alignment with national targets.",
+        guideQuestions: [
+          "What are the top 3 climate risks facing this county?",
+          "What headline mitigation and adaptation actions does this plan commit to?",
+          "What is the plan's implementation period?",
+          "Which county departments and partners lead implementation?",
+        ],
+      },
+      {
+        id: "county-profile",
+        title: "County Profile & Climate Vulnerability",
+        description: "County geography, demographics, economy, livelihoods, and observed climate change impacts.",
+        guideQuestions: [
+          "What is the county's area, population, and main livelihoods (agriculture, pastoralism, fishing, industry)?",
+          "What climate hazards are most severe in this county (droughts, floods, landslides, heat stress)?",
+          "What observed changes in temperature and rainfall have been documented?",
+          "Which sub-counties, communities, or ecosystems are most vulnerable and why?",
+        ],
+      },
+      {
+        id: "ghg-baseline",
+        title: "County GHG Inventory & Baseline",
+        description: "Sector-level GHG emissions baseline for the county, key emission sources, and data gaps.",
+        guideQuestions: [
+          "What are the main emission sources in the county (agriculture and livestock, land use, energy, transport, waste)?",
+          "What is the estimated total county GHG baseline (tCO2e) and reference year?",
+          "What county-level data is available from KNBS, NEMA, or sector reports?",
+          "What are the major data gaps and how will they be addressed?",
+        ],
+      },
+      {
+        id: "mitigation-actions",
+        title: "County Mitigation Actions & Targets",
+        description: "Priority mitigation actions aligned with Kenya's Second NDC, with county-level targets and timelines.",
+        guideQuestions: [
+          "What are the top 5 mitigation actions the county will implement (e.g. agroforestry, clean cooking, solar energy, waste management)?",
+          "What are the quantified emission reduction targets for this county?",
+          "Which county department or implementing agency leads each action?",
+          "What is the timeline and estimated cost for each action?",
+        ],
+      },
+      {
+        id: "adaptation-priorities",
+        title: "County Adaptation Priorities",
+        description: "Sector-specific adaptation actions for agriculture, water, health, ecosystems, and infrastructure.",
+        guideQuestions: [
+          "What adaptation actions are critical for the county's key sectors (e.g. drought-resistant crops, water harvesting, early warning systems)?",
+          "Which communities or sub-counties will benefit from each adaptation action?",
+          "What is the estimated cost and source of funding for adaptation?",
+          "How will traditional/indigenous knowledge be integrated into adaptation?",
+        ],
+      },
+      {
+        id: "institutional-framework",
+        title: "Implementation & Institutional Framework",
+        description: "County institutional arrangements, roles of county departments, CCU, and national-county coordination.",
+        guideQuestions: [
+          "What is the county's Climate Change Unit (CCU) structure and staffing?",
+          "How does the County Executive Committee Member (CECM) for Environment coordinate climate action?",
+          "How does the county coordinate with the national Ministry of Environment and the Climate Change Directorate?",
+          "What role do Ward administrators, community groups, and NGOs play in implementation?",
+        ],
+      },
+      {
+        id: "finance-resource-mobilisation",
+        title: "Finance & Resource Mobilisation",
+        description: "County budget allocation, Climate Change Fund access, and external grants for climate action.",
+        guideQuestions: [
+          "What percentage of the county budget is allocated to climate-related activities?",
+          "Has the county accessed the Kenya Climate Change Fund? What projects were funded?",
+          "What donor or NGO partnerships are in place (e.g. GCF, USAID, EU, SIDA)?",
+          "What private sector investment opportunities exist in this county for clean energy, sustainable agriculture, or resilient infrastructure?",
+        ],
+      },
+      {
+        id: "mrv-reporting",
+        title: "MRV & Annual Reporting",
+        description: "County monitoring, reporting, and verification system linked to national transparency frameworks.",
+        guideQuestions: [
+          "What indicators will track the county's climate progress (GHG reductions, adaptation outcomes, finance mobilised)?",
+          "How will the county collect and manage climate data (CIMES, sector databases)?",
+          "What is the annual county climate reporting process to the Cabinet Secretary and County Assembly?",
+          "How does county MRV contribute to Kenya's national BTR and UNFCCC transparency obligations?",
         ],
       },
     ],
@@ -458,6 +576,7 @@ export interface DocumentState {
   docType: DocType
   title: string
   country: string
+  county?: string        // for county-level documents (Kenya county name)
   createdAt: string
   currentSectionId: string
   sections: Record<string, SectionState>
@@ -466,7 +585,8 @@ export interface DocumentState {
 export function initDocumentState(
   docType: DocType,
   title: string,
-  country: string
+  country: string,
+  county?: string
 ): DocumentState {
   const schema = getDocumentType(docType)
   const sections: Record<string, SectionState> = {}
@@ -478,6 +598,7 @@ export function initDocumentState(
     docType,
     title,
     country,
+    county,
     createdAt: new Date().toISOString(),
     currentSectionId: schema.sections[0].id,
     sections,
